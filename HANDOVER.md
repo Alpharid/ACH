@@ -28,8 +28,10 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
 - Dépôt GitHub **public** `Alpharid/ACH` ; la vitrine se déploie toute seule sur Pages à
   chaque push touchant `web/` ou `data/` (`.github/workflows/pages.yml`).
-- **24 fiches** (`data/fiches/`) + captures réelles pour 11 filiales
-  (`web/assets/filiales/`) ; les autres ont une plaque typographique (glyphe + nom).
+- **29 filiales** (catalogue), chacune avec une fiche (`data/fiches/`) ; captures réelles
+  pour 11, plaque typographique (glyphe + nom) pour les autres.
+- Une filiale peut relever de deux divisions via `also` (ex. Alphred = β Apps + γ Outils,
+  Lounge = α Jeux + δ Services) : division principale pour le code `α-01`, comptée une fois.
 - README de tous les dépôts des filiales mis à jour (lien vers la vitrine en pied).
 - **Client Electron : pas encore commencé** (`desktop/` vide).
 
@@ -49,7 +51,11 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    captures des 13 filiales sans image (quand il y aura de quoi capturer proprement —
    voir « Pièges » pour ce qui est interdit) ; README `main` d'Oddyseus et de Medusa
    (le nouveau README est sur leur branche `unstable`, il arrivera au prochain merge).
-2. (libre)
+2. **Captures manquantes** quand c'est faisable proprement (projets au stade concept ou
+   sans visuel propre → plaque). Cas « art de tiers » laissés sans capture par choix de
+   droits : Arx Sandbox et les cartes du JDR Arx (données Arx Fatalis = Arkane/Bethesda,
+   jamais publiées) → proposer à l'utilisateur une vue greybox/UI sans textures.
+3. **Client Electron** (desktop/) : étape suivante.
 3. **Client Electron** (`desktop/`) : fenêtre, preload exposant `window.ACH`
    (`launch(id)`, `install(id)`), réutilise `web/` comme renderer.
    - `install` : lire la dernière release GitHub du `install.repo`, télécharger l'asset
@@ -57,10 +63,8 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
      embarqué (hors git, voir `.gitignore`), jamais sur le web.
    - `launch` : résoudre un exe/launcher local depuis `launch.dir`.
    - Builder : electron-builder → `.exe` NSIS. Binaire en **GitHub Release**, jamais en git.
-4. **Catalogue** : compléter/ajuster divisions et projets (l'utilisateur arbitre les cas
-   à cheval : MixMaster = services?, Alphred = services ou apps?, SA Chill Trainer = outils?).
-   Projets non encore inclus : SE2_Trainer (repo à créer), Project_ALL, maquettes
-   Alpharium_ThreeJS/Godot (archivées), dépôts JDR Arx (arx-jdr-maps, ATR-assets, Projet_JDR-ATR).
+4. **Catalogue** : 29 filiales, divisions à cheval tranchées (voir §3 et historique).
+   Reste surtout à compléter les captures et à faire vivre le catalogue au fil des projets.
 
 ## 5. Lancer / build / test
 ```bash
@@ -145,6 +149,13 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Stryder : le code est dans le dépôt privé d'un collaborateur (`C-Chafik`) → `source: null`
   dans le catalogue, et on ne touche pas à son dépôt ; la vitrine publique est
   `Alpharid/stryder-symbiosis-builds`.
+- **Sanctuary** = deux filiales : `sanctuary-3d` (le vrai jeu, dungeon crawler 3D FPS,
+  dépôt `Alpharid/Sanctuary-3D`, créé cette session avec le lore) et `sanctuary-idle`
+  (mini-jeu de barre `Alpharid/Sanctuary` qui prépare le premier).
+- **Usagi** (`C:\Usagi`) : exclu volontairement de la vitrine — « virus » blague au
+  comportement de vrai malware (agent qui se réinstalle, déguisé en service Windows).
+  Ne pas l'ajouter au catalogue ni l'aider à se diffuser.
+- Dépôts à cheval sur deux divisions : champ `also` (voir §4).
 - Dépôts `*-builds` : README en **anglais** (leur convention), le reste en français.
 - SVG en `<img>` : l'état de repos de l'animation doit rester visible (jamais d'animation
   qui part d'opacité 0) — certains contextes n'animent pas les SVG-images.
@@ -155,6 +166,11 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (7)** : divisions des cas à cheval tranchées (MixMaster → Jeux ;
+  Alphred → Apps + Outils ; SA Chill Trainer → Outils ; champ `also`). Sanctuary scindé en
+  `sanctuary-3d` (nouveau dépôt créé) + `sanctuary-idle`. Filiales ajoutées : Lounge
+  (Kaddour Social Club), Arx : Tenebris Relectis (JDR), SE2 Trainer, LightsOff (29 au total).
+  Usagi exclu (malware). Arx Sandbox/cartes JDR sans capture (art Arkane/Bethesda).
 - **2026-10-26 (6)** : ACH rendu public + GitHub Pages. 24 fiches et captures réelles
   (11 filiales) ; cartes illustrées (capture désaturée, couleur au survol) ou plaque
   typographique ; galerie dans la fiche. Catalogue corrigé d'après les dépôts (statuts

@@ -18,7 +18,8 @@ pas d'adresse de serveur, pas de chemin contenant des données perso.
 |---|---|---|
 | `id` | string | identifiant unique (kebab-case) |
 | `name` | string | nom affiché |
-| `division` | string | `id` de division |
+| `division` | string | `id` de la division principale (donne le code `α-01`) |
+| `also` | string[] | facultatif : autres divisions où la filiale apparaît aussi (même code) |
 | `status` | enum | `prod` \| `beta` \| `alpha` \| `wip` \| `concept` |
 | `visibility` | enum | `public` \| `private` (du dépôt source) |
 | `tagline` | string | une ligne |

@@ -238,7 +238,7 @@ function fillMedia(box, p, media) {
   box.appendChild(thumbs);
 }
 
-function fillSheet(sheet, p, code, division, media) {
+function fillSheet(sheet, p, code, division, extra, media) {
   fillMedia(sheet.querySelector(".sheet-media"), p, media);
   const body = sheet.querySelector(".sheet-body");
   body.innerHTML = "";
@@ -266,10 +266,12 @@ function fillSheet(sheet, p, code, division, media) {
   }
 
   const reg = el("dl", "sheet-reg");
-  const glyph = el("span", "sheet-glyph", division.glyph || "");
   const div = el("span");
-  div.append(glyph, ` ${division.name}`);
-  regRow(reg, "Division", div);
+  [division, ...extra].forEach((d, i) => {
+    if (i) div.append("  ·  ");
+    div.append(el("span", "sheet-glyph", d.glyph || ""), ` ${d.name}`);
+  });
+  regRow(reg, extra.length ? "Divisions" : "Division", div);
   regRow(reg, "Code source", p.visibility === "public" && p.source ? repoLink(p.source) : "privé");
   if (p.public && p.public !== p.source) regRow(reg, "Vitrine", repoLink(p.public));
   const rel = hasPublicBuilds(p) ? regRow(reg, "Dernière version", "…")
@@ -311,7 +313,8 @@ function setupSheet(catalog, codes) {
     const p = id && byId.get(id);
     if (!p) { if (sheet.open) sheet.close(); return; }
     sheet.dataset.id = p.id;
-    fillSheet(sheet, p, codes.get(p.id), divisions.get(p.division) || { name: p.division }, catalog.media[p.id]);
+    const extra = (p.also || []).map(id => divisions.get(id)).filter(Boolean);
+    fillSheet(sheet, p, codes.get(p.id), divisions.get(p.division) || { name: p.division }, extra, catalog.media[p.id]);
     if (!sheet.open) sheet.showModal();
     sheet.scrollTop = 0;
   }
@@ -359,17 +362,17 @@ function setupFinder(catalog, cards) {
 
   function apply() {
     const q = fold(input.value.trim());
-    let shown = 0;
+    const shown = new Set(); // a filiale listed in two divisions counts once
     cards.forEach(({ node, p, text }) => {
       const ok = (!status || p.status === status) && (!q || text.includes(q));
       node.hidden = !ok;
-      if (ok) shown++;
+      if (ok) shown.add(p.id);
     });
     document.querySelectorAll(".division").forEach(s => {
       s.hidden = !s.querySelector(".card:not([hidden])");
     });
-    tally.textContent = `${String(shown).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
-    empty.hidden = shown > 0;
+    tally.textContent = `${String(shown.size).padStart(2, "0")} / ${String(catalog.projects.length).padStart(2, "0")}`;
+    empty.hidden = shown.size > 0;
   }
 
   chips.addEventListener("click", e => {
@@ -397,7 +400,12 @@ function render(catalog) {
   document.getElementById("brand-full").textContent = catalog.brand.name;
   document.getElementById("brand-tag").textContent = catalog.brand.tagline || "";
 
-  const byDivision = d => catalog.projects.filter(p => p.division === d.id);
+  // Primary members first (they set the α-01 ranks), then filiales listed here via `also`.
+  const primary = d => catalog.projects.filter(p => p.division === d.id);
+  const byDivision = d => [...primary(d), ...catalog.projects.filter(p => (p.also || []).includes(d.id))];
+  const divisions = new Map(catalog.divisions.map(d => [d.id, d]));
+  const codes = new Map();  // project id → α-01…, from its primary division, fixed whatever the filter
+  catalog.divisions.forEach(d => primary(d).forEach((p, i) => codes.set(p.id, filialeCode(d, i))));
   const pad = n => String(n).padStart(2, "0");
 
   const nav = document.getElementById("divisions-nav");
@@ -411,7 +419,6 @@ function render(catalog) {
 
   const main = document.getElementById("catalog");
   main.innerHTML = "";
-  const codes = new Map();  // project id → α-01…, fixed whatever the filter
   const cards = [];
   catalog.divisions.forEach(d => {
     const items = byDivision(d);
@@ -428,11 +435,11 @@ function render(catalog) {
     if (d.blurb) h.appendChild(el("p", "division-blurb", d.blurb));
     section.appendChild(h);
     const grid = el("div", "grid");
-    items.forEach((p, i) => {
-      const code = filialeCode(d, i);
-      const node = projectCard(p, code, d, catalog.media[p.id]);
-      codes.set(p.id, code);
-      cards.push({ node, p, text: fold([p.name, p.tagline, p.description, code, d.name, ...(p.tags || [])].join(" ")) });
+    items.forEach(p => {
+      const code = codes.get(p.id);
+      const home = divisions.get(p.division) || d;
+      const node = projectCard(p, code, home, catalog.media[p.id]);
+      cards.push({ node, p, text: fold([p.name, p.tagline, p.description, code, d.name, home.name, ...(p.tags || [])].join(" ")) });
       grid.appendChild(node);
     });
     section.appendChild(grid);

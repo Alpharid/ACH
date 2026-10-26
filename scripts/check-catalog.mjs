@@ -24,6 +24,10 @@ for (const p of cat.projects) {
   seen.add(p.id);
   if (!p.name) errors.push(`${where}: name manquant`);
   if (!divIds.has(p.division)) errors.push(`${where}: division inconnue "${p.division}"`);
+  for (const a of p.also || []) {
+    if (!divIds.has(a)) errors.push(`${where}: also → division inconnue "${a}"`);
+    if (a === p.division) errors.push(`${where}: also répète la division principale`);
+  }
   if (!STATUS.has(p.status)) errors.push(`${where}: status invalide "${p.status}"`);
   if (p.install && p.install.type === "github-release" && !p.install.repo)
     errors.push(`${where}: install.repo manquant`);

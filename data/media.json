@@ -27,7 +27,11 @@
     "fiche": true,
     "captures": 0
   },
-  "sanctuary": {
+  "sanctuary-3d": {
+    "fiche": true,
+    "captures": 0
+  },
+  "sanctuary-idle": {
     "fiche": true,
     "captures": 2
   },
@@ -92,6 +96,22 @@
     "captures": 2
   },
   "mta-dayz": {
+    "fiche": true,
+    "captures": 0
+  },
+  "lounge": {
+    "fiche": true,
+    "captures": 2
+  },
+  "arx-atr": {
+    "fiche": true,
+    "captures": 0
+  },
+  "se2-trainer": {
+    "fiche": true,
+    "captures": 0
+  },
+  "lightsoff": {
     "fiche": true,
     "captures": 0
   }

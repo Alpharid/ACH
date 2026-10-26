@@ -54,7 +54,24 @@
 - Traitement visuel en CSS (désaturé + voile marine, couleur rendue au survol) plutôt
   que dans les fichiers : les captures restent fidèles (réutilisées dans les README).
 
+## 2026-10-26 — Divisions à cheval, Sanctuary scindé, filiales manquantes
+- Cas à cheval tranchés par l'utilisateur : **MixMaster → Jeux**, **Alphred → Apps +
+  Outils**, **SA Chill Trainer → Outils**. Une filiale peut relever de deux divisions
+  (champ `also` : principale = code `α-01`, apparaît aussi dans les autres, comptée une fois).
+- **Sanctuary scindé** : le « vrai » Sanctuary (dungeon crawler 3D FPS, immersive sim)
+  devient la filiale `sanctuary-3d` avec son propre dépôt `Alpharid/Sanctuary-3D` (créé
+  avec le lore récupéré) ; le mini-jeu de barre devient `sanctuary-idle` (« Sanctuary —
+  Idle Tic »), présenté comme l'avant-goût qui prépare le 3D.
+- Filiales ajoutées après revue GitHub + disque : **Alpharium Luxurious Lounge** (Kaddour
+  Social Club, dépôt actif `Project_ALL` ; maquettes ThreeJS/Godot = essais archivés),
+  **Arx : Tenebris Relectis** (JDR Roll20), **SE2 Trainer** (plugin Space Engineers 2),
+  **LightsOff** (utilitaire écrans).
+- **Usagi exclu** : « virus » de bureau au comportement de vrai malware (réinstallation
+  furtive déguisée en service, re-déclenchement, synchro multi-appareils) → jamais sur la
+  vitrine publique, pas d'aide à sa diffusion.
+- **Droits d'auteur** : pas de capture publiée pour Arx Sandbox ni pour les cartes du JDR
+  Arx — ce serait de l'art d'Arx Fatalis (Arkane/Bethesda). Alternative possible : vue
+  greybox (géométrie sans textures) ou UI maison seule.
+
 ## À trancher (ouvert)
-- Rangement des cas à cheval : MixMaster (services vs jeux), Alphred (services vs apps),
-  SA Chill Trainer (outils vs jeux).
 - Inclusion de SE2_Trainer (repo à créer), Project_ALL, maquettes Alpharium, dépôts JDR Arx.

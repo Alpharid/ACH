@@ -1,4 +1,4 @@
-Sanctuary est un rogue-lite **semi-idle** pour Windows qui vit dans une barre horizontale, toujours au premier plan, en bas de l'écran. Chaque clic et chaque touche pressée, n'importe où sur le PC, fait avancer le jeu d'un pas : on travaille, on joue, et pendant ce temps un inquisiteur descend les catacombes, combat et ramasse du butin.
+Sanctuary — Idle Tic est un rogue-lite **semi-idle** pour Windows qui vit dans une barre horizontale, toujours au premier plan, en bas de l'écran. Chaque clic et chaque touche pressée, n'importe où sur le PC, fait avancer le jeu d'un pas : on travaille, on joue, et pendant ce temps un inquisiteur descend les catacombes, combat et ramasse du butin.
 
 L'ambiance est sombre et profane, en pixel art. Le jeu compte les frappes sans jamais enregistrer ce qui est tapé.
 
@@ -13,4 +13,4 @@ L'ambiance est sombre et profane, en pixel art. Le jeu compte les frappes sans j
 Electron · JavaScript · Canvas 2D · uiohook-napi · electron-builder
 
 ### Où en est la filiale
-Alpha (0.2.0), jouable de bout en bout, en un seul exécutable portable. Restent des sons et des sprites définitifs et un équilibrage fin. Ce mini-jeu préfigure le vrai Sanctuary, prévu en dungeon crawler 3D à la première personne dans le même univers.
+Alpha (0.2.0), jouable de bout en bout, en un seul exécutable portable. Restent des sons et des sprites définitifs et un équilibrage fin. Ce mini-jeu prépare la venue du **vrai Sanctuary**, un dungeon crawler 3D à la première personne dans le même univers.
