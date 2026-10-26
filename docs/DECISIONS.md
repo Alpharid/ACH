@@ -31,6 +31,17 @@
   (`scripts/vectorize-logo.py`) : formes tracées (fidèles), lueur et liseré reconstruits
   en dégradés (l'original en paliers n'est pas traçable), macaron rendu circulaire.
 - Sens du logo : α ρ δ = Alpharid ; 1996 = origine d'Alpharium (« depuis 1996 »).
+- Le glyphe sous le X = **blason d'Alpharid** (F stylisé, emblème personnel du fondateur
+  depuis l'enfance) : extrait en SVG seul, utilisé comme **signature** (« fondé par
+  Alpharid »), jamais comme ornement.
+
+## 2026-10-26 — Fiche filiale, recherche, téléchargement web
+- Fiche filiale = `<dialog>` ouvert par l'ancre **`#filiale/<id>`** → chaque filiale a un
+  lien partageable, le bouton Retour ferme la fiche. Pas de routeur ni de framework.
+- Recherche plein texte (accents ignorés) + filtre par statut, côté client.
+- **Téléchargement sur le web** : uniquement si `install.private` est faux (repo de builds
+  public). La fiche interroge l'API GitHub publique (`releases/latest`, sans jeton) pour
+  afficher la version et proposer l'asset Windows. Builds privés : client lourd seulement.
 
 ## À trancher (ouvert)
 - Hébergement de la vitrine : rendre `Alpharid/ACH` public (vitrine sans secret) vs

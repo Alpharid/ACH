@@ -1,13 +1,16 @@
-// ACH web catalog — skeleton renderer.
-// Reads data/catalog.json and lays projects out by division.
+// ACH web catalog — renderer.
+// Reads data/catalog.json and lays projects out by division, with a search/status
+// filter and a detail sheet per filiale (shareable as #filiale/<id>).
 // `launch` / `install` actions only exist in the Electron client; the web build
-// shows GitHub links and (later) download links instead.
+// shows GitHub links and public build downloads instead.
 
 const IS_ELECTRON = typeof window !== "undefined" && !!window.ACH; // desktop bridge, injected by preload
 
 const STATUS_LABEL = {
   prod: "Prod", beta: "Bêta", alpha: "Alpha", wip: "En dev", concept: "Concept",
 };
+
+const SHEET_HASH = "#filiale/";
 
 async function loadCatalog() {
   // Web build and Electron build both ship the json next to the page.
@@ -28,9 +31,43 @@ function el(tag, cls, text) {
   return n;
 }
 
+function link(cls, text, href) {
+  const a = el("a", cls, text);
+  a.href = href;
+  a.target = "_blank";
+  a.rel = "noopener";
+  return a;
+}
+
+// Lowercase, accents stripped: "Tōkyō" matches "tokyo".
+function fold(s) {
+  return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
 // Filiale code shown on cards: division glyph + rank inside the division (α-01, β-03…).
 function filialeCode(division, index) {
   return `${division.glyph || division.id}-${String(index + 1).padStart(2, "0")}`;
+}
+
+// Public builds can be downloaded from the web; private ones only through the client.
+const hasPublicBuilds = p => p.install && p.install.type === "github-release" && !p.install.private;
+
+// Shared by cards and the sheet. Launch/Install exist only in the desktop client.
+function actionButtons(p) {
+  const actions = [];
+  if (IS_ELECTRON && p.launch) {
+    const b = el("button", "act act-launch", "▸ Lancer");
+    b.addEventListener("click", () => window.ACH.launch(p.id));
+    actions.push(b);
+  }
+  if (IS_ELECTRON && p.install) {
+    const b = el("button", "act act-install", "⤓ Installer");
+    b.addEventListener("click", () => window.ACH.install(p.id));
+    actions.push(b);
+  }
+  if (p.github) actions.push(link("act act-github", "Dépôt ↗", p.github));
+  else actions.push(el("span", "act act-disabled", "privé"));
+  return actions;
 }
 
 function projectCard(p, code) {
@@ -41,7 +78,13 @@ function projectCard(p, code) {
   meta.appendChild(el("span", "card-code", code));
   meta.appendChild(el("span", `badge badge-${p.status}`, STATUS_LABEL[p.status] || p.status));
   card.appendChild(meta);
-  card.appendChild(el("h3", "card-title", p.name));
+
+  // The title link covers the whole card (see .card-open::after); actions sit above it.
+  const title = el("h3", "card-title");
+  const open = el("a", "card-open", p.name);
+  open.href = SHEET_HASH + p.id;
+  title.appendChild(open);
+  card.appendChild(title);
 
   if (p.tagline) card.appendChild(el("p", "card-tagline", p.tagline));
   if (p.description) card.appendChild(el("p", "card-desc", p.description));
@@ -53,36 +96,189 @@ function projectCard(p, code) {
   }
 
   const actions = el("div", "card-actions");
-
-  // Launch — desktop only, needs a local install path.
-  if (IS_ELECTRON && p.launch) {
-    const b = el("button", "act act-launch", "▸ Lancer");
-    b.addEventListener("click", () => window.ACH.launch(p.id));
-    actions.appendChild(b);
-  }
-
-  // Install — desktop only, from a GitHub release.
-  if (IS_ELECTRON && p.install) {
-    const b = el("button", "act act-install", "⤓ Installer");
-    b.addEventListener("click", () => window.ACH.install(p.id));
-    actions.appendChild(b);
-  }
-
-  // GitHub — everywhere a public-facing link exists.
-  if (p.github) {
-    const a = el("a", "act act-github", "Dépôt ↗");
-    a.href = p.github;
-    a.target = "_blank";
-    a.rel = "noopener";
-    actions.appendChild(a);
-  } else {
-    const span = el("span", "act act-disabled", "privé");
-    actions.appendChild(span);
-  }
-
+  actions.append(...actionButtons(p));
   card.appendChild(actions);
   return card;
 }
+
+// ── Fiche filiale ────────────────────────────────────────────────────────────
+
+const releases = new Map(); // repo → Promise<release|null>, one API call per repo and visit
+
+function latestRelease(repo) {
+  if (!releases.has(repo)) {
+    releases.set(repo, fetch(`https://api.github.com/repos/${repo}/releases/latest`)
+      .then(r => (r.ok ? r.json() : null))
+      .catch(() => null));
+  }
+  return releases.get(repo);
+}
+
+// Windows build first (.exe > .msi > .zip), else whatever was published.
+function pickAsset(assets) {
+  for (const ext of [".exe", ".msi", ".zip"]) {
+    const a = assets.find(x => x.name.toLowerCase().endsWith(ext));
+    if (a) return a;
+  }
+  return assets[0] || null;
+}
+
+function regRow(dl, label, value) {
+  dl.appendChild(el("dt", null, label));
+  const dd = el("dd");
+  if (value instanceof Node) dd.appendChild(value); else dd.textContent = value;
+  dl.appendChild(dd);
+  return dd;
+}
+
+function repoLink(repo) {
+  return link("sheet-repo", `${repo} ↗`, `https://github.com/${repo}`);
+}
+
+function fillSheet(sheet, p, code, division) {
+  const body = sheet.querySelector(".sheet-body");
+  body.innerHTML = "";
+
+  const meta = el("div", "sheet-meta");
+  meta.appendChild(el("span", null, `${code} · ${division.label || division.name}`));
+  meta.appendChild(el("span", `badge badge-${p.status}`, STATUS_LABEL[p.status] || p.status));
+  body.appendChild(meta);
+
+  body.appendChild(el("h2", "sheet-title", p.name));
+  if (p.tagline) body.appendChild(el("p", "sheet-tagline", p.tagline));
+  if (p.description) body.appendChild(el("p", "sheet-desc", p.description));
+
+  const reg = el("dl", "sheet-reg");
+  const glyph = el("span", "sheet-glyph", division.glyph || "");
+  const div = el("span");
+  div.append(glyph, ` ${division.name}`);
+  regRow(reg, "Division", div);
+  regRow(reg, "Code source", p.visibility === "public" && p.source ? repoLink(p.source) : "privé");
+  if (p.public && p.public !== p.source) regRow(reg, "Vitrine", repoLink(p.public));
+  const rel = hasPublicBuilds(p) ? regRow(reg, "Dernière version", "…")
+    : p.install ? regRow(reg, "Builds", "privés — client lourd uniquement") : null;
+  if (Array.isArray(p.tags) && p.tags.length) {
+    const tags = el("span", "card-tags");
+    p.tags.forEach(t => tags.appendChild(el("span", "tag", t)));
+    regRow(reg, "Mots-clés", tags);
+  }
+  body.appendChild(reg);
+
+  const actions = el("div", "sheet-actions");
+  actions.append(...actionButtons(p));
+  body.appendChild(actions);
+
+  if (!hasPublicBuilds(p)) return;
+  latestRelease(p.install.repo).then(r => {
+    if (sheet.dataset.id !== p.id) return; // sheet moved on to another filiale
+    if (!r) { rel.textContent = "aucune version publiée"; return; }
+    const date = (r.published_at || "").slice(0, 10);
+    rel.textContent = `${r.tag_name}${date ? ` · ${date}` : ""}`;
+    const asset = pickAsset(r.assets || []);
+    if (!IS_ELECTRON && asset) {
+      const dl = el("a", "act act-download", "⤓ Télécharger");
+      dl.href = asset.browser_download_url;
+      dl.title = asset.name;
+      actions.prepend(dl);
+    }
+  });
+}
+
+function setupSheet(catalog, codes) {
+  const sheet = document.getElementById("filiale");
+  const byId = new Map(catalog.projects.map(p => [p.id, p]));
+  const divisions = new Map(catalog.divisions.map(d => [d.id, d]));
+  let openedInPage = false; // true → closing goes back in history instead of rewriting it
+
+  const hashId = () => (location.hash.startsWith(SHEET_HASH)
+    ? decodeURIComponent(location.hash.slice(SHEET_HASH.length)) : null);
+
+  function sync() {
+    const id = hashId();
+    const p = id && byId.get(id);
+    if (!p) { if (sheet.open) sheet.close(); return; }
+    sheet.dataset.id = p.id;
+    fillSheet(sheet, p, codes.get(p.id), divisions.get(p.division) || { name: p.division });
+    if (!sheet.open) sheet.showModal();
+    sheet.scrollTop = 0;
+  }
+
+  sheet.addEventListener("close", () => {
+    const id = sheet.dataset.id;
+    if (hashId() === id) { // closed by the user, not by a hash change
+      if (openedInPage) history.back();
+      else history.replaceState(null, "", location.pathname + location.search);
+    }
+    openedInPage = false;
+    const card = document.querySelector(`.card-open[href="${SHEET_HASH}${id}"]`);
+    if (card) card.focus({ preventScroll: true });
+  });
+  sheet.querySelector(".sheet-close").addEventListener("click", () => sheet.close());
+  // Click on the backdrop (outside the panel) closes.
+  sheet.addEventListener("click", e => { if (e.target === sheet) sheet.close(); });
+
+  window.addEventListener("hashchange", () => {
+    if (location.hash.startsWith(SHEET_HASH)) openedInPage = true;
+    sync();
+  });
+  sync();
+}
+
+// ── Recherche / filtre ───────────────────────────────────────────────────────
+
+function setupFinder(catalog, cards) {
+  const finder = document.getElementById("finder");
+  const input = finder.querySelector("input");
+  const chips = finder.querySelector(".finder-status");
+  const tally = finder.querySelector(".finder-tally");
+  const empty = document.getElementById("catalog-empty");
+  let status = "";
+
+  const present = Object.keys(STATUS_LABEL).filter(s => catalog.projects.some(p => p.status === s));
+  [["", "Tous"], ...present.map(s => [s, STATUS_LABEL[s]])].forEach(([s, label]) => {
+    const b = el("button", "chip", label);
+    b.type = "button";
+    b.dataset.status = s;
+    b.setAttribute("aria-pressed", String(s === status));
+    if (s) b.prepend(el("i", `badge badge-${s}`));
+    chips.appendChild(b);
+  });
+
+  function apply() {
+    const q = fold(input.value.trim());
+    let shown = 0;
+    cards.forEach(({ node, p, text }) => {
+      const ok = (!status || p.status === status) && (!q || text.includes(q));
+      node.hidden = !ok;
+      if (ok) shown++;
+    });
+    document.querySelectorAll(".division").forEach(s => {
+      s.hidden = !s.querySelector(".card:not([hidden])");
+    });
+    tally.textContent = `${String(shown).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+    empty.hidden = shown > 0;
+  }
+
+  chips.addEventListener("click", e => {
+    const b = e.target.closest(".chip");
+    if (!b) return;
+    status = b.dataset.status;
+    chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+    apply();
+  });
+  input.addEventListener("input", apply);
+  // "/" jumps to the search field, like on GitHub.
+  document.addEventListener("keydown", e => {
+    if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target.closest("input, textarea, [contenteditable]") || document.querySelector("dialog[open]")) return;
+    e.preventDefault();
+    input.focus();
+  });
+  finder.hidden = false;
+  apply();
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
 
 function render(catalog) {
   document.getElementById("brand-full").textContent = catalog.brand.name;
@@ -102,6 +298,8 @@ function render(catalog) {
 
   const main = document.getElementById("catalog");
   main.innerHTML = "";
+  const codes = new Map();  // project id → α-01…, fixed whatever the filter
+  const cards = [];
   catalog.divisions.forEach(d => {
     const items = byDivision(d);
     if (!items.length) return;
@@ -117,14 +315,27 @@ function render(catalog) {
     if (d.blurb) h.appendChild(el("p", "division-blurb", d.blurb));
     section.appendChild(h);
     const grid = el("div", "grid");
-    items.forEach((p, i) => grid.appendChild(projectCard(p, filialeCode(d, i))));
+    items.forEach((p, i) => {
+      const code = filialeCode(d, i);
+      const node = projectCard(p, code);
+      codes.set(p.id, code);
+      cards.push({ node, p, text: fold([p.name, p.tagline, p.description, code, d.name, ...(p.tags || [])].join(" ")) });
+      grid.appendChild(node);
+    });
     section.appendChild(grid);
     main.appendChild(section);
   });
+  const empty = el("p", "loading", "Aucune filiale ne correspond.");
+  empty.id = "catalog-empty";
+  empty.hidden = true;
+  main.appendChild(empty);
 
   if (catalog.brand.since) document.getElementById("foot-since").textContent = `depuis ${catalog.brand.since} · `;
   document.getElementById("foot-updated").textContent = `registre au ${catalog.brand.updated}`;
   document.getElementById("foot-count").textContent = `${catalog.projects.length} filiales`;
+
+  setupFinder(catalog, cards);
+  setupSheet(catalog, codes);
 }
 
 loadCatalog()

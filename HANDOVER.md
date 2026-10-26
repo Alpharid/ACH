@@ -21,6 +21,8 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 - `web/` : page fonctionnelle qui lit le catalogue (divisions + cartes + boutons),
   **skinnée v1 avec l'identité Alpharium** (logo de la graphiste) — voir `docs/DA/CHARTE.md`.
   Responsive vérifié (desktop 1400 px, mobile 390 px).
+  **Fiche filiale** (`#filiale/<id>`, lien partageable), **recherche** (touche `/`) et
+  **filtre par statut** ; téléchargement des builds publics depuis la fiche.
 - `scripts/serve-web.mjs` (preview) + `scripts/check-catalog.mjs` (validation).
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
 - Dépôt GitHub privé `Alpharid/ACH` créé et poussé.
@@ -38,8 +40,9 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 
 ## 4. Backlog (prochaines étapes, dans l'ordre)
 0. ~~DA~~ : fait (skin v1 + logo vectorisé). Retours utilisateur à intégrer.
-1. **Page web finalisée** : vue détail projet, vignettes par filiale (captures réelles),
-   recherche/filtre par statut.
+1. **Page web finalisée** : ~~vue détail~~, ~~recherche/filtre par statut~~ (faits).
+   Reste : **vignettes par filiale** (captures réelles fournies par l'utilisateur →
+   champ catalogue à ajouter, traitement commun désaturé/teinté marine, cf. `docs/DA/README.md`).
 2. **Hébergement** : décider GitHub Pages. Repo ACH privé → Pages gratuit **exige public**.
    Option retenue à trancher : soit rendre `ACH` public (c'est une vitrine sans secret),
    soit déployer `web/` vers un repo public `ach-web` via GitHub Action (pattern `-builds`).
@@ -66,6 +69,10 @@ Client Electron : à venir (`cd desktop && npm start`, puis `npm run dist` pour 
 ## 6. Architecture & flux de données
 - `data/catalog.json` = **unique source**. Web et desktop le lisent.
 - Web : `web/index.html` → `web/assets/app.js` fetch `../data/catalog.json` → rend par division.
+  Fiche : `<dialog id="filiale">` piloté par le hash `#filiale/<id>` (`setupSheet`) ; pour
+  les builds publics, appel `api.github.com/repos/<install.repo>/releases/latest` (version +
+  asset Windows `.exe` > `.msi` > `.zip`). Recherche/filtre : `setupFinder` (masque cartes
+  et divisions vides, codes `α-01` fixes quel que soit le filtre).
   Détecte le client lourd via `window.ACH` (injecté par le preload Electron). Sans lui :
   seuls les liens GitHub sont actifs (pas de Lancer/Installer).
 - Desktop (prévu) : Electron charge `web/index.html`, un preload expose `window.ACH`.
@@ -110,6 +117,12 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   les angles aigus → le wordmark est tracé en polygones (OpenCV `approxPolyDP`), l'emblème
   (courbes) en potrace. La lueur et le liseré sont **reconstruits** (constantes en tête du
   script, mesurées sur les PNG).
+- API GitHub non authentifiée : 60 requêtes/h par IP (une par repo de builds et par visite,
+  mises en cache en mémoire). Au-delà, la fiche affiche « aucune version publiée » sans
+  bouton Télécharger — pas grave, le lien Dépôt reste.
+- Fiche : la fermeture ne touche l'historique que si le hash désigne encore la fiche
+  ouverte (sinon un hash inconnu ferait rouvrir l'ancienne fiche via `history.back()`).
+- Ne jamais afficher `launch.dir` sur le web (chemins locaux du client lourd).
 - SVG en `<img>` : l'état de repos de l'animation doit rester visible (jamais d'animation
   qui part d'opacité 0) — certains contextes n'animent pas les SVG-images.
 - Les dépôts privés restent privés : le bouton GitHub mène à une 404/login pour les
@@ -119,6 +132,8 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (5)** : fiche filiale (`#filiale/<id>`), recherche + filtre par statut,
+  téléchargement des builds publics (API releases), carte entièrement cliquable.
 - **2026-10-26 (4)** : glyphe du bas de l'emblème identifié = **blason d'Alpharid** (F
   stylisé, deux logos Arx Fatalis en asymétrie, emblème personnel du fondateur) → SVG
   seul `alpharid-blason-*.svg`, signature « fondé par Alpharid » en pied de page.

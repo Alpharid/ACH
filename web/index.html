@@ -29,9 +29,25 @@
     </div>
 
     <nav class="divisions" id="divisions-nav" aria-label="Divisions"></nav>
+
+    <div class="finder" id="finder" hidden>
+      <label class="finder-search">
+        <span class="visually-hidden">Rechercher une filiale</span>
+        <input type="search" placeholder="Rechercher une filiale" autocomplete="off" spellcheck="false" />
+        <kbd>/</kbd>
+      </label>
+      <div class="finder-status" role="group" aria-label="Filtrer par statut"></div>
+      <span class="finder-tally" aria-live="polite"></span>
+    </div>
   </header>
 
   <main id="catalog" class="catalog"><p class="loading">Ouverture du registre…</p></main>
+
+  <!-- Fiche filiale : ouverte par #filiale/<id> (lien partageable). -->
+  <dialog class="sheet" id="filiale" aria-label="Fiche filiale">
+    <button class="sheet-close" type="button" aria-label="Fermer">Fermer ✕</button>
+    <div class="sheet-body" tabindex="-1" autofocus></div>
+  </dialog>
 
   <footer class="foot">
     <img class="foot-mark" src="assets/brand/macaron.svg" width="64" height="64" alt="" />
