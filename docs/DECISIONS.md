@@ -13,6 +13,25 @@
   mots-clés validés, PUIS skin. Règle anti « look IA par défaut ».
 - **Ordre de construction : web d'abord, puis wrap Electron.**
 
+## 2026-10-26 — DA = identité Alpharium (logo de la graphiste)
+- L'utilisateur fournit le **logo Alpharium** (10 variantes, par sa cousine graphiste) :
+  « on reprend cette DA, Alpharium est un puissant conglomérat ».
+- Ce logo **remplace le moodboard** comme référence humaine de départ : la DA n'est plus
+  « FUI megacorp sombre » générique mais **holding de prestige** (marine, argent, or en
+  lumière rare, lettres grecques, chiffres 1·9·9·6). Le côté FUI reste dans la rigueur
+  (filets, codes de registre en mono).
+- Divisions renommées visuellement **α β γ δ** (champ `glyph` du catalogue), codes de
+  filiale `α-01`.
+- Polices : Jost / Noto Serif Display / IBM Plex Mono, **auto-hébergées** (le client
+  Electron doit marcher hors ligne).
+- Détail : `docs/DA/CHARTE.md`.
+
+## 2026-10-26 — Logo vectorisé par nous
+- Vectoriels d'origine non disponibles → SVG refaits depuis les PNG haute résolution
+  (`scripts/vectorize-logo.py`) : formes tracées (fidèles), lueur et liseré reconstruits
+  en dégradés (l'original en paliers n'est pas traçable), macaron rendu circulaire.
+- Sens du logo : α ρ δ = Alpharid ; 1996 = origine d'Alpharium (« depuis 1996 »).
+
 ## À trancher (ouvert)
 - Hébergement de la vitrine : rendre `Alpharid/ACH` public (vitrine sans secret) vs
   déployer `web/` vers un repo public dédié `ach-web` (pattern `-builds`) pour garder la

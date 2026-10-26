@@ -4,14 +4,15 @@
     "name": "Alpharium Conglomerat HUB",
     "short": "ACH",
     "owner": "Alpharid",
+    "since": 1996,
     "tagline": "Le conglomérat qui réunit toutes mes divisions.",
     "updated": "2026-10-26"
   },
   "divisions": [
-    { "id": "jeux",     "name": "Jeux",     "label": "Division Jeux",     "blurb": "Les jeux du conglomérat — Godot, Electron, VR, mods." },
-    { "id": "apps",     "name": "Apps",     "label": "Division Apps",     "blurb": "Logiciels grand public faits maison." },
-    { "id": "outils",   "name": "Outils",   "label": "Division Outils",   "blurb": "Boîtes à outils, trainers, utilitaires, R&D." },
-    { "id": "services", "name": "Services", "label": "Division Services", "blurb": "Serveurs, IA locale, infrastructure." }
+    { "id": "jeux",     "glyph": "α", "name": "Jeux",     "label": "Division Jeux",     "blurb": "Les jeux du conglomérat — Godot, Electron, VR, mods." },
+    { "id": "apps",     "glyph": "β", "name": "Apps",     "label": "Division Apps",     "blurb": "Logiciels grand public faits maison." },
+    { "id": "outils",   "glyph": "γ", "name": "Outils",   "label": "Division Outils",   "blurb": "Boîtes à outils, trainers, utilitaires, R&D." },
+    { "id": "services", "glyph": "δ", "name": "Services", "label": "Division Services", "blurb": "Serveurs, IA locale, infrastructure." }
   ],
   "projects": [
     {

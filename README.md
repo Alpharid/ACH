@@ -12,12 +12,12 @@ Deux faces, un seul catalogue :
   vitrine, il peut **installer** et **lancer** les projets installables.
 
 ## Divisions
-**Jeux · Apps · Outils · Services** — chaque projet est une « filiale » du conglomérat.
+**α Jeux · β Apps · γ Outils · δ Services** — chaque projet est une « filiale » du conglomérat.
 
 ## État
-Projet démarré le 2026-10-26. Squelette monorepo + catalogue en place ; la page web
-est encore en **wireframe** (la direction artistique « Conglomérat / FUI megacorp »
-se fait après un moodboard de vraies références). Voir [HANDOVER.md](HANDOVER.md).
+Projet démarré le 2026-10-26. Catalogue en place ; la page web porte l'identité
+**Alpharium** (logo, charte : [docs/DA/CHARTE.md](docs/DA/CHARTE.md)). Le client Electron
+est la prochaine étape. Voir [HANDOVER.md](HANDOVER.md).
 
 ## Démarrer
 ```bash

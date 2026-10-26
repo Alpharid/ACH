@@ -5,8 +5,11 @@ fichier. Aucun secret ici (le fichier est destiné à être public) : pas de tok
 pas d'adresse de serveur, pas de chemin contenant des données perso.
 
 ## Racine
-- `brand` : `{ name, short, owner, tagline, updated }`
-- `divisions` : liste ordonnée `{ id, name, label, blurb }`
+- `brand` : `{ name, short, owner, since, tagline, updated }`
+  - `since` : année d'origine d'Alpharium (1996, les chiffres d'angle du logo)
+- `divisions` : liste ordonnée `{ id, glyph, name, label, blurb }`
+  - `glyph` : lettre grecque minuscule de la division (α β γ δ…, issue du logo) ; sert
+    aussi de préfixe aux codes de filiale affichés (`α-01`, `β-03`…)
   - `id` ∈ `jeux` | `apps` | `outils` | `services`
 - `projects` : liste de projets (voir ci-dessous)
 

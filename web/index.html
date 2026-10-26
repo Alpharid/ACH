@@ -3,28 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ACH — Alpharium Conglomerat HUB</title>
-  <meta name="description" content="Le conglomérat qui réunit toutes les divisions : Jeux, Apps, Outils, Services." />
+  <title>Alpharium — Conglomerat HUB</title>
+  <meta name="description" content="Le registre des filiales Alpharium : Jeux, Apps, Outils, Services." />
+  <meta name="theme-color" content="#0a0d16" />
+  <link rel="icon" href="assets/brand/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="assets/brand/macaron.svg" />
+  <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <div class="wip-banner">⚠ Wireframe — direction artistique « Conglomérat » à venir (moodboard d'abord). Le look final n'est pas encore posé.</div>
+  <header class="seal">
+    <!-- Chiffres d'angle 1·9·9·6 = année de naissance d'Alpharium, repris du logo. -->
+    <div class="seal-frame">
+      <span class="seal-num n-tl">1</span>
+      <span class="seal-num n-tr">9</span>
+      <span class="seal-num n-bl">9</span>
+      <span class="seal-num n-br">6</span>
 
-  <header class="hub-head">
-    <div class="brand">
-      <span class="brand-mark">ACH</span>
-      <span class="brand-full" id="brand-full">Alpharium Conglomerat HUB</span>
+      <img class="seal-emblem" src="assets/brand/embleme-blanc.svg" width="4716" height="4705" alt="" />
+      <h1 class="seal-title">
+        <img class="seal-wordmark" src="assets/brand/wordmark-blanc.svg" width="5716" height="470" alt="Alpharium" />
+        <span class="seal-sub">Conglomerat <i>·</i> HUB</span>
+      </h1>
+      <p class="seal-tag" id="brand-tag"></p>
     </div>
-    <p class="brand-tag" id="brand-tag"></p>
-    <nav class="divisions" id="divisions-nav"></nav>
+
+    <nav class="divisions" id="divisions-nav" aria-label="Divisions"></nav>
   </header>
 
-  <main id="catalog" class="catalog"><p class="loading">Chargement du catalogue…</p></main>
+  <main id="catalog" class="catalog"><p class="loading">Ouverture du registre…</p></main>
 
-  <footer class="hub-foot">
-    <span id="foot-updated"></span>
-    <span class="foot-sep">·</span>
-    <span id="foot-count"></span>
+  <footer class="foot">
+    <img class="foot-mark" src="assets/brand/macaron.svg" width="64" height="64" alt="" />
+    <div class="foot-lines">
+      <span class="foot-name" id="brand-full">Alpharium Conglomerat HUB</span>
+      <span class="foot-meta"><span id="foot-since"></span><span id="foot-count"></span> · <span id="foot-updated"></span></span>
+    </div>
+    <span class="foot-sign" title="Blason d'Alpharid">fondé par Alpharid <img src="assets/brand/blason-blanc.svg" width="879" height="1530" alt="" /></span>
   </footer>
 
   <script src="assets/app.js"></script>

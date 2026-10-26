@@ -11,14 +11,16 @@ Un HUB/launcher des projets Alpharium, type Steam/GOG/Epic. Deux faces alimenté
 2. **Client lourd** Electron (`.exe` NSIS) pour la famille — en plus : **installer** et
    **lancer** les projets installables.
 
-Branding : ACH = conglomérat fictif ; chaque projet = une « filiale » d'une **division**
-(Jeux / Apps / Outils / Services).
+Branding : **Alpharium** = l'entreprise de l'utilisateur, mise en scène en puissant
+conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / β Apps /
+γ Outils / δ Services). Identité visuelle : logo d'une graphiste → `docs/DA/CHARTE.md`.
 
 ## 2. État au 2026-10-26 (session de création)
 - Structure monorepo créée dans `C:\ACH`.
 - `data/catalog.json` : ~24 projets réels renseignés (source de vérité, public-safe).
-- `web/` : squelette fonctionnel qui lit le catalogue et affiche les divisions +
-  cartes + boutons. **Style = wireframe assumé** (monospace/bordures), PAS la DA finale.
+- `web/` : page fonctionnelle qui lit le catalogue (divisions + cartes + boutons),
+  **skinnée v1 avec l'identité Alpharium** (logo de la graphiste) — voir `docs/DA/CHARTE.md`.
+  Responsive vérifié (desktop 1400 px, mobile 390 px).
 - `scripts/serve-web.mjs` (preview) + `scripts/check-catalog.mjs` (validation).
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
 - Dépôt GitHub privé `Alpharid/ACH` créé et poussé.
@@ -26,15 +28,18 @@ Branding : ACH = conglomérat fictif ; chaque projet = une « filiale » d'une *
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
 - **Stack client lourd : Electron** (même code que le web, installeur NSIS, déjà maîtrisé).
-- **DA : « Conglomérat / portail corpo diégétique »** (FUI megacorp sombre, type
-  Weyland-Yutani/Abstergo/Hyperion). → **Moodboard de vraies références AVANT de coder le
-  look** (règle anti « look IA par défaut »). Rien n'est figé visuellement.
+- **DA : identité Alpharium** — partie du logo réalisé par une graphiste (sources
+  `docs/DA/logo/source/`). Holding de prestige : marine `#182239`, argent, **or = lumière
+  rare**, lettres grecques par division (α β γ δ), chiffres 1·9·9·6, blason d'Alpharid
+  (le F sous le X = emblème personnel du fondateur, pièce précieuse). Charte :
+  `docs/DA/CHARTE.md`. Règle anti « look IA par défaut » : on décline le logo, on
+  n'invente pas d'ornements (pas d'or/étoiles génériques).
 - **Ordre : web d'abord, puis wrap Electron.**
 
 ## 4. Backlog (prochaines étapes, dans l'ordre)
-0. **DA** : moodboard de références humaines (FUI de films/jeux, ArtStation, Pinterest)
-   dans `docs/DA/`, 3 pistes + mots-clés validés par l'utilisateur, puis skin de la page web.
-1. **Page web finalisée** avec la DA retenue (responsive, thème sombre, détail projet).
+0. ~~DA~~ : fait (skin v1 + logo vectorisé). Retours utilisateur à intégrer.
+1. **Page web finalisée** : vue détail projet, vignettes par filiale (captures réelles),
+   recherche/filtre par statut.
 2. **Hébergement** : décider GitHub Pages. Repo ACH privé → Pages gratuit **exige public**.
    Option retenue à trancher : soit rendre `ACH` public (c'est une vitrine sans secret),
    soit déployer `web/` vers un repo public `ach-web` via GitHub Action (pattern `-builds`).
@@ -71,12 +76,19 @@ data/catalog.json          source de vérité
 data/catalog.schema.md      doc des champs + règles (public-safe, pas de secret)
 web/index.html              page
 web/assets/app.js           rendu du catalogue
-web/assets/styles.css       WIREFRAME (pas la DA finale)
+web/assets/styles.css       skin Alpharium v1 (tokens en tête de fichier)
+web/assets/fonts.css        @font-face auto-hébergées (Jost, Noto Serif Display, Plex Mono)
+web/assets/fonts/           woff2 + OFL.txt
+web/assets/brand/           SVG web (emblème animé, wordmark, macaron, blason) + favicons
 scripts/serve-web.mjs       serveur preview
 scripts/check-catalog.mjs   validateur
+scripts/vectorize-logo.py   PNG maîtres → SVG (docs/DA/logo/svg + web/assets/brand)
+scripts/build-brand-assets.py  favicons PNG/ICO + macaron PNG (icône d'app)
 desktop/                    client Electron (vide)
 docs/DECISIONS.md           journal des décisions
-docs/DA/                    moodboard + direction artistique (à faire)
+docs/DA/CHARTE.md           charte Alpharium (logo, couleurs, typo, composants)
+docs/DA/logo/source/        fichiers maîtres du logo (graphiste) — ne pas modifier
+docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la main)
 ```
 
 ## 8. Où vivent les données / secrets
@@ -87,6 +99,19 @@ docs/DA/                    moodboard + direction artistique (à faire)
 - Les chemins `launch.dir` (C:\…) ne servent qu'au client lourd local.
 
 ## 9. Pièges connus / conventions
+- **Jost** : macron cassé sur ā ē ī ō ū (bug amont, Google et Fontsource) → ces caractères
+  sont exclus de ses `unicode-range` dans `fonts.css`. Ne pas « réparer » en les remettant.
+- `catalog.json` : chaque division a un `glyph` (1 caractère grec) — vérifié par
+  `catalog:check`.
+- Les logos de `docs/DA/logo/source/` appartiennent à Alpharium (pas de licence libre) ;
+  tout se régénère depuis eux : `python scripts/vectorize-logo.py` (pillow, numpy,
+  opencv-python-headless, potracer) puis `python scripts/build-brand-assets.py`.
+- Vectorisation : `potracer` remplit les pixels **False** (d'où `~mask`) ; potrace émousse
+  les angles aigus → le wordmark est tracé en polygones (OpenCV `approxPolyDP`), l'emblème
+  (courbes) en potrace. La lueur et le liseré sont **reconstruits** (constantes en tête du
+  script, mesurées sur les PNG).
+- SVG en `<img>` : l'état de repos de l'animation doit rester visible (jamais d'animation
+  qui part d'opacité 0) — certains contextes n'animent pas les SVG-images.
 - Les dépôts privés restent privés : le bouton GitHub mène à une 404/login pour les
   non-collaborateurs. **On ne contourne jamais** (pas de proxy de contenu privé sur le web).
 - Ne jamais embarquer de fichiers propriétaires tiers (GTA, jeux…) ni de clés.
@@ -94,5 +119,14 @@ docs/DA/                    moodboard + direction artistique (à faire)
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (4)** : glyphe du bas de l'emblème identifié = **blason d'Alpharid** (F
+  stylisé, deux logos Arx Fatalis en asymétrie, emblème personnel du fondateur) → SVG
+  seul `alpharid-blason-*.svg`, signature « fondé par Alpharid » en pied de page.
+- **2026-10-26 (3)** : logo vectorisé (12 SVG + web), lueur reconstruite et animée,
+  macaron en cercle parfait ; sens du logo documenté (α ρ δ = Alpharid, 1996 = origine
+  d'Alpharium → `brand.since`, « depuis 1996 » en pied de page).
+- **2026-10-26 (2)** : DA = identité Alpharium (logo de la cousine graphiste). Sources
+  rangées et renommées, dérivés web, charte, polices auto-hébergées, skin v1 de la page,
+  `glyph` α β γ δ par division.
 - **2026-10-26** : création. Choix Electron + DA Conglomérat + web-first. Monorepo,
   catalogue (~24 projets), squelette web wireframe, docs, repo privé `Alpharid/ACH`.

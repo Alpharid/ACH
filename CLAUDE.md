@@ -5,12 +5,10 @@ Lis d'abord **@HANDOVER.md** (état, archi, backlog, pièges). Il fait foi.
 ## Essentiel
 - **ACH = Alpharium Conglomerat HUB** : launcher des projets Alpharium. Deux faces, un
   catalogue unique `data/catalog.json` : page web partageable + client lourd Electron.
-- Stack décidée : **Electron** (web d'abord, puis wrap). DA : **« Conglomérat / FUI
-  megacorp »** — mais **moodboard de vraies références AVANT tout code visuel**
-  (anti « look IA par défaut » : partir d'art humain + outils dédiés, jamais des
-  primitives propres / UI or-étoiles générique).
-- `web/assets/styles.css` actuel = **wireframe assumé**, pas la DA. Ne pas le prendre
-  pour la direction finale.
+- Stack décidée : **Electron** (web d'abord, puis wrap). DA : **identité Alpharium**,
+  déclinée du logo de la graphiste → **`docs/DA/CHARTE.md` fait foi**. Marine + argent,
+  **or = lumière rare**. Anti « look IA par défaut » : décliner le logo / de l'art humain,
+  jamais d'ornements génériques (or-étoiles, glow partout).
 
 ## Règles
 - `data/catalog.json` est **public-safe** : aucun token, adresse de serveur ou chemin

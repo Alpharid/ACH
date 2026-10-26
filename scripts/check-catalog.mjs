@@ -12,6 +12,10 @@ const cat = JSON.parse(await readFile(join(ROOT, "data", "catalog.json"), "utf8"
 const divIds = new Set(cat.divisions.map(d => d.id));
 const seen = new Set();
 
+for (const d of cat.divisions) {
+  if (!d.glyph || [...d.glyph].length !== 1) errors.push(`division ${d.id}: glyph manquant ou > 1 caractère`);
+}
+
 for (const p of cat.projects) {
   const where = p.id || p.name || "(sans id)";
   if (!p.id) errors.push(`${where}: id manquant`);

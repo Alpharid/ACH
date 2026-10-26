@@ -1,109 +1,411 @@
-/* ACH — WIREFRAME skeleton styles only.
-   Deliberately plain (monospace, flat borders) so it reads as a placeholder,
-   NOT a finished look. The real "Conglomérat / FUI megacorp" direction is
-   built after the moodboard (docs/DA/). Do not treat this as the DA. */
+/* ACH — skin v1, dérivé du logo Alpharium (voir docs/DA/CHARTE.md).
+   Règles clés : fond marine-noir, argent pour la structure, or = lumière rare
+   (chiffres du sceau, point d'intersection, statut « prod », focus). Jamais de
+   fond doré, jamais d'or décoratif en masse. */
 
 :root {
-  --bg: #121316;
-  --panel: #191b20;
-  --line: #2a2d35;
-  --ink: #d7dae0;
-  --ink-dim: #8a8f99;
-  --accent: #c7d1dd;
+  /* Marine — l'encre du logo (#182239) et ses profondeurs */
+  --navy-950: #070910;
+  --navy-900: #0a0d16;
+  --navy-850: #0e1220;
+  --navy-800: #121a2c;
+  --navy-700: #182239;
+  --navy-600: #24304d;
+
+  /* Argent — le macaron */
+  --silver-100: #e9e8e6;
+  --silver-200: #c9c8c6;
+  --silver-300: #a1a0a0;
+  --silver-400: #7a797b;
+  --silver-500: #5a5a5f;
+
+  /* Or — uniquement la lumière */
+  --gold-hi: #ebc681;
+  --gold: #dca751;
+  --gold-lo: #a97c3a;
+
+  --line: rgba(201, 200, 198, 0.12);
+  --line-strong: rgba(201, 200, 198, 0.28);
+
+  --ink: var(--silver-100);
+  --ink-2: var(--silver-300);
+  --ink-3: var(--silver-400);
+
+  --f-display: "Jost", "Futura", "Century Gothic", sans-serif;
+  --f-serif: "Noto Serif Display", "Didot", "Bodoni MT", serif;
+  --f-mono: "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
+
+  --track-wide: 0.42em;
+  --track-mid: 0.22em;
+  --w: 1160px;
 }
 
 * { box-sizing: border-box; }
 
+html { background: var(--navy-950); }
+
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
   color: var(--ink);
-  font-family: ui-monospace, "Cascadia Mono", "Consolas", monospace;
-  line-height: 1.5;
+  font-family: var(--f-display);
+  font-weight: 400;
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse 80% 520px at 50% 0, rgba(36, 48, 77, 0.55), transparent 70%),
+    linear-gradient(var(--navy-900), var(--navy-950) 1400px);
+  -webkit-font-smoothing: antialiased;
 }
 
-.wip-banner {
-  background: #332b12;
-  color: #e9d9a6;
-  border-bottom: 1px solid #5a4d22;
-  padding: 8px 16px;
-  font-size: 12px;
+::selection { background: var(--navy-600); color: var(--gold-hi); }
+
+a { color: inherit; }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+
+/* ── Sceau (en-tête) ─────────────────────────────────────────────── */
+
+.seal {
+  max-width: var(--w);
+  margin: 0 auto;
+  padding: 56px 16px 0;
+}
+
+.seal-frame {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 48px 48px;
   text-align: center;
 }
 
-.hub-head {
-  padding: 28px 16px 16px;
-  border-bottom: 1px solid var(--line);
-  max-width: 1100px;
+/* Angles en équerre fine, comme les extrémités des branches du X */
+.seal-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --c: var(--line-strong);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 28px 1px,
+    linear-gradient(var(--c), var(--c)) top left / 1px 28px,
+    linear-gradient(var(--c), var(--c)) top right / 28px 1px,
+    linear-gradient(var(--c), var(--c)) top right / 1px 28px,
+    linear-gradient(var(--c), var(--c)) bottom left / 28px 1px,
+    linear-gradient(var(--c), var(--c)) bottom left / 1px 28px,
+    linear-gradient(var(--c), var(--c)) bottom right / 28px 1px,
+    linear-gradient(var(--c), var(--c)) bottom right / 1px 28px;
+  background-repeat: no-repeat;
+}
+.seal-num {
+  position: absolute;
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--gold);
+  background: linear-gradient(170deg, var(--gold-hi), var(--gold) 55%, var(--gold-lo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.n-tl { top: 12px; left: 14px; }
+.n-tr { top: 12px; right: 14px; }
+.n-bl { bottom: 12px; left: 14px; }
+.n-br { bottom: 12px; right: 14px; }
+
+.seal-emblem {
+  display: block;
+  width: 132px;
+  height: auto;
+  margin: 0 auto 32px;
+  filter: drop-shadow(0 0 24px rgba(220, 167, 81, 0.10));
+}
+
+.seal-title { margin: 0; font-weight: 400; }
+
+.seal-wordmark {
+  display: block;
+  width: min(440px, 100%);
+  height: auto;
   margin: 0 auto;
 }
 
-.brand { display: flex; align-items: baseline; gap: 12px; }
-.brand-mark {
-  font-size: 28px; font-weight: 700; letter-spacing: 2px;
-  border: 1px solid var(--line); padding: 2px 10px;
+.seal-sub {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding-left: var(--track-wide); /* compense le tracking du dernier glyphe */
 }
-.brand-full { font-size: 15px; color: var(--ink-dim); }
-.brand-tag { color: var(--ink-dim); font-size: 13px; margin: 8px 0 0; }
+.seal-sub i { font-style: normal; color: var(--gold); }
 
-.divisions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.seal-tag {
+  margin: 22px auto 0;
+  max-width: 44ch;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+.seal-tag:empty { display: none; }
+
+/* ── Navigation des divisions ────────────────────────────────────── */
+
+.divisions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 48px auto 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
 .div-link {
-  color: var(--ink); text-decoration: none;
-  border: 1px solid var(--line); padding: 4px 12px; font-size: 13px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 26px;
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: 12px;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  transition: color .2s;
 }
-.div-link:hover { border-color: var(--accent); }
+.div-link + .div-link { border-left: 1px solid var(--line); }
+.div-link b {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+.div-link span { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.05em; color: var(--ink-3); }
+.div-link:hover { color: var(--ink); }
+.div-link:hover b { color: var(--gold-hi); }
 
-.catalog { max-width: 1100px; margin: 0 auto; padding: 16px; }
-.loading { color: var(--ink-dim); padding: 40px 0; text-align: center; }
-.loading.error { color: #e08a8a; }
+/* ── Catalogue ───────────────────────────────────────────────────── */
 
-.division { margin: 32px 0; }
-.division-head { border-left: 2px solid var(--line); padding-left: 12px; margin-bottom: 16px; }
-.division-title { margin: 0; font-size: 18px; letter-spacing: 1px; }
-.division-blurb { margin: 4px 0 0; color: var(--ink-dim); font-size: 12px; }
+.catalog { max-width: var(--w); margin: 0 auto; padding: 24px 16px 40px; }
+.loading { color: var(--ink-3); padding: 60px 0; text-align: center; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; }
+.loading.error { color: #d98c7a; }
+
+.division { margin: 72px 0 0; scroll-margin-top: 24px; }
+
+.division-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 4px 22px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+/* Le point de lumière : l'intersection dorée du X, posée sur le filet */
+.division-head::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 140px; height: 1px;
+  background: linear-gradient(90deg, var(--gold-hi), rgba(220, 167, 81, 0));
+}
+
+.division-glyph {
+  grid-row: span 2;
+  font-family: var(--f-serif);
+  font-size: 72px;
+  line-height: 0.8;
+  color: var(--ink);
+}
+.division-kicker {
+  font-size: 11px;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.division-title {
+  margin: 0;
+  grid-column: 2;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.division-count {
+  grid-column: 3; grid-row: 1 / span 2;
+  align-self: end;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+.division-count b { display: block; font-family: var(--f-serif); font-weight: 400; font-size: 28px; color: var(--ink-2); letter-spacing: 0; }
+.division-blurb {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  color: var(--ink-2);
+  font-size: 14px;
+}
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;                         /* filets entre cartes : outline 1px qui se chevauchent dans le gap */
+  padding: 1px;
 }
+
+/* ── Carte filiale ───────────────────────────────────────────────── */
 
 .card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  padding: 14px;
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 20px 20px 18px;
+  background: var(--navy-850);
+  outline: 1px solid var(--line);
+  transition: background .25s;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+  opacity: 0;
+  transform: scaleX(0.3);
+  transition: opacity .3s, transform .45s ease;
+}
+.card:hover { background: var(--navy-800); }
+.card:hover::before { opacity: 0.9; transform: scaleX(1); }
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+.card-code { text-transform: lowercase; }
+
+.card-title {
+  margin: 2px 0 0;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+.card-tagline { margin: 0; color: var(--silver-200); font-size: 14px; }
+.card-desc { margin: 0; color: var(--ink-3); font-size: 13px; flex: 1; }
+
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; }
+.tag { font-family: var(--f-mono); font-size: 10.5px; color: var(--silver-400); }
+.tag::before { content: "#"; color: var(--silver-500); }
+
+/* Statut : pas d'arc-en-ciel — une marque + un niveau d'argent. L'or n'est gagné qu'en prod. */
+.badge { display: inline-flex; align-items: center; gap: 7px; text-transform: uppercase; white-space: nowrap; }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge-prod    { color: var(--gold); }
+.badge-prod::before { box-shadow: 0 0 8px var(--gold); }
+.badge-beta    { color: var(--silver-100); }
+.badge-alpha   { color: var(--silver-300); }
+.badge-wip     { color: var(--silver-400); }
+.badge-wip::before { background: transparent; border: 1px solid currentColor; }
+.badge-concept { color: var(--silver-500); }
+.badge-concept::before { background: transparent; border: 1px dashed currentColor; }
+
+.card-actions {
+  display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
-.card-head { display: flex; justify-content: space-between; align-items: start; gap: 8px; }
-.card-title { margin: 0; font-size: 15px; }
-.card-tagline { margin: 0; color: var(--accent); font-size: 13px; }
-.card-desc { margin: 0; color: var(--ink-dim); font-size: 12px; flex: 1; }
-
-.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.tag { font-size: 10px; color: var(--ink-dim); border: 1px solid var(--line); padding: 1px 6px; }
-
-.badge { font-size: 10px; padding: 1px 7px; border: 1px solid var(--line); white-space: nowrap; }
-.badge-prod { color: #8fe0a8; border-color: #2f5a3d; }
-.badge-beta { color: #8fc5e0; border-color: #2f4d5a; }
-.badge-alpha { color: #e0c98f; border-color: #5a4f2f; }
-.badge-wip { color: #c79fe0; border-color: #4d2f5a; }
-.badge-concept { color: var(--ink-dim); }
-
-.card-actions { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
 .act {
-  font: inherit; font-size: 12px;
-  border: 1px solid var(--line); background: transparent; color: var(--ink);
-  padding: 5px 10px; text-decoration: none; cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: var(--track-mid);
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
 }
-.act:hover { border-color: var(--accent); }
-.act-launch { border-color: #2f5a3d; color: #8fe0a8; }
-.act-install { border-color: #2f4d5a; color: #8fc5e0; }
-.act-disabled { color: var(--ink-dim); cursor: default; border-style: dashed; }
+.act:hover { border-color: var(--silver-200); }
+.act-launch {
+  color: var(--navy-900);
+  border-color: transparent;
+  background: linear-gradient(180deg, var(--silver-100), var(--silver-300));
+  font-weight: 500;
+}
+.act-launch:hover { background: linear-gradient(180deg, #fff, var(--silver-200)); }
+.act-github { border-color: transparent; padding-left: 0; padding-right: 0; color: var(--ink-2); }
+.act-github:hover { color: var(--gold-hi); border-color: transparent; }
+.act-disabled {
+  cursor: default;
+  border-color: transparent;
+  padding-left: 0;
+  color: var(--silver-500);
+}
+.act-disabled::before { content: "◇ "; }
 
-.hub-foot {
-  max-width: 1100px; margin: 0 auto; padding: 24px 16px;
-  color: var(--ink-dim); font-size: 12px; border-top: 1px solid var(--line);
+/* ── Pied ────────────────────────────────────────────────────────── */
+
+.foot {
+  width: min(calc(100% - 32px), calc(var(--w) - 32px)); /* aligné sur le contenu du catalogue */
+  margin: 40px auto 0;
+  padding: 32px 0 48px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid var(--line);
 }
-.foot-sep { margin: 0 8px; }
+.foot-mark { width: 40px; height: 40px; opacity: 0.85; }
+.foot-lines { display: flex; flex-direction: column; gap: 2px; flex: 1 1 220px; }
+.foot-name { font-size: 11px; letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--ink-2); }
+.foot-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); }
+.foot-meta > span { white-space: nowrap; }
+/* Signature du fondateur : son blason (le F sous le X du logo), discret, à droite. */
+.foot-sign {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.foot-sign img { width: 14px; height: auto; opacity: 0.7; }
+
+/* ── Petits écrans ───────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .seal { padding-top: 24px; }
+  .seal-frame { padding: 44px 24px 36px; }
+  .seal-emblem { width: 96px; margin-bottom: 24px; }
+  .seal-sub { letter-spacing: 0.3em; }
+  .div-link { padding: 12px 14px; }
+  .div-link span { display: none; }
+  .division { margin-top: 52px; }
+  .division-glyph { font-size: 52px; }
+  .division-title { font-size: 20px; }
+  .grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
