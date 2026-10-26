@@ -1,0 +1,109 @@
+/* ACH — WIREFRAME skeleton styles only.
+   Deliberately plain (monospace, flat borders) so it reads as a placeholder,
+   NOT a finished look. The real "Conglomérat / FUI megacorp" direction is
+   built after the moodboard (docs/DA/). Do not treat this as the DA. */
+
+:root {
+  --bg: #121316;
+  --panel: #191b20;
+  --line: #2a2d35;
+  --ink: #d7dae0;
+  --ink-dim: #8a8f99;
+  --accent: #c7d1dd;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-monospace, "Cascadia Mono", "Consolas", monospace;
+  line-height: 1.5;
+}
+
+.wip-banner {
+  background: #332b12;
+  color: #e9d9a6;
+  border-bottom: 1px solid #5a4d22;
+  padding: 8px 16px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.hub-head {
+  padding: 28px 16px 16px;
+  border-bottom: 1px solid var(--line);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.brand { display: flex; align-items: baseline; gap: 12px; }
+.brand-mark {
+  font-size: 28px; font-weight: 700; letter-spacing: 2px;
+  border: 1px solid var(--line); padding: 2px 10px;
+}
+.brand-full { font-size: 15px; color: var(--ink-dim); }
+.brand-tag { color: var(--ink-dim); font-size: 13px; margin: 8px 0 0; }
+
+.divisions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.div-link {
+  color: var(--ink); text-decoration: none;
+  border: 1px solid var(--line); padding: 4px 12px; font-size: 13px;
+}
+.div-link:hover { border-color: var(--accent); }
+
+.catalog { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.loading { color: var(--ink-dim); padding: 40px 0; text-align: center; }
+.loading.error { color: #e08a8a; }
+
+.division { margin: 32px 0; }
+.division-head { border-left: 2px solid var(--line); padding-left: 12px; margin-bottom: 16px; }
+.division-title { margin: 0; font-size: 18px; letter-spacing: 1px; }
+.division-blurb { margin: 4px 0 0; color: var(--ink-dim); font-size: 12px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-head { display: flex; justify-content: space-between; align-items: start; gap: 8px; }
+.card-title { margin: 0; font-size: 15px; }
+.card-tagline { margin: 0; color: var(--accent); font-size: 13px; }
+.card-desc { margin: 0; color: var(--ink-dim); font-size: 12px; flex: 1; }
+
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: 10px; color: var(--ink-dim); border: 1px solid var(--line); padding: 1px 6px; }
+
+.badge { font-size: 10px; padding: 1px 7px; border: 1px solid var(--line); white-space: nowrap; }
+.badge-prod { color: #8fe0a8; border-color: #2f5a3d; }
+.badge-beta { color: #8fc5e0; border-color: #2f4d5a; }
+.badge-alpha { color: #e0c98f; border-color: #5a4f2f; }
+.badge-wip { color: #c79fe0; border-color: #4d2f5a; }
+.badge-concept { color: var(--ink-dim); }
+
+.card-actions { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.act {
+  font: inherit; font-size: 12px;
+  border: 1px solid var(--line); background: transparent; color: var(--ink);
+  padding: 5px 10px; text-decoration: none; cursor: pointer;
+}
+.act:hover { border-color: var(--accent); }
+.act-launch { border-color: #2f5a3d; color: #8fe0a8; }
+.act-install { border-color: #2f4d5a; color: #8fc5e0; }
+.act-disabled { color: var(--ink-dim); cursor: default; border-style: dashed; }
+
+.hub-foot {
+  max-width: 1100px; margin: 0 auto; padding: 24px 16px;
+  color: var(--ink-dim); font-size: 12px; border-top: 1px solid var(--line);
+}
+.foot-sep { margin: 0 8px; }

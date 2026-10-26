@@ -1,0 +1,15 @@
+{
+  "name": "ach",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Alpharium Conglomerat HUB — launcher web + client lourd des projets Alpharium",
+  "author": "Alpharid",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "desktop"
+  ],
+  "scripts": {
+    "web": "node scripts/serve-web.mjs",
+    "catalog:check": "node scripts/check-catalog.mjs"
+  }
+}
