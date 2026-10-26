@@ -43,10 +43,18 @@
   public). La fiche interroge l'API GitHub publique (`releases/latest`, sans jeton) pour
   afficher la version et proposer l'asset Windows. Builds privés : client lourd seulement.
 
+## 2026-10-26 — ACH public, fiches et captures
+- L'utilisateur valide : **`Alpharid/ACH` devient public**, vitrine sur GitHub Pages
+  (workflow Actions, `web/` + `data/`).
+- Présentation longue par filiale = **fiche écrite pour la vitrine** (`data/fiches/`),
+  pas le README privé recopié ni récupéré à l'exécution (un dépôt privé reste privé).
+- Captures : prises par nous dans les dépôts ou en lançant les projets (Godot Movie
+  Maker, Edge headless, outils de capture des projets). Pas d'image générée, pas d'art
+  propriétaire de tiers ; sans capture propre → plaque typographique.
+- Traitement visuel en CSS (désaturé + voile marine, couleur rendue au survol) plutôt
+  que dans les fichiers : les captures restent fidèles (réutilisées dans les README).
+
 ## À trancher (ouvert)
-- Hébergement de la vitrine : rendre `Alpharid/ACH` public (vitrine sans secret) vs
-  déployer `web/` vers un repo public dédié `ach-web` (pattern `-builds`) pour garder la
-  source privée. GitHub Pages gratuit n'est dispo que sur repo public.
 - Rangement des cas à cheval : MixMaster (services vs jeux), Alphred (services vs apps),
   SA Chill Trainer (outils vs jeux).
 - Inclusion de SE2_Trainer (repo à créer), Project_ALL, maquettes Alpharium, dépôts JDR Arx.

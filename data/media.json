@@ -1,0 +1,98 @@
+{
+  "stryder": {
+    "fiche": true,
+    "captures": 3
+  },
+  "oddyseus": {
+    "fiche": true,
+    "captures": 3
+  },
+  "7d7h": {
+    "fiche": true,
+    "captures": 3
+  },
+  "arx-sandbox": {
+    "fiche": true,
+    "captures": 0
+  },
+  "guardians": {
+    "fiche": true,
+    "captures": 2
+  },
+  "tokyo-hikitori": {
+    "fiche": true,
+    "captures": 3
+  },
+  "tidim": {
+    "fiche": true,
+    "captures": 0
+  },
+  "sanctuary": {
+    "fiche": true,
+    "captures": 2
+  },
+  "shipyard": {
+    "fiche": true,
+    "captures": 0
+  },
+  "factory-beeing": {
+    "fiche": true,
+    "captures": 0
+  },
+  "sa-coop": {
+    "fiche": true,
+    "captures": 0
+  },
+  "medusa": {
+    "fiche": true,
+    "captures": 3
+  },
+  "super-toolbox": {
+    "fiche": true,
+    "captures": 0
+  },
+  "wifisentinel": {
+    "fiche": true,
+    "captures": 1
+  },
+  "omnicommande": {
+    "fiche": true,
+    "captures": 0
+  },
+  "sa-chill-trainer": {
+    "fiche": true,
+    "captures": 0
+  },
+  "waze-sa": {
+    "fiche": true,
+    "captures": 0
+  },
+  "kali-pi": {
+    "fiche": true,
+    "captures": 1
+  },
+  "steamdeck": {
+    "fiche": true,
+    "captures": 0
+  },
+  "freelance-hq": {
+    "fiche": true,
+    "captures": 0
+  },
+  "orphan-protocol": {
+    "fiche": true,
+    "captures": 0
+  },
+  "alphred": {
+    "fiche": true,
+    "captures": 1
+  },
+  "mixmaster": {
+    "fiche": true,
+    "captures": 2
+  },
+  "mta-dayz": {
+    "fiche": true,
+    "captures": 0
+  }
+}

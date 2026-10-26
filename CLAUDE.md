@@ -14,8 +14,10 @@ Lis d'abord **@HANDOVER.md** (état, archi, backlog, pièges). Il fait foi.
 - `data/catalog.json` est **public-safe** : aucun token, adresse de serveur ou chemin
   perso sensible. Les secrets (jeton d'install de builds privés) vivent côté client
   lourd, hors git.
-- Un dépôt privé reste privé : jamais de contournement pour exposer du contenu privé
-  sur la vitrine web.
+- **ACH est public** (vitrine GitHub Pages https://alpharid.github.io/ACH/). Un dépôt
+  privé reste privé : jamais de contenu brut (code, README recopié, proxy) sur la
+  vitrine ; seulement des fiches écrites pour elle (`data/fiches/`, public-safe) et des
+  captures choisies (pas de fichiers propriétaires de tiers).
 - Conventions globales : repo privé `Alpharid/ACH`, commits
   `Alpharid <67369311+Alpharid@users.noreply.github.com>`, **README non signé**,
   binaires en GitHub Release (jamais en git), docs en français.
@@ -25,4 +27,5 @@ Lis d'abord **@HANDOVER.md** (état, archi, backlog, pièges). Il fait foi.
 ```bash
 npm run catalog:check   # valide le catalogue
 npm run web             # preview web → http://localhost:4173/web/
+python scripts/build-filiales.py   # après ajout de fiches/captures → media.json + vignettes
 ```

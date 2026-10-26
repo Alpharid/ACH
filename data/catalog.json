@@ -18,20 +18,20 @@
     {
       "id": "stryder", "name": "Stryder Symbiosis", "division": "jeux",
       "status": "alpha", "visibility": "private",
-      "tagline": "Jeu 3D co-op Godot.",
-      "description": "Un jeu d'action-aventure coopératif en 3D sous Godot. Builds publics avec launcher dédié ; le code source reste privé.",
-      "source": "Alpharid/Stryder-Symbiosis",
+      "tagline": "Coop 1-8 sur le dos d'un colosse qui ne s'arrête jamais.",
+      "description": "Jeu coopératif en 3D sous Godot : de minuscules Symbiotes vivent sur un colosse de 2 500 m qui marche sans fin, le nourrissent, le soignent et construisent sur lui avec une vraie physique. Builds publics avec launcher.",
+      "source": null,
       "public": "Alpharid/stryder-symbiosis-builds",
       "github": "https://github.com/Alpharid/stryder-symbiosis-builds",
       "install": { "type": "github-release", "repo": "Alpharid/stryder-symbiosis-builds" },
       "launch": { "type": "local", "dir": "C:/Stryder-Symbiosis" },
-      "tags": ["godot", "coop", "3d"]
+      "tags": ["godot", "coop", "3d", "physique", "survie"]
     },
     {
       "id": "oddyseus", "name": "Oddyseus : F.S.T.", "division": "jeux",
       "status": "alpha", "visibility": "private",
       "tagline": "Immersive sim zéro-G, coop 1-8.",
-      "description": "First-person zero-G immersive sim sur une arche coloniale à l'abandon (Godot 4.7). Builds publics avec launcher.",
+      "description": "Immersive sim coopérative (1-8) en vue subjective et en apesanteur, à bord d'une arche coloniale à l'abandon (Godot 4.7). Builds publics avec launcher.",
       "source": "Alpharid/oddyseus-fst",
       "public": "Alpharid/oddyseus-fst-builds",
       "github": "https://github.com/Alpharid/oddyseus-fst-builds",
@@ -43,61 +43,61 @@
       "id": "7d7h", "name": "7D7H — Seven Days, Seven Hosts", "division": "jeux",
       "status": "alpha", "visibility": "private",
       "tagline": "Anthologie mystère en pixel art isométrique.",
-      "description": "Closed-circle mystery anthology en pixel art isométrique (Godot 4.7). Builds publics (launcher + packs).",
+      "description": "Anthologie d'enquêtes à huis clos en pixel art isométrique (Godot 4.7) : une journée vécue sept fois par sept hôtes. Builds publics (launcher + packs).",
       "source": "Alpharid/7d7h",
       "public": "Alpharid/7d7h-builds",
       "github": "https://github.com/Alpharid/7d7h-builds",
       "install": { "type": "github-release", "repo": "Alpharid/7d7h-builds" },
-      "launch": null,
+      "launch": { "type": "local", "dir": "C:/7D7H" },
       "tags": ["godot", "pixel-art", "mystery"]
     },
     {
       "id": "arx-sandbox", "name": "Arx Sandbox", "division": "jeux",
       "status": "alpha", "visibility": "private",
       "tagline": "Suite sandbox multijoueur d'Arx Fatalis.",
-      "description": "Sandbox multijoueur Godot 4.7 des 8 niveaux d'Arx Fatalis (code seul, sans les données du jeu).",
+      "description": "Les 8 niveaux d'Arx Fatalis en un seul monde continu et multijoueur, avec console et menu admin. Code seul : chaque joueur fournit sa copie du jeu.",
       "source": "Alpharid/arx-sandbox",
       "public": null,
       "github": "https://github.com/Alpharid/arx-sandbox",
       "install": null,
       "launch": null,
-      "tags": ["godot", "sandbox", "multijoueur"]
+      "tags": ["godot", "sandbox", "multijoueur", "jdr"]
     },
     {
       "id": "guardians", "name": "Guardians of the Seal", "division": "jeux",
       "status": "wip", "visibility": "private",
-      "tagline": "MMORPG djinn, univers sombre.",
-      "description": "MMORPG sur le thème des djinns, univers mature et oppressant. En développement.",
+      "tagline": "MMORPG : Gardiens et djinn, univers sombre.",
+      "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Serveur et client de test jouables.",
       "source": "Alpharid/Guardians-of-the-Seal",
       "public": null,
       "github": "https://github.com/Alpharid/Guardians-of-the-Seal",
       "install": null,
       "launch": { "type": "local", "dir": "C:/Guardians_of_the_Seal" },
-      "tags": ["mmorpg", "djinn"]
+      "tags": ["mmorpg", "djinn", "godot", "csharp"]
     },
     {
       "id": "tokyo-hikitori", "name": "Tokyo Hikitori — Gokudō Runner", "division": "jeux",
-      "status": "concept", "visibility": "private",
+      "status": "wip", "visibility": "private",
       "tagline": "Jeu VR solo, yakuza livreur, Tokyo 1996.",
-      "description": "Jeu VR solo : yakuza livreur à pied dans les ruelles de Tokyo 1996, nuit, néons, pluie. Combat physique, ralenti.",
+      "description": "Jeu VR solo : yakuza livreur dans les ruelles de Tokyo 1996, nuit, pluie, néons. Combat physique, ralenti et time stop. Prototype Unreal 5.8 jouable au casque.",
       "source": "Alpharid/Tokyo_Hikitori",
       "public": null,
       "github": "https://github.com/Alpharid/Tokyo_Hikitori",
       "install": null,
       "launch": { "type": "local", "dir": "C:/Tokyo_Hikitori" },
-      "tags": ["vr", "solo", "action"]
+      "tags": ["vr", "solo", "action", "unreal"]
     },
     {
       "id": "tidim", "name": "TIDIM — Thanks, I Did It Myself", "division": "jeux",
       "status": "concept", "visibility": "private",
       "tagline": "FPS coop : familiers d'un héros IA vantard.",
-      "description": "FPS coop 1-8 où les joueurs sont les familiers d'un héros IA autonome qui s'attribue tout le mérite.",
+      "description": "FPS coop 1-8 : les joueurs sont les familiers d'un héros IA vantard qu'ils gardent en vie dans son dos. Prototype s&box.",
       "source": "Alpharid/TIDIM",
       "public": null,
       "github": "https://github.com/Alpharid/TIDIM",
       "install": null,
       "launch": { "type": "local", "dir": "C:/TIDIM" },
-      "tags": ["fps", "coop"]
+      "tags": ["fps", "coop", "roguelite"]
     },
     {
       "id": "sanctuary", "name": "Sanctuary", "division": "jeux",
@@ -109,35 +109,35 @@
       "github": "https://github.com/Alpharid/Sanctuary",
       "install": null,
       "launch": { "type": "local", "dir": "C:/Sanctuary" },
-      "tags": ["electron", "rogue-lite", "idle"]
+      "tags": ["electron", "rogue-lite", "idle", "pixel-art"]
     },
     {
       "id": "shipyard", "name": "Shipyard", "division": "jeux",
       "status": "concept", "visibility": "private",
-      "tagline": "Jeu de chantier naval.",
-      "description": "Jeu sur un chantier naval, conçu à deux. Réutilisera le moteur physique de Stryder.",
+      "tagline": "Jeu coop de chantier naval.",
+      "description": "Jeu coop de chantier naval : construire des bateaux sur commande et les livrer malgré météo, pirates et douanes. Réutilisera le moteur physique de Stryder.",
       "source": "Alpharid/shipyard",
       "public": null,
       "github": "https://github.com/Alpharid/shipyard",
       "install": null,
       "launch": null,
-      "tags": ["physique", "godot"]
+      "tags": ["coop", "physique", "construction"]
     },
     {
-      "id": "factory-beeing", "name": "Factory Beeing", "division": "jeux",
+      "id": "factory-beeing", "name": "Factory Bee-ing", "division": "jeux",
       "status": "concept", "visibility": "private",
-      "tagline": "Jeu d'usine / automatisation.",
-      "description": "Prototype de jeu d'automatisation.",
+      "tagline": "FPS coop rogue-lite dans une ruche-usine.",
+      "description": "FPS coop rogue-lite : ouvriers d'une ruche-usine sous une reine-contremaître tyrannique, une journée en trois phases. Concept en réserve.",
       "source": "Alpharid/factory-beeing",
       "public": null,
       "github": "https://github.com/Alpharid/factory-beeing",
       "install": null,
       "launch": null,
-      "tags": ["automation"]
+      "tags": ["fps", "coop", "rogue-lite"]
     },
     {
       "id": "sa-coop", "name": "SA_COOP", "division": "jeux",
-      "status": "beta", "visibility": "private",
+      "status": "alpha", "visibility": "private",
       "tagline": "Coop 4 joueurs dans GTA San Andreas moddé.",
       "description": "Mod coop jusqu'à 4 joueurs pour un GTA San Andreas moddé, avec lanceur et installateur. Distribution par builds privés (fichiers propriétaires exclus du public).",
       "source": "Alpharid/SA_COOP",
@@ -151,13 +151,13 @@
       "id": "medusa", "name": "Medusa Record", "division": "apps",
       "status": "alpha", "visibility": "private",
       "tagline": "Clips a cappella en mosaïque, 1 à 99 vignettes.",
-      "description": "Logiciel qui guide des prises a cappella synchronisées et les assemble en clip mosaïque (1 à 99 vignettes). Mode simple + mode Avancé. Installeurs Windows publics.",
+      "description": "Logiciel Windows qui guide des prises a cappella synchronisées (guide, accordeur, recalage au claquement de mains) et les assemble en clip mosaïque de 1 à 99 vignettes, exporté en MP4. Installeurs de test publics.",
       "source": "Alpharid/Medusa_Record",
       "public": "Alpharid/Medusa_Record-builds",
       "github": "https://github.com/Alpharid/Medusa_Record-builds",
       "install": { "type": "github-release", "repo": "Alpharid/Medusa_Record-builds" },
       "launch": { "type": "local", "dir": "C:/Medusa_Record" },
-      "tags": ["electron", "audio", "video"]
+      "tags": ["electron", "audio", "video", "a-cappella"]
     },
     {
       "id": "super-toolbox", "name": "Super Toolbox", "division": "outils",
@@ -169,11 +169,11 @@
       "github": "https://github.com/Alpharid/Super_Toolbox",
       "install": null,
       "launch": null,
-      "tags": ["open-source", "veille", "dev"]
+      "tags": ["open-source", "veille", "dev", "godot", "modding", "ia"]
     },
     {
       "id": "wifisentinel", "name": "WifiSentinel", "division": "outils",
-      "status": "prod", "visibility": "private",
+      "status": "beta", "visibility": "private",
       "tagline": "Audit de sécurité réseau & caméras IP (défensif).",
       "description": "Outil d'audit de sécurité réseau et caméras IP, strictement défensif : scan, détection de failles et rapport de durcissement. Moteur Python + datapad Godot.",
       "source": "Alpharid/WifiSentinel",
@@ -193,12 +193,12 @@
       "github": "https://github.com/Alpharid/Omnicommande",
       "install": null,
       "launch": { "type": "local", "dir": "C:/Omnicommande" },
-      "tags": ["remote", "ssh", "datapad"]
+      "tags": ["remote", "ssh", "adb", "electron", "datapad"]
     },
     {
       "id": "sa-chill-trainer", "name": "SA Chill Trainer", "division": "outils",
       "status": "prod", "visibility": "private",
-      "tagline": "Trainer perso GTA San Andreas (F8/F9).",
+      "tagline": "Trainer perso solo pour GTA San Andreas moddé (F8/F9).",
       "description": "Trainer ImGui perso pour GTA San Andreas moddé : menu F8 (spawn/tuning), mode Vibin' Chill F9, poursuites, courses, turbo synthétisé.",
       "source": "Alpharid/SA_Chill_Trainer",
       "public": null,
@@ -260,9 +260,9 @@
       "status": "concept", "visibility": "private",
       "tagline": "Mod Fallout 4 : chef IA sarcastique + 29 synthés.",
       "description": "Mod Fallout 4 : un compagnon IA sarcastique qui commande 29 synthétiques via des ordres haut-niveau à la voix.",
-      "source": null,
+      "source": "Alpharid/Orphan_Protocol",
       "public": null,
-      "github": null,
+      "github": "https://github.com/Alpharid/Orphan_Protocol",
       "install": null,
       "launch": { "type": "local", "dir": "C:/Orphan_Protocol" },
       "tags": ["fallout4", "mod", "ia"]
@@ -301,7 +301,7 @@
       "github": "https://github.com/Alpharid/mta-dayz-vanilla-legacy",
       "install": null,
       "launch": null,
-      "tags": ["mta-sa", "dayz", "serveur"]
+      "tags": ["mta-sa", "dayz", "serveur", "traduction"]
     }
   ]
 }

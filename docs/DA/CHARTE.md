@@ -97,7 +97,11 @@ Piège connu : Jost a un macron cassé sur ā ē ī ō ū → exclus de ses plag
   espacées, compteur de filiales, filet avec point de lumière doré à gauche.
 - **Carte filiale** : panneau marine, filets argent 12 %, code mono `α-01`, statut à pastille.
   Survol : le panneau s'éclaircit et un filet doré s'allume en haut (l'intersection du X).
-- **Fiche filiale** (dialog) : panneau marine, mêmes équerres que le sceau, filet doré
+- **Vignette de carte** : capture réelle 16:9, désaturée (≈70 %) et voilée de marine ;
+  au survol la couleur revient (la lumière du X qui s'allume). Sans capture : plaque
+  marine, petites équerres du sceau, lettre grecque de la division + nom en capitales.
+- **Fiche filiale** (dialog) : capture en grand + miniatures (la sélectionnée porte un
+  filet doré), puis panneau marine, mêmes équerres que le sceau, filet doré
   du haut allumé ; titre en capitales espacées, accroche en serif italique, registre
   `dl` en mono (Division, Code source, Vitrine, Dernière version, Mots-clés).
 - **Recherche** : champ souligné (le filet passe au bronze au focus), puces de statut

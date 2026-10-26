@@ -6,8 +6,9 @@
 ## 1. C'est quoi
 Un HUB/launcher des projets Alpharium, type Steam/GOG/Epic. Deux faces alimentées par
 **un seul catalogue** (`data/catalog.json`) :
-1. **Page web** partageable (vitrine publique, GitHub Pages) — parcourir, lire, aller
-   sur GitHub, télécharger les builds publics. Ne lance rien.
+1. **Page web** partageable — vitrine publique **https://alpharid.github.io/ACH/**
+   (GitHub Pages) : parcourir, lire la fiche de chaque filiale (captures + présentation),
+   aller sur GitHub, télécharger les builds publics. Ne lance rien.
 2. **Client lourd** Electron (`.exe` NSIS) pour la famille — en plus : **installer** et
    **lancer** les projets installables.
 
@@ -25,7 +26,11 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
   **filtre par statut** ; téléchargement des builds publics depuis la fiche.
 - `scripts/serve-web.mjs` (preview) + `scripts/check-catalog.mjs` (validation).
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
-- Dépôt GitHub privé `Alpharid/ACH` créé et poussé.
+- Dépôt GitHub **public** `Alpharid/ACH` ; la vitrine se déploie toute seule sur Pages à
+  chaque push touchant `web/` ou `data/` (`.github/workflows/pages.yml`).
+- **24 fiches** (`data/fiches/`) + captures réelles pour 11 filiales
+  (`web/assets/filiales/`) ; les autres ont une plaque typographique (glyphe + nom).
+- README de tous les dépôts des filiales mis à jour (lien vers la vitrine en pied).
 - **Client Electron : pas encore commencé** (`desktop/` vide).
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
@@ -40,12 +45,11 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 
 ## 4. Backlog (prochaines étapes, dans l'ordre)
 0. ~~DA~~ : fait (skin v1 + logo vectorisé). Retours utilisateur à intégrer.
-1. **Page web finalisée** : ~~vue détail~~, ~~recherche/filtre par statut~~ (faits).
-   Reste : **vignettes par filiale** (captures réelles fournies par l'utilisateur →
-   champ catalogue à ajouter, traitement commun désaturé/teinté marine, cf. `docs/DA/README.md`).
-2. **Hébergement** : décider GitHub Pages. Repo ACH privé → Pages gratuit **exige public**.
-   Option retenue à trancher : soit rendre `ACH` public (c'est une vitrine sans secret),
-   soit déployer `web/` vers un repo public `ach-web` via GitHub Action (pattern `-builds`).
+1. ~~Page web~~ et ~~hébergement~~ : faits (vitrine publique en ligne). Restes :
+   captures des 13 filiales sans image (quand il y aura de quoi capturer proprement —
+   voir « Pièges » pour ce qui est interdit) ; README `main` d'Oddyseus et de Medusa
+   (le nouveau README est sur leur branche `unstable`, il arrivera au prochain merge).
+2. (libre)
 3. **Client Electron** (`desktop/`) : fenêtre, preload exposant `window.ACH`
    (`launch(id)`, `install(id)`), réutilise `web/` comme renderer.
    - `install` : lire la dernière release GitHub du `install.repo`, télécharger l'asset
@@ -71,8 +75,13 @@ Client Electron : à venir (`cd desktop && npm start`, puis `npm run dist` pour 
 - Web : `web/index.html` → `web/assets/app.js` fetch `../data/catalog.json` → rend par division.
   Fiche : `<dialog id="filiale">` piloté par le hash `#filiale/<id>` (`setupSheet`) ; pour
   les builds publics, appel `api.github.com/repos/<install.repo>/releases/latest` (version +
-  asset Windows `.exe` > `.msi` > `.zip`). Recherche/filtre : `setupFinder` (masque cartes
-  et divisions vides, codes `α-01` fixes quel que soit le filtre).
+  asset Windows `.exe` > `.msi` > `.zip`, repli sur la dernière pré-version). Recherche/filtre :
+  `setupFinder` (masque cartes et divisions vides, codes `α-01` fixes quel que soit le filtre).
+- Médias : `data/fiches/<id>.md` + `web/assets/filiales/<id>-{1,2,3}.webp` (1600×900) →
+  `python scripts/build-filiales.py` → `<id>-card.webp` + `data/media.json` (lu par la page).
+  Fiche : capture en grand + miniatures, puis la présentation Markdown (rendu maison,
+  tout est échappé) à la place de la description courte.
+- Déploiement : `.github/workflows/pages.yml` assemble `_site/` = `web/` + `data/`.
   Détecte le client lourd via `window.ACH` (injecté par le preload Electron). Sans lui :
   seuls les liens GitHub sont actifs (pas de Lancer/Installer).
 - Desktop (prévu) : Electron charge `web/index.html`, un preload expose `window.ACH`.
@@ -81,6 +90,11 @@ Client Electron : à venir (`cd desktop && npm start`, puis `npm run dist` pour 
 ```
 data/catalog.json          source de vérité
 data/catalog.schema.md      doc des champs + règles (public-safe, pas de secret)
+data/fiches/<id>.md         présentation publique de chaque filiale
+data/media.json             généré (fiches + nb de captures) — ne pas éditer
+web/assets/filiales/        captures 1600×900 + vignettes -card (générées)
+scripts/build-filiales.py   vignettes + media.json
+.github/workflows/pages.yml déploiement GitHub Pages
 web/index.html              page
 web/assets/app.js           rendu du catalogue
 web/assets/styles.css       skin Alpharium v1 (tokens en tête de fichier)
@@ -123,6 +137,15 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Fiche : la fermeture ne touche l'historique que si le hash désigne encore la fiche
   ouverte (sinon un hash inconnu ferait rouvrir l'ancienne fiche via `history.back()`).
 - Ne jamais afficher `launch.dir` sur le web (chemins locaux du client lourd).
+- **Dépôt public** : fiches et captures sont publiques. Fiche = texte écrit pour la vitrine
+  (jamais de README privé recopié, ni code, IP, chemin, nom réel). Captures : jamais de
+  fichiers/art propriétaires de tiers (GTA, Arx Fatalis, MixMaster…), ni de capture qui
+  trahit un lieu réel (la carte Waze SA montrait des communes réelles → retirée), un
+  bureau, un nom d'utilisateur ou des données perso.
+- Stryder : le code est dans le dépôt privé d'un collaborateur (`C-Chafik`) → `source: null`
+  dans le catalogue, et on ne touche pas à son dépôt ; la vitrine publique est
+  `Alpharid/stryder-symbiosis-builds`.
+- Dépôts `*-builds` : README en **anglais** (leur convention), le reste en français.
 - SVG en `<img>` : l'état de repos de l'animation doit rester visible (jamais d'animation
   qui part d'opacité 0) — certains contextes n'animent pas les SVG-images.
 - Les dépôts privés restent privés : le bouton GitHub mène à une 404/login pour les
@@ -132,6 +155,11 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (6)** : ACH rendu public + GitHub Pages. 24 fiches et captures réelles
+  (11 filiales) ; cartes illustrées (capture désaturée, couleur au survol) ou plaque
+  typographique ; galerie dans la fiche. Catalogue corrigé d'après les dépôts (statuts
+  Tokyo `wip`, SA_COOP `alpha`, WifiSentinel `beta`, Factory Bee-ing, Orphan_Protocol…).
+  README de 27 dépôts mis à jour et poussés.
 - **2026-10-26 (5)** : fiche filiale (`#filiale/<id>`), recherche + filtre par statut,
   téléchargement des builds publics (API releases), carte entièrement cliquable.
 - **2026-10-26 (4)** : glyphe du bas de l'emblème identifié = **blason d'Alpharid** (F

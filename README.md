@@ -3,6 +3,8 @@
 Un HUB / launcher pour **tous les projets Alpharium**, façon Steam / GOG / Epic,
 mais pour mes propres jeux, apps, outils et services.
 
+**Vitrine en ligne : https://alpharid.github.io/ACH/**
+
 Deux faces, un seul catalogue :
 
 - **Page web** (partageable) — vitrine publique : on parcourt les divisions, on lit
@@ -15,8 +17,9 @@ Deux faces, un seul catalogue :
 **α Jeux · β Apps · γ Outils · δ Services** — chaque projet est une « filiale » du conglomérat.
 
 ## État
-Projet démarré le 2026-10-26. Catalogue en place ; la page web porte l'identité
-**Alpharium** (logo, charte : [docs/DA/CHARTE.md](docs/DA/CHARTE.md)). Le client Electron
+Projet démarré le 2026-10-26. La vitrine est en ligne : identité **Alpharium** (logo,
+charte : [docs/DA/CHARTE.md](docs/DA/CHARTE.md)), une fiche par filiale avec captures et
+présentation, recherche et filtres, téléchargement des builds publics. Le client Electron
 est la prochaine étape. Voir [HANDOVER.md](HANDOVER.md).
 
 ## Démarrer
@@ -29,10 +32,11 @@ npm run web             # http://localhost:4173/web/
 ## Structure
 ```
 data/catalog.json   source de vérité (web + desktop)
-web/                page web statique (GitHub Pages)
+data/fiches/        présentation de chaque filiale (Markdown public)
+web/                page web statique (GitHub Pages, .github/workflows/pages.yml)
 desktop/            client Electron (à venir)
-scripts/            serveur de preview + validateur
-docs/               décisions + moodboard DA
+scripts/            preview, validateur, logo, captures
+docs/               décisions + charte DA
 ```
 
 Documentation complète : [HANDOVER.md](HANDOVER.md).

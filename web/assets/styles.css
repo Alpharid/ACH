@@ -351,6 +351,81 @@ a { color: inherit; }
 .card:hover { background: var(--navy-800); }
 .card:hover::before { opacity: 0.9; transform: scaleX(1); }
 
+/* Vignette : la capture, refroidie dans le marine ; la couleur revient au survol
+   (la lumière du X qui s'allume). Sans capture : une plaque typographique. */
+.card-media {
+  position: relative;
+  margin: -20px -20px 6px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--navy-900);
+  border-bottom: 1px solid var(--line);
+}
+.card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.7) brightness(0.78) contrast(1.05);
+  transform: scale(1.001);
+  transition: filter .5s ease, transform .8s ease;
+}
+.card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(14, 18, 32, 0) 55%, rgba(14, 18, 32, 0.75)),
+    rgba(24, 34, 57, 0.35);
+  mix-blend-mode: normal;
+  transition: opacity .5s ease;
+  pointer-events: none;
+}
+.card:hover .card-media img { filter: none; transform: scale(1.03); }
+.card:hover .card-media::after { opacity: 0.35; }
+
+.card-media.is-plate {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(36, 48, 77, 0.6), transparent 70%),
+    var(--navy-900);
+}
+.card-media.is-plate::after { display: none; }
+/* Équerres du sceau, en petit */
+.card-media.is-plate::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  --c: var(--line-strong);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 14px 1px,
+    linear-gradient(var(--c), var(--c)) top left / 1px 14px,
+    linear-gradient(var(--c), var(--c)) top right / 14px 1px,
+    linear-gradient(var(--c), var(--c)) top right / 1px 14px,
+    linear-gradient(var(--c), var(--c)) bottom left / 14px 1px,
+    linear-gradient(var(--c), var(--c)) bottom left / 1px 14px,
+    linear-gradient(var(--c), var(--c)) bottom right / 14px 1px,
+    linear-gradient(var(--c), var(--c)) bottom right / 1px 14px;
+  background-repeat: no-repeat;
+}
+.plate { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 32px; text-align: center; }
+.plate-glyph {
+  font-family: var(--f-serif);
+  font-size: 76px;
+  line-height: 0.9;
+  color: var(--navy-600);
+  transition: color .4s;
+}
+.card:hover .plate-glyph { color: var(--silver-500); }
+.plate-name {
+  font-size: 10.5px;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--silver-500);
+  padding-left: var(--track-wide);
+}
+
 .card-meta {
   display: flex;
   justify-content: space-between;
@@ -439,7 +514,7 @@ a { color: inherit; }
 html:has(.sheet[open]) { overflow: hidden; }
 
 .sheet {
-  width: min(640px, calc(100% - 32px));
+  width: min(760px, calc(100% - 32px));
   max-height: calc(100% - 48px);
   padding: 0;
   border: 0;
@@ -461,6 +536,40 @@ html:has(.sheet[open]) { overflow: hidden; }
   opacity: 0.9;
 }
 
+.sheet-media { position: relative; background: var(--navy-950); }
+.sheet-hero { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.sheet-thumbs {
+  display: flex;
+  gap: 8px;
+  padding: 10px 48px;
+  border-bottom: 1px solid var(--line);
+}
+.sheet-thumb {
+  flex: 0 0 112px;
+  padding: 0;
+  border: 0;
+  background: var(--navy-950);
+  cursor: pointer;
+  position: relative;
+}
+.sheet-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: grayscale(0.7) brightness(0.6);
+  transition: filter .3s;
+}
+.sheet-thumb:hover img { filter: grayscale(0.2) brightness(0.85); }
+.sheet-thumb[aria-pressed="true"] img { filter: none; }
+.sheet-thumb[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  background: var(--gold);
+}
+
 .sheet-body { position: relative; padding: 48px 48px 40px; }
 .sheet-body:focus { outline: none; } /* focus d'ouverture, pas un focus clavier */
 .sheet-body::before { inset: 10px; }
@@ -479,6 +588,13 @@ html:has(.sheet[open]) { overflow: hidden; }
   cursor: pointer;
 }
 .sheet-close:hover { color: var(--ink); }
+/* Sur une capture, le bouton garde un fond pour rester lisible. */
+.sheet:has(.sheet-media:not([hidden])) .sheet-close {
+  padding: 6px 10px;
+  background: rgba(7, 9, 16, 0.88);
+  outline: 1px solid var(--line-strong);
+  color: var(--ink);
+}
 
 .sheet-meta {
   display: flex;
@@ -499,7 +615,24 @@ html:has(.sheet[open]) { overflow: hidden; }
   line-height: 1.15;
 }
 .sheet-tagline { margin: 10px 0 0; font-family: var(--f-serif); font-style: italic; font-size: 18px; color: var(--ink-2); }
-.sheet-desc { margin: 22px 0 0; max-width: 60ch; color: var(--silver-200); font-size: 15px; }
+/* Présentation (data/fiches/<id>.md) */
+.sheet-fiche { margin-top: 26px; max-width: 62ch; color: var(--silver-200); font-size: 15px; }
+.sheet-fiche p { margin: 0 0 14px; }
+.sheet-fiche h3 {
+  margin: 26px 0 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.sheet-fiche ul { margin: 0 0 14px; padding: 0; list-style: none; }
+.sheet-fiche li { position: relative; padding-left: 22px; margin: 6px 0; }
+.sheet-fiche li::before { content: "—"; position: absolute; left: 0; color: var(--silver-500); }
+.sheet-fiche strong { color: var(--ink); font-weight: 500; }
+.sheet-fiche code { font-family: var(--f-mono); font-size: 0.86em; color: var(--ink); }
+.sheet-fiche a { color: var(--ink); text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.sheet-fiche a:hover { color: var(--gold-hi); }
 
 .sheet-reg {
   display: grid;
@@ -516,7 +649,7 @@ html:has(.sheet[open]) { overflow: hidden; }
 .sheet-repo { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink-2); text-decoration: none; }
 .sheet-repo:hover { color: var(--gold-hi); }
 
-.sheet-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 28px; }
+.sheet-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 22px; }
 
 /* ── Pied ────────────────────────────────────────────────────────── */
 
@@ -561,7 +694,9 @@ html:has(.sheet[open]) { overflow: hidden; }
   .division-title { font-size: 20px; }
   .grid { grid-template-columns: 1fr; }
   .sheet { width: calc(100% - 16px); max-height: calc(100% - 16px); }
-  .sheet-body { padding: 44px 24px 32px; }
+  .sheet-body { padding: 36px 24px 32px; }
+  .sheet-thumbs { padding: 8px 24px; }
+  .sheet-thumb { flex-basis: 88px; }
   .sheet-title { font-size: 23px; }
   .sheet-reg { grid-template-columns: 1fr; }
   .sheet-reg dd { border-top: 0; padding-top: 0; }
@@ -573,5 +708,6 @@ html:has(.sheet[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .card:hover .card-media img { transform: none; }
   .sheet[open] { animation: none; }
 }

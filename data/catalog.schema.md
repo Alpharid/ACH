@@ -30,6 +30,16 @@ pas d'adresse de serveur, pas de chemin contenant des données perso.
 | `launch` | obj \| null | `{ type:"local", dir }` — **client lourd only** |
 | `tags` | string[] | mots-clés |
 
+## Médias des filiales (hors catalogue)
+Le catalogue reste écrit à la main ; les médias sont des fichiers par convention :
+- `data/fiches/<id>.md` : présentation publique (Markdown limité : `###`, listes `-`,
+  gras/italique, `code`, liens https). Affichée dans la fiche à la place de `description`.
+- `web/assets/filiales/<id>-1.webp` … `-3.webp` : captures réelles en 1600×900 (16:9).
+  La 1 sert de vignette de carte.
+- `python scripts/build-filiales.py` génère `<id>-card.webp` (640×360) et
+  **`data/media.json`** (`{ id: { fiche, captures } }`), lu par la page. Ne pas l'éditer à la main.
+- `catalog:check` vérifie que `media.json` correspond aux fichiers présents.
+
 ## Règles
 - `launch` et `install` n'ont d'effet que dans le client Electron (bridge `window.ACH`).
   Sur le web, seuls les liens `github` sont actifs.

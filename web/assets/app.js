@@ -1,6 +1,7 @@
 // ACH web catalog — renderer.
-// Reads data/catalog.json and lays projects out by division, with a search/status
-// filter and a detail sheet per filiale (shareable as #filiale/<id>).
+// Reads data/catalog.json (+ the generated data/media.json) and lays projects out by
+// division, with a search/status filter and a detail sheet per filiale (shareable as
+// #filiale/<id>) showing its captures and its presentation (data/fiches/<id>.md).
 // `launch` / `install` actions only exist in the Electron client; the web build
 // shows GitHub links and public build downloads instead.
 
@@ -12,17 +13,27 @@ const STATUS_LABEL = {
 
 const SHEET_HASH = "#filiale/";
 
+// Folder holding catalog.json, media.json and fiches/ (differs between the repo
+// preview and the deployed site, where data/ sits next to the page).
+let DATA = "";
+
 async function loadCatalog() {
-  // Web build and Electron build both ship the json next to the page.
-  const candidates = ["../data/catalog.json", "data/catalog.json", "catalog.json"];
-  for (const url of candidates) {
+  for (const dir of ["../data/", "data/", ""]) {
     try {
-      const r = await fetch(url, { cache: "no-cache" });
-      if (r.ok) return await r.json();
+      const r = await fetch(dir + "catalog.json", { cache: "no-cache" });
+      if (!r.ok) continue;
+      const catalog = await r.json();
+      DATA = dir;
+      // Media manifest is optional: without it the page simply shows no captures.
+      catalog.media = await fetch(dir + "media.json", { cache: "no-cache" })
+        .then(m => (m.ok ? m.json() : {})).catch(() => ({}));
+      return catalog;
     } catch (_) { /* try next */ }
   }
   throw new Error("catalog.json introuvable");
 }
+
+const shot = (id, n) => `assets/filiales/${id}-${n}.webp`;
 
 function el(tag, cls, text) {
   const n = document.createElement(tag);
@@ -37,6 +48,34 @@ function link(cls, text, href) {
   a.target = "_blank";
   a.rel = "noopener";
   return a;
+}
+
+// Minimal markdown for the fiches (written by us, public-safe): ### titles, "- " lists,
+// paragraphs, **bold**, *italic*, `code`, [links](https://…). Everything is escaped first.
+function markdown(src) {
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const inline = s => esc(s)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  const out = [];
+  let para = [], list = [];
+  const flush = () => {
+    if (para.length) out.push(`<p>${inline(para.join(" "))}</p>`);
+    if (list.length) out.push(`<ul>${list.map(i => `<li>${inline(i)}</li>`).join("")}</ul>`);
+    para = []; list = [];
+  };
+  for (const raw of src.replace(/\r/g, "").split("\n")) {
+    const line = raw.trim();
+    if (!line) flush();
+    else if (/^#{1,6}\s/.test(line)) { flush(); out.push(`<h3>${inline(line.replace(/^#+\s*/, ""))}</h3>`); }
+    else if (/^[-*]\s/.test(line)) { if (para.length) flush(); list.push(line.slice(2)); }
+    else if (list.length && /^\s/.test(raw)) list[list.length - 1] += " " + line; // wrapped item
+    else { if (list.length) flush(); para.push(line); }
+  }
+  flush();
+  return out.join("");
 }
 
 // Lowercase, accents stripped: "Tōkyō" matches "tokyo".
@@ -70,9 +109,29 @@ function actionButtons(p) {
   return actions;
 }
 
-function projectCard(p, code) {
+// Card header: capture 1 if any, else a typographic plate (division glyph + name).
+function cardMedia(p, code, division, media) {
+  const box = el("div", "card-media");
+  if (media && media.captures) {
+    const img = el("img");
+    img.src = `assets/filiales/${p.id}-card.webp`;
+    img.alt = "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    box.appendChild(img);
+  } else {
+    box.classList.add("is-plate");
+    const plate = el("span", "plate");
+    plate.append(el("span", "plate-glyph", division.glyph || ""), el("span", "plate-name", p.name));
+    box.appendChild(plate);
+  }
+  return box;
+}
+
+function projectCard(p, code, division, media) {
   const card = el("article", "card");
   card.dataset.division = p.division;
+  card.appendChild(cardMedia(p, code, division, media));
 
   const meta = el("div", "card-meta");
   meta.appendChild(el("span", "card-code", code));
@@ -107,8 +166,10 @@ const releases = new Map(); // repo → Promise<release|null>, one API call per 
 
 function latestRelease(repo) {
   if (!releases.has(repo)) {
-    releases.set(repo, fetch(`https://api.github.com/repos/${repo}/releases/latest`)
-      .then(r => (r.ok ? r.json() : null))
+    // releases/latest skips pre-releases; fall back to the newest one of any kind.
+    const api = `https://api.github.com/repos/${repo}/releases`;
+    releases.set(repo, fetch(`${api}/latest`)
+      .then(r => (r.ok ? r.json() : fetch(`${api}?per_page=1`).then(l => (l.ok ? l.json() : [])).then(l => l[0] || null)))
       .catch(() => null));
   }
   return releases.get(repo);
@@ -135,7 +196,50 @@ function repoLink(repo) {
   return link("sheet-repo", `${repo} ↗`, `https://github.com/${repo}`);
 }
 
-function fillSheet(sheet, p, code, division) {
+const fiches = new Map(); // id → Promise<html|null>
+
+function loadFiche(id) {
+  if (!fiches.has(id)) {
+    fiches.set(id, fetch(`${DATA}fiches/${id}.md`, { cache: "no-cache" })
+      .then(r => (r.ok ? r.text() : null)).then(md => (md ? markdown(md) : null))
+      .catch(() => null));
+  }
+  return fiches.get(id);
+}
+
+// Hero capture + thumbnails to switch between captures.
+function fillMedia(box, p, media) {
+  box.innerHTML = "";
+  const n = (media && media.captures) || 0;
+  box.hidden = !n;
+  if (!n) return;
+  const hero = el("img", "sheet-hero");
+  hero.src = shot(p.id, 1);
+  hero.alt = `${p.name} — capture 1`;
+  box.appendChild(hero);
+  if (n < 2) return;
+  const thumbs = el("div", "sheet-thumbs");
+  for (let i = 1; i <= n; i++) {
+    const b = el("button", "sheet-thumb");
+    b.type = "button";
+    b.setAttribute("aria-label", `Capture ${i}`);
+    b.setAttribute("aria-pressed", String(i === 1));
+    const img = el("img");
+    img.src = shot(p.id, i);
+    img.alt = "";
+    b.appendChild(img);
+    b.addEventListener("click", () => {
+      hero.src = shot(p.id, i);
+      hero.alt = `${p.name} — capture ${i}`;
+      thumbs.querySelectorAll(".sheet-thumb").forEach(t => t.setAttribute("aria-pressed", String(t === b)));
+    });
+    thumbs.appendChild(b);
+  }
+  box.appendChild(thumbs);
+}
+
+function fillSheet(sheet, p, code, division, media) {
+  fillMedia(sheet.querySelector(".sheet-media"), p, media);
   const body = sheet.querySelector(".sheet-body");
   body.innerHTML = "";
 
@@ -146,7 +250,20 @@ function fillSheet(sheet, p, code, division) {
 
   body.appendChild(el("h2", "sheet-title", p.name));
   if (p.tagline) body.appendChild(el("p", "sheet-tagline", p.tagline));
-  if (p.description) body.appendChild(el("p", "sheet-desc", p.description));
+
+  const actions = el("div", "sheet-actions");
+  actions.append(...actionButtons(p));
+  body.appendChild(actions);
+
+  // The short description holds the place until the fiche (if any) arrives.
+  const about = el("div", "sheet-fiche");
+  if (p.description) about.appendChild(el("p", null, p.description));
+  body.appendChild(about);
+  if (media && media.fiche) {
+    loadFiche(p.id).then(html => {
+      if (html && sheet.dataset.id === p.id) about.innerHTML = html;
+    });
+  }
 
   const reg = el("dl", "sheet-reg");
   const glyph = el("span", "sheet-glyph", division.glyph || "");
@@ -163,10 +280,6 @@ function fillSheet(sheet, p, code, division) {
     regRow(reg, "Mots-clés", tags);
   }
   body.appendChild(reg);
-
-  const actions = el("div", "sheet-actions");
-  actions.append(...actionButtons(p));
-  body.appendChild(actions);
 
   if (!hasPublicBuilds(p)) return;
   latestRelease(p.install.repo).then(r => {
@@ -198,7 +311,7 @@ function setupSheet(catalog, codes) {
     const p = id && byId.get(id);
     if (!p) { if (sheet.open) sheet.close(); return; }
     sheet.dataset.id = p.id;
-    fillSheet(sheet, p, codes.get(p.id), divisions.get(p.division) || { name: p.division });
+    fillSheet(sheet, p, codes.get(p.id), divisions.get(p.division) || { name: p.division }, catalog.media[p.id]);
     if (!sheet.open) sheet.showModal();
     sheet.scrollTop = 0;
   }
@@ -317,7 +430,7 @@ function render(catalog) {
     const grid = el("div", "grid");
     items.forEach((p, i) => {
       const code = filialeCode(d, i);
-      const node = projectCard(p, code);
+      const node = projectCard(p, code, d, catalog.media[p.id]);
       codes.set(p.id, code);
       cards.push({ node, p, text: fold([p.name, p.tagline, p.description, code, d.name, ...(p.tags || [])].join(" ")) });
       grid.appendChild(node);
