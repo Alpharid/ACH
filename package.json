@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "web": "node scripts/serve-web.mjs",
+    "desktop": "npm start -w desktop",
+    "desktop:dist": "npm run dist -w desktop",
     "catalog:check": "node scripts/check-catalog.mjs"
   }
 }

@@ -7,6 +7,12 @@
 
 const IS_ELECTRON = typeof window !== "undefined" && !!window.ACH; // desktop bridge, injected by preload
 
+// Desktop only: what this PC can do per filiale ({ launch: "run"|"folder"|null, installed }),
+// and the label of the install button while an install runs.
+let LOCAL = {};
+const BUSY = new Map();
+let PROJECTS = new Map();
+
 const STATUS_LABEL = {
   prod: "Prod", beta: "Bêta", alpha: "Alpha", wip: "En dev", concept: "Concept",
 };
@@ -27,6 +33,7 @@ async function loadCatalog() {
       // Media manifest is optional: without it the page simply shows no captures.
       catalog.media = await fetch(dir + "media.json", { cache: "no-cache" })
         .then(m => (m.ok ? m.json() : {})).catch(() => ({}));
+      if (IS_ELECTRON) LOCAL = await window.ACH.state().catch(() => ({}));
       return catalog;
     } catch (_) { /* try next */ }
   }
@@ -91,22 +98,83 @@ function filialeCode(division, index) {
 // Public builds can be downloaded from the web; private ones only through the client.
 const hasPublicBuilds = p => p.install && p.install.type === "github-release" && !p.install.private;
 
-// Shared by cards and the sheet. Launch/Install exist only in the desktop client.
+// Shared by cards and the sheet. Launch/Install exist only in the desktop client, and only
+// when this PC has something to run (a build installed by ACH or the project's folder).
 function actionButtons(p) {
   const actions = [];
-  if (IS_ELECTRON && p.launch) {
-    const b = el("button", "act act-launch", "▸ Lancer");
-    b.addEventListener("click", () => window.ACH.launch(p.id));
+  const local = LOCAL[p.id] || {};
+  if (IS_ELECTRON && local.launch) {
+    const run = local.launch === "run";
+    const b = el("button", run ? "act act-launch" : "act", run ? "▸ Lancer" : "▸ Ouvrir");
+    if (!run) b.title = "Ouvrir le dossier du projet";
+    b.addEventListener("click", () => window.ACH.launch(p.id).then(notify));
     actions.push(b);
   }
   if (IS_ELECTRON && p.install) {
-    const b = el("button", "act act-install", "⤓ Installer");
-    b.addEventListener("click", () => window.ACH.install(p.id));
+    const busy = BUSY.get(p.id);
+    const b = el("button", "act act-install", busy || (local.installed ? "⟳ Mettre à jour" : "⤓ Installer"));
+    if (local.installed) b.title = `Installée : ${local.installed}`;
+    b.disabled = !!busy;
+    b.addEventListener("click", () => installFiliale(p));
     actions.push(b);
   }
   if (p.github) actions.push(link("act act-github", "Dépôt ↗", p.github));
   else actions.push(el("span", "act act-disabled", "privé"));
   return actions;
+}
+
+// Action bars are rebuilt when the local state changes (install done, progress).
+function fillActions(box, p) {
+  box.dataset.actions = p.id;
+  box.replaceChildren(...actionButtons(p));
+  return box;
+}
+
+function refreshActions(id) {
+  const sel = id ? `[data-actions="${CSS.escape(id)}"]` : "[data-actions]";
+  document.querySelectorAll(sel).forEach(box => fillActions(box, PROJECTS.get(box.dataset.actions)));
+}
+
+// ── Client lourd ─────────────────────────────────────────────────────────────
+
+// A manual popover lives in the top layer: re-shown, it stays above an open fiche (modal).
+let toastTimer;
+function notify({ ok, message }, sticky) {
+  let t = document.getElementById("ach-toast");
+  if (!t) {
+    t = el("div", "toast");
+    t.id = "ach-toast";
+    t.popover = "manual";
+    t.setAttribute("role", "status");
+    document.body.appendChild(t);
+  }
+  t.textContent = message;
+  t.classList.toggle("is-error", !ok);
+  if (t.matches(":popover-open")) t.hidePopover();
+  t.showPopover();
+  clearTimeout(toastTimer);
+  if (!sticky) toastTimer = setTimeout(() => t.hidePopover(), ok ? 5000 : 9000);
+}
+
+async function installFiliale(p) {
+  BUSY.set(p.id, "⤓ …");
+  refreshActions(p.id);
+  const r = await window.ACH.install(p.id).catch(e => ({ ok: false, message: e.message }));
+  BUSY.delete(p.id);
+  LOCAL = await window.ACH.state().catch(() => LOCAL);
+  refreshActions();
+  notify(r);
+}
+
+function setupDesktop() {
+  if (!IS_ELECTRON) return;
+  document.documentElement.classList.add("is-desktop");
+  window.ACH.onProgress(({ id, ratio, message }) => {
+    if (!BUSY.has(id)) return;
+    BUSY.set(id, ratio == null ? "⤓ …" : `⤓ ${Math.round(ratio * 100)} %`);
+    refreshActions(id);
+    if (message) notify({ ok: true, message: `${PROJECTS.get(id).name} — ${message}` }, true);
+  });
 }
 
 // Card header: capture 1 if any, else a typographic plate (division glyph + name).
@@ -154,9 +222,7 @@ function projectCard(p, code, division, media) {
     card.appendChild(tags);
   }
 
-  const actions = el("div", "card-actions");
-  actions.append(...actionButtons(p));
-  card.appendChild(actions);
+  card.appendChild(fillActions(el("div", "card-actions"), p));
   return card;
 }
 
@@ -252,8 +318,7 @@ function fillSheet(sheet, p, code, division, extra, media) {
   if (p.tagline) body.appendChild(el("p", "sheet-tagline", p.tagline));
 
   const actions = el("div", "sheet-actions");
-  actions.append(...actionButtons(p));
-  body.appendChild(actions);
+  body.appendChild(fillActions(actions, p));
 
   // The short description holds the place until the fiche (if any) arrives.
   const about = el("div", "sheet-fiche");
@@ -397,6 +462,8 @@ function setupFinder(catalog, cards) {
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 function render(catalog) {
+  PROJECTS = new Map(catalog.projects.map(p => [p.id, p]));
+  setupDesktop();
   document.getElementById("brand-full").textContent = catalog.brand.name;
   document.getElementById("brand-tag").textContent = catalog.brand.tagline || "";
 

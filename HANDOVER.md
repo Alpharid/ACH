@@ -33,7 +33,10 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 - Une filiale peut relever de deux divisions via `also` (ex. Alphred = β Apps + γ Outils,
   Lounge = α Jeux + δ Services) : division principale pour le code `α-01`, comptée une fois.
 - README de tous les dépôts des filiales mis à jour (lien vers la vitrine en pied).
-- **Client Electron : pas encore commencé** (`desktop/` vide).
+- **Client Electron v0.1** (`desktop/`) : même page servie via `ach://`, boutons
+  **Lancer / Ouvrir** et **Installer / Mettre à jour** selon l'état du PC, progression +
+  messages (toast). Testé : install manifest (7D7H), install zip (Medusa), « déjà à jour »,
+  lancement depuis la bibliothèque, refus propre d'un dépôt privé sans jeton.
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
 - **Stack client lourd : Electron** (même code que le web, installeur NSIS, déjà maîtrisé).
@@ -55,14 +58,16 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    sans visuel propre → plaque). Cas « art de tiers » laissés sans capture par choix de
    droits : Arx Sandbox et les cartes du JDR Arx (données Arx Fatalis = Arkane/Bethesda,
    jamais publiées) → proposer à l'utilisateur une vue greybox/UI sans textures.
-3. **Client Electron** (desktop/) : étape suivante.
-3. **Client Electron** (`desktop/`) : fenêtre, preload exposant `window.ACH`
-   (`launch(id)`, `install(id)`), réutilise `web/` comme renderer.
-   - `install` : lire la dernière release GitHub du `install.repo`, télécharger l'asset
-     Windows, lancer l'installeur. Pour `install.private:true` : jeton lecture seule
-     embarqué (hors git, voir `.gitignore`), jamais sur le web.
-   - `launch` : résoudre un exe/launcher local depuis `launch.dir`.
-   - Builder : electron-builder → `.exe` NSIS. Binaire en **GitHub Release**, jamais en git.
+3. ~~Client Electron~~ : v0.1 faite (voir `desktop/README.md`). Restes :
+   - publier `ACH-0.1.0-setup.exe` en **GitHub Release** (build **sans** jeton : ACH est
+     public) ; le jeton des builds privés se dépose à la main dans `%APPDATA%\ACH\token.json`
+     sur les PC de la famille ;
+   - tester l'install SA_COOP avec un jeton (mode « installeur », assets privés) ;
+   - catalogue « vivant » (lire celui de la vitrine plutôt que la copie embarquée) et
+     auto-mise à jour d'ACH (electron-updater) ;
+   - désinstaller une filiale de la bibliothèque ; choisir le dossier de bibliothèque ;
+   - « Lancer » d'une filiale `mode: installer` : l'emplacement installé est inconnu
+     (sauf `launch.target`) — à résoudre si besoin (registre Uninstall).
 4. **Catalogue** : 29 filiales, divisions à cheval tranchées (voir §3 et historique).
    Reste surtout à compléter les captures et à faire vivre le catalogue au fil des projets.
 
@@ -72,7 +77,12 @@ npm install
 npm run catalog:check          # valide data/catalog.json
 npm run web                    # preview → http://localhost:4173/web/
 ```
-Client Electron : à venir (`cd desktop && npm start`, puis `npm run dist` pour l'exe).
+Client Electron :
+```bash
+npx install-electron           # une fois : Electron ≥ 45 ne télécharge plus son binaire à l'install
+npm run desktop                # lance le client (lit web/ et data/ du dépôt en direct)
+npm run desktop:dist           # → desktop/dist/ACH-<version>-setup.exe (NSIS)
+```
 
 ## 6. Architecture & flux de données
 - `data/catalog.json` = **unique source**. Web et desktop le lisent.
@@ -88,7 +98,16 @@ Client Electron : à venir (`cd desktop && npm start`, puis `npm run dist` pour 
 - Déploiement : `.github/workflows/pages.yml` assemble `_site/` = `web/` + `data/`.
   Détecte le client lourd via `window.ACH` (injecté par le preload Electron). Sans lui :
   seuls les liens GitHub sont actifs (pas de Lancer/Installer).
-- Desktop (prévu) : Electron charge `web/index.html`, un preload expose `window.ACH`.
+- Desktop : `desktop/main.js` sert `web/` + `data/` sur `ach://app/…` (dépôt en dev,
+  `resources/site/` une fois packagé ; rien d'autre n'est servi) et charge
+  `ach://app/web/index.html`. `preload.js` expose `window.ACH` ; `app.js` lit
+  `ACH.state()` au chargement (`LOCAL` : `launch` = `run`|`folder`|null, `installed`) et
+  reconstruit les barres d'actions (`[data-actions]`) après une install.
+  Install (`lib/install.js`) : release → `manifest.json` (Godot, sha256 par fichier, assets
+  d'autres releases comme `runtime-<hash>`) > `.zip` Windows > `.exe`/`.msi` installeur.
+  Bibliothèque : `%LOCALAPPDATA%\Alpharium\ACH\library\<id>\` + `%APPDATA%\ACH\library.json`.
+  Lancement (`lib/launch.js`) : build de la bibliothèque > `launch.dir`/`launch.target` >
+  devinette > ouvrir le dossier. Le main ne fait confiance qu'à sa copie du catalogue.
 
 ## 7. Carte des fichiers
 ```
@@ -109,7 +128,10 @@ scripts/serve-web.mjs       serveur preview
 scripts/check-catalog.mjs   validateur
 scripts/vectorize-logo.py   PNG maîtres → SVG (docs/DA/logo/svg + web/assets/brand)
 scripts/build-brand-assets.py  favicons PNG/ICO + macaron PNG (icône d'app)
-desktop/                    client Electron (vide)
+desktop/main.js             client Electron : fenêtre, schéma ach://, IPC
+desktop/preload.js          pont window.ACH (state, launch, install, onProgress)
+desktop/lib/                github (API, téléchargements), install, launch, library
+desktop/README.md           détail du client, jeton
 docs/DECISIONS.md           journal des décisions
 docs/DA/CHARTE.md           charte Alpharium (logo, couleurs, typo, composants)
 docs/DA/logo/source/        fichiers maîtres du logo (graphiste) — ne pas modifier
@@ -120,7 +142,12 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - **Aucun secret dans le dépôt.** Le catalogue est public-safe (pas de token, pas
   d'adresse de serveur, pas de chemin perso sensible).
 - Jeton GitHub lecture seule (pour installer des builds privés comme SA_COOP) : côté
-  client lourd uniquement, hors git (`.gitignore` : `token.json`, `*.token`).
+  client lourd uniquement, hors git (`.gitignore` : `token.json`, `*.token`). Cherché dans
+  `resources/token.json` (embarqué si `desktop/token.json` existe au build), puis
+  `%APPDATA%\ACH\token.json`, puis `desktop/token.json` (dev), ou `ACH_GITHUB_TOKEN`.
+  **Un exe construit avec jeton ne va jamais en release publique.**
+- Bibliothèque du client : `%LOCALAPPDATA%\Alpharium\ACH\library\` (builds installés),
+  `%APPDATA%\ACH\library.json` (versions installées).
 - Les chemins `launch.dir` (C:\…) ne servent qu'au client lourd local.
 
 ## 9. Pièges connus / conventions
@@ -156,6 +183,12 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   comportement de vrai malware (agent qui se réinstalle, déguisé en service Windows).
   Ne pas l'ajouter au catalogue ni l'aider à se diffuser.
 - Dépôts à cheval sur deux divisions : champ `also` (voir §4).
+- `launch.target` (relatif à `launch.dir`) quand la devinette se tromperait (plusieurs exe,
+  `.bat` de lancement…) ; `catalog:check` refuse un chemin absolu ou avec `..`.
+- Electron ≥ 45 : pas de postinstall, lancer `npx install-electron` après `npm install`.
+- Client : zip extraits avec le `tar.exe` de Windows (bsdtar) — pas de dépendance unzip.
+- Client : le toast est un `popover="manual"` (top layer) pour passer au-dessus de la fiche
+  (`<dialog>` modal) ; ne pas le remplacer par un simple `position: fixed`.
 - Dépôts `*-builds` : README en **anglais** (leur convention), le reste en français.
 - SVG en `<img>` : l'état de repos de l'animation doit rester visible (jamais d'animation
   qui part d'opacité 0) — certains contextes n'animent pas les SVG-images.
@@ -166,6 +199,9 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (8)** : client Electron v0.1 (`desktop/`) — schéma `ach://`, pont
+  `window.ACH`, install manifest/zip/installeur dans une bibliothèque locale, lancement,
+  progression ; `launch.target` ajouté au catalogue (9 filiales) ; installeur NSIS.
 - **2026-10-26 (7)** : divisions des cas à cheval tranchées (MixMaster → Jeux ;
   Alphred → Apps + Outils ; SA Chill Trainer → Outils ; champ `also`). Sanctuary scindé en
   `sanctuary-3d` (nouveau dépôt créé) + `sanctuary-idle`. Filiales ajoutées : Lounge

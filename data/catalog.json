@@ -48,7 +48,7 @@
       "public": "Alpharid/7d7h-builds",
       "github": "https://github.com/Alpharid/7d7h-builds",
       "install": { "type": "github-release", "repo": "Alpharid/7d7h-builds" },
-      "launch": { "type": "local", "dir": "C:/7D7H" },
+      "launch": { "type": "local", "dir": "C:/7D7H", "target": "7D7H-Launcher.exe" },
       "tags": ["godot", "pixel-art", "mystery"]
     },
     {
@@ -72,7 +72,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Guardians-of-the-Seal",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/Guardians_of_the_Seal" },
+      "launch": { "type": "local", "dir": "C:/Guardians_of_the_Seal", "target": "Jouer.bat" },
       "tags": ["mmorpg", "djinn", "godot", "csharp"]
     },
     {
@@ -84,7 +84,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Tokyo_Hikitori",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/Tokyo_Hikitori" },
+      "launch": { "type": "local", "dir": "C:/Tokyo_Hikitori", "target": "builds/publish/launcher/TokyoHikitoriLauncher.exe" },
       "tags": ["vr", "solo", "action", "unreal"]
     },
     {
@@ -120,7 +120,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Sanctuary",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/Sanctuary" },
+      "launch": { "type": "local", "dir": "C:/Sanctuary", "target": "Lancer.bat" },
       "tags": ["electron", "rogue-lite", "idle", "pixel-art"]
     },
     {
@@ -156,7 +156,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/SA_COOP",
       "install": { "type": "github-release", "repo": "Alpharid/SA_COOP_Builds", "private": true },
-      "launch": { "type": "local", "dir": "C:/SA_COOP" },
+      "launch": { "type": "local", "dir": "C:/SA_COOP", "target": "launcher/sacoop/out/SA_COOP.exe" },
       "tags": ["gta-sa", "coop", "mod"]
     },
     {
@@ -192,7 +192,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/WifiSentinel",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/WifiSentinel" },
+      "launch": { "type": "local", "dir": "C:/WifiSentinel", "target": "datapad.bat" },
       "tags": ["reseau", "securite-defensive", "godot"]
     },
     {
@@ -288,7 +288,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Alphred_AI",
       "install": null,
-      "launch": { "type": "local", "dir": "D:/Alphred_AI" },
+      "launch": { "type": "local", "dir": "D:/Alphred_AI", "target": "Control_Panel.exe" },
       "tags": ["ia-locale", "ollama", "datapad"]
     },
     {
@@ -300,7 +300,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/MixMaster-ReGenesis",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/MixMaster_Regenesis" },
+      "launch": { "type": "local", "dir": "C:/MixMaster_Regenesis", "target": "MixMasterLauncher.exe" },
       "tags": ["serveur", "mmorpg", "prive"]
     },
     {
@@ -324,7 +324,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Project_ALL",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/KaddourLounge" },
+      "launch": { "type": "local", "dir": "C:/KaddourLounge", "target": "LANCER-LE-LOUNGE.bat" },
       "tags": ["social", "pixel-art", "iso", "node", "typescript"]
     },
     {

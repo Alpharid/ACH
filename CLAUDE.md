@@ -28,4 +28,6 @@ Lis d'abord **@HANDOVER.md** (état, archi, backlog, pièges). Il fait foi.
 npm run catalog:check   # valide le catalogue
 npm run web             # preview web → http://localhost:4173/web/
 python scripts/build-filiales.py   # après ajout de fiches/captures → media.json + vignettes
+npm run desktop         # client Electron (après `npx install-electron` une fois)
+npm run desktop:dist    # → desktop/dist/ACH-<version>-setup.exe (GitHub Release, sans jeton)
 ```

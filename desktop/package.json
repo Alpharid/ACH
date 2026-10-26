@@ -1,0 +1,41 @@
+{
+  "name": "ach-desktop",
+  "productName": "ACH",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Alpharium Conglomerat HUB — client lourd (installer et lancer les filiales)",
+  "author": "Alpharid",
+  "license": "UNLICENSED",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.alpharium.ach",
+    "productName": "ACH",
+    "executableName": "ACH",
+    "artifactName": "ACH-${version}-setup.${ext}",
+    "directories": { "output": "dist" },
+    "files": ["main.js", "preload.js", "lib/**", "package.json"],
+    "extraResources": [
+      { "from": "../web", "to": "site/web" },
+      { "from": "../data", "to": "site/data" },
+      { "from": ".", "to": ".", "filter": ["token.json"] }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "../web/assets/brand/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "ACH — Alpharium"
+    }
+  }
+}

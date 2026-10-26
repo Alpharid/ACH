@@ -19,8 +19,8 @@ Deux faces, un seul catalogue :
 ## État
 Projet démarré le 2026-10-26. La vitrine est en ligne : identité **Alpharium** (logo,
 charte : [docs/DA/CHARTE.md](docs/DA/CHARTE.md)), une fiche par filiale avec captures et
-présentation, recherche et filtres, téléchargement des builds publics. Le client Electron
-est la prochaine étape. Voir [HANDOVER.md](HANDOVER.md).
+présentation, recherche et filtres, téléchargement des builds publics. Le client Electron (v0.1)
+installe et lance les filiales. Voir [HANDOVER.md](HANDOVER.md).
 
 ## Démarrer
 ```bash
@@ -34,7 +34,7 @@ npm run web             # http://localhost:4173/web/
 data/catalog.json   source de vérité (web + desktop)
 data/fiches/        présentation de chaque filiale (Markdown public)
 web/                page web statique (GitHub Pages, .github/workflows/pages.yml)
-desktop/            client Electron (à venir)
+desktop/            client Electron (voir desktop/README.md)
 scripts/            preview, validateur, logo, captures
 docs/               décisions + charte DA
 ```

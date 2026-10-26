@@ -28,7 +28,7 @@ pas d'adresse de serveur, pas de chemin contenant des données perso.
 | `public` | string \| null | `owner/repo` public (builds/open-source) servant de vitrine |
 | `github` | url \| null | lien GitHub affiché (null = bouton « privé » désactivé) |
 | `install` | obj \| null | `{ type:"github-release", repo, private? }` — **client lourd only** |
-| `launch` | obj \| null | `{ type:"local", dir }` — **client lourd only** |
+| `launch` | obj \| null | `{ type:"local", dir, target? }` — **client lourd only**. `target` = fichier à lancer, relatif à `dir` (`.exe`, `.bat`…) ; absent → le client devine (exe `*launcher*`, exe au nom du projet, `Lancer*.bat`…) ou ouvre le dossier |
 | `tags` | string[] | mots-clés |
 
 ## Médias des filiales (hors catalogue)
