@@ -362,6 +362,18 @@
       "install": null,
       "launch": null,
       "tags": ["windows", "multi-écran", "csharp", "utilitaire"]
+    },
+    {
+      "id": "mm2-web", "name": "MM2 Web", "division": "jeux",
+      "status": "beta", "visibility": "private",
+      "tagline": "Midtown Madness 2, le jeu d'origine, jouable dans le navigateur.",
+      "description": "Le Midtown Madness 2 de 2000, avec les fichiers de son CD, qui tourne dans un navigateur : Londres, San Francisco et tous les modes solo. Moteur libre OpenMM2 porté en WebAssembly.",
+      "source": "Alpharid/MM2_Web",
+      "public": null,
+      "github": "https://github.com/Alpharid/MM2_Web",
+      "install": null,
+      "launch": null,
+      "tags": ["midtown-madness", "webassembly", "portage", "navigateur"]
     }
   ]
 }

@@ -28,7 +28,7 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
 - Dépôt GitHub **public** `Alpharid/ACH` ; la vitrine se déploie toute seule sur Pages à
   chaque push touchant `web/` ou `data/` (`.github/workflows/pages.yml`).
-- **29 filiales** (catalogue), chacune avec une fiche (`data/fiches/`) ; captures réelles
+- **30 filiales** (catalogue), chacune avec une fiche (`data/fiches/`) ; captures réelles
   pour 11, plaque typographique (glyphe + nom) pour les autres.
 - Une filiale peut relever de deux divisions via `also` (ex. Alphred = β Apps + γ Outils,
   Lounge = α Jeux + δ Services) : division principale pour le code `α-01`, comptée une fois.
@@ -68,7 +68,7 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    - désinstaller une filiale de la bibliothèque ; choisir le dossier de bibliothèque ;
    - « Lancer » d'une filiale `mode: installer` : l'emplacement installé est inconnu
      (sauf `launch.target`) — à résoudre si besoin (registre Uninstall).
-4. **Catalogue** : 29 filiales, divisions à cheval tranchées (voir §3 et historique).
+4. **Catalogue** : 30 filiales, divisions à cheval tranchées (voir §3 et historique).
    Reste surtout à compléter les captures et à faire vivre le catalogue au fil des projets.
 
 ## 5. Lancer / build / test
@@ -196,9 +196,17 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   non-collaborateurs. **On ne contourne jamais** (pas de proxy de contenu privé sur le web).
 - Ne jamais embarquer de fichiers propriétaires tiers (GTA, jeux…) ni de clés.
 - Commits : `Alpharid <67369311+Alpharid@users.noreply.github.com>`. README non signé.
+- **Réflexe : chaque nouveau projet de l'utilisateur entre au catalogue** (entrée
+  `catalog.json` + `data/fiches/<id>.md` + `build-filiales.py` + `catalog:check`), en
+  respectant les règles du dépôt public ci-dessus. Insérer l'entrée en texte : un
+  `json.dump` reformate tout le fichier.
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-26 (9)** : +1 filiale **MM2 Web** (α Jeux, bêta) : Midtown Madness 2 original
+  dans le navigateur (OpenMM2 → WebAssembly, dépôt privé `Alpharid/MM2_Web`). Pas de
+  capture (art Microsoft) et pas d'URL de jeu dans le catalogue : le lien Cloudflare est
+  réservé à la famille.
 - **2026-10-26 (8)** : client Electron v0.1 (`desktop/`) — schéma `ach://`, pont
   `window.ACH`, install manifest/zip/installeur dans une bibliothèque locale, lancement,
   progression ; `launch.target` ajouté au catalogue (9 filiales) ; installeur NSIS.

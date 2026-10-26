@@ -114,5 +114,9 @@
   "lightsoff": {
     "fiche": true,
     "captures": 0
+  },
+  "mm2-web": {
+    "fiche": true,
+    "captures": 0
   }
 }
