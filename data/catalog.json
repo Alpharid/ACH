@@ -398,6 +398,18 @@
       "install": null,
       "launch": null,
       "tags": ["midtown-madness", "webassembly", "portage", "navigateur"]
+    },
+    {
+      "id": "mcm-online", "name": "MCM Online", "division": "jeux",
+      "status": "beta", "visibility": "private",
+      "tagline": "Motocross Madness 1 et 2, les jeux d'origine, à 8 par Internet sans rien régler.",
+      "description": "Les Motocross Madness de 1998 et 2000 tels qu'à l'époque, installés et corrigés en un clic, avec leur mode réseau local à 8 joueurs relié par Internet grâce à un relais maison. Un lanceur Windows, un installeur Mac.",
+      "source": "Alpharid/MCM_Online",
+      "public": null,
+      "github": "https://github.com/Alpharid/MCM_Online",
+      "install": null,
+      "launch": null,
+      "tags": ["motocross-madness", "multijoueur", "ipx", "directplay", "relais", "wine"]
     }
   ]
 }
