@@ -1,4 +1,4 @@
-L'Alpharium Luxurious Lounge — Kaddour Social Club — est un salon en ligne réservé à la famille, dans l'esprit de Habbo : pixel art isométrique en 2D, pensé d'abord pour le téléphone. On s'y retrouve le soir pour discuter, aménager son coin de salon et jouer, sous l'œil d'Alphred, le majordome. L'ambiance tient en trois mots : familial, calme, un peu luxueux, sur un fond or et bleu marine.
+Le Kaddour Social Club est un salon en ligne réservé à la famille, dans l'esprit de Habbo : pixel art isométrique en 2D, pensé d'abord pour le téléphone. C'est la troisième version de l'Alpharium, après la maquette Three.js et le Luxurious Lounge en 3D sous Godot, et c'est elle qui tourne au quotidien. On s'y retrouve le soir pour discuter, aménager son coin de salon et jouer, sous l'œil d'Alphred, le majordome. L'ambiance tient en trois mots : familial, calme, un peu luxueux, sur un fond or et bleu marine.
 
 Le lieu est entièrement construit par ses membres : chaque meuble, chaque pièce se pose sur une grille isométrique. Meubles, animaux et avatars sont dessinés en pixel art et peuvent être retouchés dans un Studio intégré, ouvert aux membres promus artistes.
 

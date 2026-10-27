@@ -75,3 +75,11 @@
 
 ## À trancher (ouvert)
 - Inclusion de SE2_Trainer (repo à créer), Project_ALL, maquettes Alpharium, dépôts JDR Arx.
+
+## 2026-10-27 — Alpharium en 3 filiales, δ Services complété
+- **Alpharium = 3 filiales**, une par essai (demande de l'utilisateur) : Maquette Three.js,
+  Luxurious Lounge (Godot), Kaddour Social Club (2D isométrique, en service). L'id `lounge`
+  devient `kaddour-social-club` ; l'ancien lien est redirigé (`RENAMED` dans `app.js`).
+- **δ Services** = tout projet qui fait tourner un serveur ou une infra : MixMaster et
+  Guardians (serveurs de jeu) et Alphred (IA locale) y apparaissent aussi, via `also`.
+- **Arx : Tenebris Relectis** en `prod` : la campagne est prête à être jouée.

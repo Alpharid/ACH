@@ -99,9 +99,17 @@
     "fiche": true,
     "captures": 0
   },
-  "lounge": {
+  "kaddour-social-club": {
     "fiche": true,
     "captures": 2
+  },
+  "luxurious-lounge": {
+    "fiche": true,
+    "captures": 2
+  },
+  "alpharium-threejs": {
+    "fiche": true,
+    "captures": 3
   },
   "arx-atr": {
     "fiche": true,

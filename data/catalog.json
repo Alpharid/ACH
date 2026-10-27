@@ -6,7 +6,7 @@
     "owner": "Alpharid",
     "since": 1996,
     "tagline": "Le conglomérat qui réunit toutes mes divisions.",
-    "updated": "2026-10-26"
+    "updated": "2026-10-27"
   },
   "divisions": [
     { "id": "jeux",     "glyph": "α", "name": "Jeux",     "label": "Division Jeux",     "blurb": "Les jeux du conglomérat — Godot, Electron, VR, mods." },
@@ -64,7 +64,7 @@
       "tags": ["godot", "coop", "multijoueur", "jdr"]
     },
     {
-      "id": "guardians", "name": "Guardians of the Seal", "division": "jeux",
+      "id": "guardians", "name": "Guardians of the Seal", "division": "jeux", "also": ["services"],
       "status": "wip", "visibility": "private",
       "tagline": "MMORPG : Gardiens et djinn, univers sombre.",
       "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Serveur et client de test jouables.",
@@ -280,19 +280,19 @@
       "tags": ["fallout4", "mod", "ia"]
     },
     {
-      "id": "alphred", "name": "Alphred", "division": "apps", "also": ["outils"],
+      "id": "alphred", "name": "Alphred", "division": "apps", "also": ["outils", "services"],
       "status": "beta", "visibility": "private",
       "tagline": "Majordome IA 100 % local.",
-      "description": "Majordome IA entièrement local (Ollama + Open WebUI) avec panel datapad Godot et mode vocal façon Jarvis.",
+      "description": "Majordome IA entièrement local (Ollama + Open WebUI), joignable depuis le PC et le téléphone : panel datapad Godot, mode vocal façon Jarvis qui agit sur le PC, et agent de développement.",
       "source": "Alpharid/Alphred_AI",
       "public": null,
       "github": "https://github.com/Alpharid/Alphred_AI",
       "install": null,
       "launch": { "type": "local", "dir": "D:/Alphred_AI", "target": "Control_Panel.exe" },
-      "tags": ["ia-locale", "ollama", "datapad"]
+      "tags": ["ia-locale", "ollama", "datapad", "vocal", "agent"]
     },
     {
-      "id": "mixmaster", "name": "MixMaster ReGenesis", "division": "jeux",
+      "id": "mixmaster", "name": "MixMaster ReGenesis", "division": "jeux", "also": ["services"],
       "status": "beta", "visibility": "private",
       "tagline": "Serveur privé familial (MMORPG de 2011).",
       "description": "Serveur privé familial du MMORPG MixMaster : deux mondes (France PvP / Global PvM), panneau d'administration, launcher. Aucun fichier du jeu dans le dépôt.",
@@ -316,28 +316,52 @@
       "tags": ["mta-sa", "dayz", "serveur", "traduction"]
     },
     {
-      "id": "lounge", "name": "Alpharium — Luxurious Lounge", "division": "jeux", "also": ["services"],
+      "id": "kaddour-social-club", "name": "Alpharium — Kaddour Social Club", "division": "jeux", "also": ["services"],
       "status": "beta", "visibility": "private",
       "tagline": "Le salon privé de la famille, façon Habbo.",
-      "description": "Club social en ligne en pixel art isométrique, pensé pour le téléphone : on s'y retrouve le soir pour discuter, aménager son coin et jouer (cartes, Loup-Garou, échecs), avec Alphred le majordome. Luxe or et marine, 100 % chill. Le Kaddour Social Club de la maison.",
+      "description": "Club social en ligne en pixel art isométrique, pensé pour le téléphone : on s'y retrouve le soir pour discuter, aménager son coin et jouer (cartes, Loup-Garou, échecs, casino en jetons), avec Alphred le majordome. Troisième version de l'Alpharium, celle qui tourne au quotidien.",
       "source": "Alpharid/Project_ALL",
       "public": null,
       "github": "https://github.com/Alpharid/Project_ALL",
       "install": null,
+      "launch": { "type": "local", "dir": "C:/Project_ALL", "target": "LANCER.bat" },
+      "tags": ["social", "pixel-art", "iso", "node", "typescript", "serveur"]
+    },
+    {
+      "id": "luxurious-lounge", "name": "Alpharium — Luxurious Lounge", "division": "jeux", "also": ["services"],
+      "status": "wip", "visibility": "private",
+      "tagline": "Le gratte-ciel de luxe de l'Alpharium, en 3D sous Godot.",
+      "description": "Club social familial en 3D (Godot 4.7, jouable dans le navigateur) : façade de nuit et portier, lobby de marbre, ascenseur de verre, lounge du penthouse, casino caché et rooftop, sur un serveur autoritaire. Deuxième essai de l'Alpharium, relancé pour lui donner l'âme de la maquette Three.js.",
+      "source": "Alpharid/Alpharium_Godot",
+      "public": null,
+      "github": "https://github.com/Alpharid/Alpharium_Godot",
+      "install": null,
+      "launch": { "type": "local", "dir": "C:/Alpharium_KSC", "target": "LANCER-EN-LOCAL.bat" },
+      "tags": ["godot", "3d", "social", "web", "serveur"]
+    },
+    {
+      "id": "alpharium-threejs", "name": "Alpharium — Maquette Three.js", "division": "jeux", "also": ["services"],
+      "status": "alpha", "visibility": "private",
+      "tagline": "La toute première maquette 3D du club, dans le navigateur.",
+      "description": "Premier essai de l'Alpharium : un lounge 3D en Three.js avec son serveur Node, la carte complète, le tchat vocal, les jeux de table, le casino et les soirées à thème. Elle marchait mais ramait sur les petits appareils ; elle reste la référence des deux versions suivantes.",
+      "source": "Alpharid/Alpharium_ThreeJS",
+      "public": null,
+      "github": "https://github.com/Alpharid/Alpharium_ThreeJS",
+      "install": null,
       "launch": { "type": "local", "dir": "C:/KaddourLounge", "target": "LANCER-LE-LOUNGE.bat" },
-      "tags": ["social", "pixel-art", "iso", "node", "typescript"]
+      "tags": ["threejs", "3d", "node", "social", "maquette"]
     },
     {
       "id": "arx-atr", "name": "Arx : Tenebris Relectis", "division": "jeux",
-      "status": "beta", "visibility": "private",
-      "tagline": "JDR sur table dans l'univers d'Arx Fatalis.",
-      "description": "La campagne d'Arx Fatalis rejouée en jeu de rôle sur Roll20 : cartes des profondeurs fabriquées depuis les fichiers du jeu (pipeline maison), fiche de personnage dédiée et planches d'objets et de décors.",
+      "status": "prod", "visibility": "private",
+      "tagline": "JDR sur table dans l'univers d'Arx Fatalis — prêt à jouer.",
+      "description": "La campagne d'Arx Fatalis rejouée en jeu de rôle sur Roll20, prête à jouer : les huit cartes des profondeurs fabriquées depuis les fichiers du jeu, une fiche de personnage dédiée, un installateur de campagne et une régie sonore pour le meneur.",
       "source": "Alpharid/Projet_JDR-ATR",
       "public": null,
       "github": "https://github.com/Alpharid/Projet_JDR-ATR",
       "install": null,
       "launch": null,
-      "tags": ["jdr", "roll20", "arx", "cartes"]
+      "tags": ["jdr", "roll20", "arx", "cartes", "regie"]
     },
     {
       "id": "se2-trainer", "name": "SE2 Trainer", "division": "outils",

@@ -28,10 +28,10 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
 - Docs : ce HANDOVER, CLAUDE.md, AGENTS.md, README, `docs/DECISIONS.md`, `docs/DA/`.
 - Dépôt GitHub **public** `Alpharid/ACH` ; la vitrine se déploie toute seule sur Pages à
   chaque push touchant `web/` ou `data/` (`.github/workflows/pages.yml`).
-- **30 filiales** (catalogue), chacune avec une fiche (`data/fiches/`) ; captures réelles
-  pour 11, plaque typographique (glyphe + nom) pour les autres.
-- Une filiale peut relever de deux divisions via `also` (ex. Alphred = β Apps + γ Outils,
-  Lounge = α Jeux + δ Services) : division principale pour le code `α-01`, comptée une fois.
+- **32 filiales** (catalogue), chacune avec une fiche (`data/fiches/`) ; captures réelles
+  pour 14, plaque typographique (glyphe + nom) pour les autres.
+- Une filiale peut relever de deux divisions via `also` (ex. les 3 Alpharium, MixMaster et Guardians = α Jeux + δ Services ; Alphred = β Apps + γ Outils +
+  δ Services) : division principale pour le code `α-01`, comptée une fois.
 - README de tous les dépôts des filiales mis à jour (lien vers la vitrine en pied).
 - **Client Electron v0.1** (`desktop/`) : même page servie via `ach://`, boutons
   **Lancer / Ouvrir** et **Installer / Mettre à jour** selon l'état du PC, progression +
@@ -74,7 +74,7 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    - désinstaller une filiale de la bibliothèque ; choisir le dossier de bibliothèque ;
    - « Lancer » d'une filiale `mode: installer` : l'emplacement installé est inconnu
      (sauf `launch.target`) — à résoudre si besoin (registre Uninstall).
-4. **Catalogue** : 30 filiales, divisions à cheval tranchées (voir §3 et historique).
+4. **Catalogue** : 32 filiales, divisions à cheval tranchées (voir §3 et historique).
    Reste surtout à compléter les captures et à faire vivre le catalogue au fil des projets.
 
 ## 5. Lancer / build / test
@@ -200,7 +200,15 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - **Usagi** (`C:\Usagi`) : exclu volontairement de la vitrine — « virus » blague au
   comportement de vrai malware (agent qui se réinstalle, déguisé en service Windows).
   Ne pas l'ajouter au catalogue ni l'aider à se diffuser.
-- Dépôts à cheval sur deux divisions : champ `also` (voir §4).
+- Dépôts à cheval sur deux divisions : champ `also` (voir §4). δ Services = tout ce qui fait
+  tourner un serveur ou une infra pour la famille (jeux multi avec serveur, IA locale).
+- **Alpharium = 3 filiales**, une par essai : `alpharium-threejs` (1er, maquette Three.js, dépôt
+  `Alpharium_ThreeJS`, installée dans `C:\KaddourLounge` — malgré le nom du dossier), `luxurious-lounge`
+  (2e, Godot, dépôt `Alpharium_Godot`, dossier `C:\Alpharium_KSC`), `kaddour-social-club` (3e, 2D
+  isométrique en service, dépôt `Project_ALL`). Ne pas les refusionner.
+- Renommer une filiale casse les liens partagés : ajouter l'ancien id dans `RENAMED` (`web/assets/app.js`),
+  qui redirige `#filiale/<ancien>` (ex. `lounge` → `kaddour-social-club`).
+- Captures : flouter tout texte en jeu qui pourrait porter un vrai nom (plaques, pseudos).
 - `launch.target` (relatif à `launch.dir`) quand la devinette se tromperait (plusieurs exe,
   `.bat` de lancement…) ; `catalog:check` refuse un chemin absolu ou avec `..`.
 - Electron ≥ 45 : pas de postinstall, lancer `npx install-electron` après `npm install`.
@@ -234,6 +242,13 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (6)** : Arx : Tenebris Relectis passe en **prod** (campagne prête : installateur,
+  QG du MJ, régie sonore). δ Services complété : MixMaster, Guardians et Alphred (fiche Alphred
+  enrichie : mode vocal, overlay, agent, « se modifier »). L'ancienne filiale `lounge` scindée en
+  **3 filiales Alpharium** avec captures : Maquette Three.js (captures faites sur une copie locale
+  du serveur, plaque floutée), Luxurious Lounge (Godot), Kaddour Social Club (ex-`lounge`, alias
+  `RENAMED`). 32 filiales. Pieds de README : `Project_ALL` (unstable) et `Alpharium_Godot`
+  (unstable) commités en local, **non poussés** ; `Alpharium_ThreeJS` non touché (règle du dépôt).
 - **2026-10-27 (5)** : fiche Arx Sandbox en 0.6.0-alpha « Hôte meneur » (l'hôte mène l'histoire en coop).
 - **2026-10-27 (4)** : fiche Arx Sandbox à jour (0.5.0-alpha « Coop fidèle » : Arx Fatalis en coop fidèle
   au jeu, carte d'origine, scripts, combat, magie ; tag `sandbox` → `coop`).

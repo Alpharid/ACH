@@ -18,6 +18,8 @@ const STATUS_LABEL = {
 };
 
 const SHEET_HASH = "#filiale/";
+// Renamed filiales: old shared links (#filiale/<old>) still open the right sheet.
+const RENAMED = { lounge: "kaddour-social-club" };
 
 // Folder holding catalog.json, media.json and fiches/ (differs between the repo
 // preview and the deployed site, where data/ sits next to the page).
@@ -377,6 +379,10 @@ function setupSheet(catalog, codes) {
 
   function sync() {
     const id = hashId();
+    if (id && RENAMED[id]) {
+      history.replaceState(null, "", SHEET_HASH + RENAMED[id]);
+      return sync();
+    }
     const p = id && byId.get(id);
     if (!p) { if (sheet.open) sheet.close(); return; }
     sheet.dataset.id = p.id;
