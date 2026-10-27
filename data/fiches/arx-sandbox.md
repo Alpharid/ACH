@@ -17,4 +17,4 @@ Le projet ne contient que du code : chacun le fait tourner avec **sa propre copi
 Godot 4.7 · GDScript et C# · Python (convertisseur des formats d'Arx) · WebSocket · lanceur Python empaqueté en exe
 
 ### Où en est la filiale
-Alpha (0.6.0). Presque tout le jeu est porté, et l'hôte mène désormais l'histoire : chacun explore librement, les scènes rassemblent le groupe, les objets de quête comptent pour tous. Il reste à le valider en jouant l'histoire de bout en bout et en vraies parties entre plusieurs PC.
+Alpha (0.6.1). Presque tout le jeu est porté, et l'hôte mène désormais l'histoire : chacun explore librement, les scènes rassemblent le groupe, les objets de quête comptent pour tous. Un test automatique parcourt toute la quête principale, de la prison au combat final. Il reste à la jouer pour de vrai, en parties entre plusieurs PC.
