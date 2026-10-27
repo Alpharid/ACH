@@ -235,13 +235,13 @@
       "id": "kali-pi", "name": "Kali-Pi", "division": "outils",
       "status": "beta", "visibility": "private",
       "tagline": "Raspberry Pi 5 sous Kali + datapad tactile.",
-      "description": "Raspberry Pi 5 sous Kali Linux avec écran tactile 7\" : audit défensif du réseau familial, bureau à distance, datapad tactile façon Matrix.",
+      "description": "Raspberry Pi 5 sous Kali Linux avec écran tactile 7\" : audit défensif du réseau familial, bureau à distance, datapad tactile façon Matrix et régie sonore tactile pour les sessions de jeu de rôle.",
       "source": "Alpharid/Kali-Pi",
       "public": null,
       "github": "https://github.com/Alpharid/Kali-Pi",
       "install": null,
       "launch": null,
-      "tags": ["raspberry-pi", "kali", "reseau"]
+      "tags": ["raspberry-pi", "kali", "reseau", "jdr"]
     },
     {
       "id": "steamdeck", "name": "Steam Deck Reprise", "division": "outils",

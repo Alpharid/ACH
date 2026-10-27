@@ -7,9 +7,10 @@ L'usage sécurité est strictement défensif et consenti : vérifier l'état du 
 - Un volet d'audit défensif : inventaire des appareils du réseau et revue du durcissement, pour identifier ce qui est à corriger
 - Un bureau graphique à distance depuis le PC (VNC au travers d'un tunnel SSH chiffré)
 - Le pilotage d'autres appareils depuis la dalle (PC, console, téléphone), pensé aussi comme pupitre pour les sessions de jeu de rôle
+- Une régie sonore tactile pour le Maître du Jeu : ambiances en boucle et bruitages déclenchés à la volée, joués sur les enceintes de la table — la dalle sert de pupitre, un petit agent audio se charge de la lecture côté PC
 
 ### Sous le capot
 Raspberry Pi 5 · Kali Linux · Python (serveur local stdlib + interface web) · SSH · VNC
 
 ### Où en est la filiale
-En service : écran tactile, bureau distant et datapad fonctionnels, pilotage multi-appareils en place. Le volet audit s'enrichit, toujours dans un cadre privé et consenti.
+En service : écran tactile, bureau distant et datapad fonctionnels, pilotage multi-appareils en place, et une régie sonore de jeu de rôle désormais opérationnelle (soundboard tactile, ambiances + bruitages). Le volet audit s'enrichit, toujours dans un cadre privé et consenti.
