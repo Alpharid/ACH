@@ -1,7 +1,7 @@
 {
   "name": "ach-desktop",
   "productName": "ACH",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Alpharium Conglomerat HUB — client lourd (installer et lancer les filiales)",
   "author": "Alpharid",
@@ -9,7 +9,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win nsis"
+    "dist": "electron-builder --win nsis --publish never"
   },
   "devDependencies": {
     "electron": "45.0.0",
@@ -20,12 +20,38 @@
     "productName": "ACH",
     "executableName": "ACH",
     "artifactName": "ACH-${version}-setup.${ext}",
-    "directories": { "output": "dist" },
-    "files": ["main.js", "preload.js", "lib/**", "package.json"],
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**",
+      "package.json"
+    ],
     "extraResources": [
-      { "from": "../web", "to": "site/web" },
-      { "from": "../data", "to": "site/data" },
-      { "from": ".", "to": ".", "filter": ["token.json"] }
+      {
+        "from": "../web",
+        "to": "site/web"
+      },
+      {
+        "from": "../data",
+        "to": "site/data"
+      },
+      {
+        "from": ".",
+        "to": ".",
+        "filter": [
+          "token.json"
+        ]
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Alpharid",
+        "repo": "ACH"
+      }
     ],
     "win": {
       "target": "nsis",
@@ -37,5 +63,8 @@
       "allowToChangeInstallationDirectory": true,
       "shortcutName": "ACH — Alpharium"
     }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
   }
 }

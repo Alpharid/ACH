@@ -175,6 +175,8 @@ function setupDesktop() {
     refreshActions(id);
     if (message) notify({ ok: true, message: `${PROJECTS.get(id).name} — ${message}` }, true);
   });
+  // Absent from clients older than 0.2: the bridge only grows, the page checks.
+  if (window.ACH.onNotice) window.ACH.onNotice(m => notify(m));
 }
 
 // Card header: capture 1 if any, else a typographic plate (division glyph + name).

@@ -37,8 +37,12 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
   **Lancer / Ouvrir** et **Installer / Mettre à jour** selon l'état du PC, progression +
   messages (toast). Testé : install manifest (7D7H), install zip (Medusa), « déjà à jour »,
   lancement depuis la bibliothèque, refus propre d'un dépôt privé sans jeton.
-  Installeur publié : Release **v0.1.0** (https://github.com/Alpharid/ACH/releases/latest),
-  lien « Client Windows » en pied de vitrine (masqué dans le client).
+  Installeur publié en Release (https://github.com/Alpharid/ACH/releases/latest), lien
+  « Client Windows » en pied de vitrine (masqué dans le client).
+- **Client v0.2** : contenu **en direct** (catalogue, fiches, captures lus sur la vitrine,
+  cache hors ligne) et **mise à jour automatique** (electron-updater, Releases GitHub).
+  Testé : contenu en direct, repli sur le cache hors ligne, build packagé. La v0.1.0 n'a
+  pas d'updater : ceux qui l'ont installée doivent installer la 0.2 à la main une fois.
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
 - **Stack client lourd : Electron** (même code que le web, installeur NSIS, déjà maîtrisé).
@@ -61,11 +65,10 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    droits : Arx Sandbox et les cartes du JDR Arx (données Arx Fatalis = Arkane/Bethesda,
    jamais publiées) → proposer à l'utilisateur une vue greybox/UI sans textures.
 3. ~~Client Electron~~ : v0.1 faite (voir `desktop/README.md`). Restes :
-   - ~~publier `ACH-0.1.0-setup.exe` en GitHub Release~~ : fait (v0.1.0, sans jeton) ; le jeton des builds privés se dépose à la main dans `%APPDATA%\ACH\token.json`
-     sur les PC de la famille ;
+   - ~~publier le client en GitHub Release~~ : fait (sans jeton) ; le jeton des builds
+     privés se dépose à la main dans `%APPDATA%\ACH\token.json` sur les PC de la famille ;
    - tester l'install SA_COOP avec un jeton (mode « installeur », assets privés) ;
-   - catalogue « vivant » (lire celui de la vitrine plutôt que la copie embarquée) et
-     auto-mise à jour d'ACH (electron-updater) ;
+   - ~~catalogue « vivant » et auto-mise à jour d'ACH~~ : faits (v0.2.0) ;
    - désinstaller une filiale de la bibliothèque ; choisir le dossier de bibliothèque ;
    - « Lancer » d'une filiale `mode: installer` : l'emplacement installé est inconnu
      (sauf `launch.target`) — à résoudre si besoin (registre Uninstall).
@@ -99,16 +102,24 @@ npm run desktop:dist           # → desktop/dist/ACH-<version>-setup.exe (NSIS)
 - Déploiement : `.github/workflows/pages.yml` assemble `_site/` = `web/` + `data/`.
   Détecte le client lourd via `window.ACH` (injecté par le preload Electron). Sans lui :
   seuls les liens GitHub sont actifs (pas de Lancer/Installer).
-- Desktop : `desktop/main.js` sert `web/` + `data/` sur `ach://app/…` (dépôt en dev,
-  `resources/site/` une fois packagé ; rien d'autre n'est servi) et charge
-  `ach://app/web/index.html`. `preload.js` expose `window.ACH` ; `app.js` lit
+- Desktop : `desktop/main.js` sert `web/` + `data/` sur `ach://app/…` via `lib/site.js`
+  (rien d'autre n'est servi) et charge `ach://app/web/index.html`. Une fois packagé, le
+  **contenu** (`data/**`, `web/assets/filiales/**`) vient de la vitrine en direct, mis en
+  cache dans `%APPDATA%\ACH\live\` (repli : cache, puis copie embarquée
+  `resources/site/`) ; le **code** (reste de `web/`) est celui embarqué, il change avec
+  les mises à jour du client. En dev tout vient du dépôt (`ACH_SITE_URL` force le direct).
+  Le catalogue est lu une fois au démarrage et la page reçoit exactement la copie du main.
+  Mise à jour : `electron-updater` lit `latest.yml` de la dernière Release de
+  `Alpharid/ACH`, télécharge en fond, installe à la fermeture, toast via `ach:notice`.
+  `preload.js` expose `window.ACH` ; `app.js` lit
   `ACH.state()` au chargement (`LOCAL` : `launch` = `run`|`folder`|null, `installed`) et
   reconstruit les barres d'actions (`[data-actions]`) après une install.
   Install (`lib/install.js`) : release → `manifest.json` (Godot, sha256 par fichier, assets
   d'autres releases comme `runtime-<hash>`) > `.zip` Windows > `.exe`/`.msi` installeur.
   Bibliothèque : `%LOCALAPPDATA%\Alpharium\ACH\library\<id>\` + `%APPDATA%\ACH\library.json`.
   Lancement (`lib/launch.js`) : build de la bibliothèque > `launch.dir`/`launch.target` >
-  devinette > ouvrir le dossier. Le main ne fait confiance qu'à sa copie du catalogue.
+  devinette > ouvrir le dossier. Le main ne fait confiance qu'à son catalogue (jamais à un
+  objet venu de la page) et n'installe que depuis des dépôts `Alpharid/…`.
 
 ## 7. Carte des fichiers
 ```
@@ -131,7 +142,8 @@ scripts/vectorize-logo.py   PNG maîtres → SVG (docs/DA/logo/svg + web/assets/
 scripts/build-brand-assets.py  favicons PNG/ICO + macaron PNG (icône d'app)
 desktop/main.js             client Electron : fenêtre, schéma ach://, IPC
 desktop/preload.js          pont window.ACH (state, launch, install, onProgress)
-desktop/lib/                github (API, téléchargements), install, launch, library
+desktop/lib/                github (API, téléchargements), install, launch, library,
+                            site (schéma ach://, contenu en direct + cache)
 desktop/README.md           détail du client, jeton
 docs/DECISIONS.md           journal des décisions
 docs/DA/CHARTE.md           charte Alpharium (logo, couleurs, typo, composants)
@@ -146,9 +158,12 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   client lourd uniquement, hors git (`.gitignore` : `token.json`, `*.token`). Cherché dans
   `resources/token.json` (embarqué si `desktop/token.json` existe au build), puis
   `%APPDATA%\ACH\token.json`, puis `desktop/token.json` (dev), ou `ACH_GITHUB_TOKEN`.
-  **Un exe construit avec jeton ne va jamais en release publique.**
+  **Un exe construit avec jeton ne va jamais en release publique.** Au premier lancement,
+  un jeton embarqué est recopié dans `%APPDATA%\ACH\token.json` : la mise à jour
+  automatique (build public, sans jeton) ne le fait donc pas disparaître.
 - Bibliothèque du client : `%LOCALAPPDATA%\Alpharium\ACH\library\` (builds installés),
-  `%APPDATA%\ACH\library.json` (versions installées).
+  `%APPDATA%\ACH\library.json` (versions installées), `%APPDATA%\ACH\live\` (cache du
+  contenu de la vitrine), `%LOCALAPPDATA%\ach-desktop-updater\` (mises à jour téléchargées).
 - Les chemins `launch.dir` (C:\…) ne servent qu'au client lourd local.
 
 ## 9. Pièges connus / conventions
@@ -188,10 +203,19 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   `.bat` de lancement…) ; `catalog:check` refuse un chemin absolu ou avec `..`.
 - Electron ≥ 45 : pas de postinstall, lancer `npx install-electron` après `npm install`.
 - Client : zip extraits avec le `tar.exe` de Windows (bsdtar) — pas de dépendance unzip.
-- Publier une version du client : monter `version` dans `desktop/package.json`,
-  `npm run desktop:dist`, vérifier qu'aucun `token.json` n'est dans
-  `desktop/dist/win-unpacked/resources/`, puis `gh release create vX.Y.Z <exe>`. Le lien du
-  pied de vitrine pointe sur `releases/latest` : rien d'autre à changer.
+- Publier une version du client : monter `version` dans `desktop/package.json` (et le
+  `package.json` racine), `npm run desktop:dist`, vérifier qu'aucun `token.json` n'est dans
+  `desktop/dist/win-unpacked/resources/`, puis
+  `gh release create vX.Y.Z desktop/dist/ACH-X.Y.Z-setup.exe desktop/dist/ACH-X.Y.Z-setup.exe.blockmap desktop/dist/latest.yml`.
+  **`latest.yml` est obligatoire** (c'est ce que lisent les clients pour se mettre à
+  jour) ; ni brouillon ni pré-version (ignorés par l'updater). Le lien du pied de vitrine
+  pointe sur `releases/latest` : rien d'autre à changer.
+- Le pont `window.ACH` ne fait que **grandir** : le code de la page change avec le client,
+  mais une nouvelle méthode doit rester testée (`if (window.ACH.onNotice)`) et aucune ne
+  doit disparaître ou changer de forme.
+- `catalog:check` refuse un `install.repo` hors `Alpharid/…` (le client le refuserait aussi).
+- Un nouveau champ du catalogue n'est compris que par les clients à jour : le rendre
+  facultatif (les vieux clients l'ignorent).
 - Client : le toast est un `popover="manual"` (top layer) pour passer au-dessus de la fiche
   (`<dialog>` modal) ; ne pas le remplacer par un simple `position: fixed`.
 - Dépôts `*-builds` : README en **anglais** (leur convention), le reste en français.
@@ -208,6 +232,9 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (2)** : client **v0.2.0** — contenu en direct depuis la vitrine (cache hors
+  ligne), mise à jour automatique (electron-updater + `latest.yml` en Release), toast
+  `ach:notice`, garde-fou `Alpharid/…` sur les dépôts de builds, jeton embarqué conservé.
 - **2026-10-27** : Release GitHub **v0.1.0** du client (`ACH-0.1.0-setup.exe`, reconstruit
   avec les 30 filiales, vérifié sans jeton) ; lien « Client Windows » en pied de vitrine.
 - **2026-10-26 (9)** : +1 filiale **MM2 Web** (α Jeux, bêta) : Midtown Madness 2 original

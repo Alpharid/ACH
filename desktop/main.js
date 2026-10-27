@@ -1,37 +1,28 @@
 // ACH desktop client. Serves the same page as the public showcase (web/ + data/) through the
-// ach:// scheme, and adds what the web cannot do: install and launch the filiales.
+// ach:// scheme, and adds what the web cannot do: install and launch the filiales. Content
+// follows the showcase (lib/site.js); the client itself updates from the GitHub releases.
 
 const path = require("node:path");
 const fs = require("node:fs");
-const { pathToFileURL } = require("node:url");
-const { app, BrowserWindow, ipcMain, net, protocol, shell } = require("electron");
+const { app, BrowserWindow, ipcMain, protocol, shell } = require("electron");
 const { install } = require("./lib/install");
 const { launch, resolve } = require("./lib/launch");
 const library = require("./lib/library");
+const site = require("./lib/site");
 
-// Repo root in development; packaged builds carry web/ and data/ in resources/site.
-const SITE = app.isPackaged ? path.join(process.resourcesPath, "site") : path.join(__dirname, "..");
-const SERVED = ["web", "data"].map(d => path.join(SITE, d) + path.sep);
 const HOME = "ach://app/web/index.html";
+
+// The live catalog is trusted like the auto-update (both come from Alpharid/ACH), but
+// builds are only ever installed from Alpharid's own repos.
+const OWN_REPO = /^Alpharid\/[\w.-]+$/;
 
 protocol.registerSchemesAsPrivileged([
   { scheme: "ach", privileges: { standard: true, secure: true, supportFetchAPI: true } },
 ]);
 
-const catalog = JSON.parse(fs.readFileSync(path.join(SITE, "data", "catalog.json"), "utf8"));
-const byId = new Map(catalog.projects.map(p => [p.id, p]));
-
+let catalog, byId; // loaded once at startup, see site.loadCatalog
 let win;
 const busy = new Set(); // ids being installed
-
-function serveSite() {
-  protocol.handle("ach", req => {
-    const file = path.normalize(path.join(SITE, decodeURIComponent(new URL(req.url).pathname)));
-    // Only web/ and data/: in development SITE is the repo root (desktop/token.json lives there).
-    if (!SERVED.some(d => file.startsWith(d))) return new Response("not found", { status: 404 });
-    return net.fetch(pathToFileURL(file).toString());
-  });
-}
 
 function state() {
   const out = {};
@@ -58,6 +49,7 @@ function setupIpc() {
   ipcMain.handle("ach:install", async (e, id) => {
     const p = byId.get(id);
     if (!p || !p.install) return fail("rien à installer");
+    if (!OWN_REPO.test(p.install.repo || "")) return fail(`dépôt de builds refusé : ${p.install.repo}`);
     if (busy.has(id)) return fail("installation déjà en cours");
     busy.add(id);
     let last = 0;
@@ -81,6 +73,31 @@ function setupIpc() {
   });
 }
 
+// Toast in the page (shown by web/assets/app.js when the bridge offers onNotice).
+function notice(ok, message) {
+  if (win && !win.isDestroyed()) win.webContents.send("ach:notice", { ok, message });
+}
+
+// Updates come from the GitHub releases of Alpharid/ACH (latest.yml). Downloaded in the
+// background, installed silently when ACH is closed. Offline or rate-limited: next start.
+function checkUpdates() {
+  if (!app.isPackaged) return;
+  const { autoUpdater } = require("electron-updater");
+  autoUpdater.on("update-downloaded", info =>
+    notice(true, `Mise à jour d'ACH ${info.version} prête : elle s'installera à la fermeture.`));
+  autoUpdater.on("error", () => {});
+  autoUpdater.checkForUpdates().catch(() => {});
+}
+
+// A token bundled in an installer (private family build) would vanish with the first
+// update, which installs the public build: keep a copy in userData, where updates never go.
+function keepBundledToken() {
+  if (!app.isPackaged) return;
+  const bundled = path.join(process.resourcesPath, "token.json");
+  const kept = path.join(app.getPath("userData"), "token.json");
+  try { if (!fs.existsSync(kept)) fs.copyFileSync(bundled, kept); } catch (_) { /* no bundled token */ }
+}
+
 function createWindow() {
   win = new BrowserWindow({
     width: 1400,
@@ -89,7 +106,7 @@ function createWindow() {
     minHeight: 560,
     backgroundColor: "#0a0d16",
     autoHideMenuBar: true,
-    icon: path.join(SITE, "web", "assets", "brand", "favicon.ico"),
+    icon: path.join(site.BUNDLED, "web", "assets", "brand", "favicon.ico"),
     title: "ACH — Alpharium",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -116,10 +133,14 @@ if (!app.requestSingleInstanceLock()) {
     if (win.isMinimized()) win.restore();
     win.focus();
   });
-  app.whenReady().then(() => {
-    serveSite();
+  app.whenReady().then(async () => {
+    keepBundledToken();
+    catalog = await site.loadCatalog();
+    byId = new Map(catalog.projects.map(p => [p.id, p]));
+    protocol.handle("ach", site.handler(catalog));
     setupIpc();
     createWindow();
+    checkUpdates();
   });
   app.on("window-all-closed", () => app.quit());
 }

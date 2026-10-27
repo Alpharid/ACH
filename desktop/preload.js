@@ -16,4 +16,10 @@ contextBridge.exposeInMainWorld("ACH", {
     ipcRenderer.on("ach:progress", h);
     return () => ipcRenderer.removeListener("ach:progress", h);
   },
+  // cb({ ok, message }) for messages from the client itself (update ready…).
+  onNotice: cb => {
+    const h = (_e, d) => cb(d);
+    ipcRenderer.on("ach:notice", h);
+    return () => ipcRenderer.removeListener("ach:notice", h);
+  },
 });

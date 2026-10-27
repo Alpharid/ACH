@@ -31,6 +31,9 @@ for (const p of cat.projects) {
   if (!STATUS.has(p.status)) errors.push(`${where}: status invalide "${p.status}"`);
   if (p.install && p.install.type === "github-release" && !p.install.repo)
     errors.push(`${where}: install.repo manquant`);
+  // The desktop client refuses to install from anyone else's repos (desktop/main.js).
+  if (p.install && p.install.repo && !/^Alpharid\/[\w.-]+$/.test(p.install.repo))
+    errors.push(`${where}: install.repo doit être un dépôt Alpharid/…`);
   // launch.target: file inside launch.dir, relative, never climbing out of it.
   const target = p.launch && p.launch.target;
   if (target && (/^([a-z]:|[\\/])/i.test(target) || target.split(/[\\/]/).includes("..")))
