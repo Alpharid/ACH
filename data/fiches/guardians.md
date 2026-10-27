@@ -14,4 +14,4 @@ L'univers est une contrée imaginaire de déserts, d'oasis, de canyons, de forê
 C# .NET · Godot 4.7 (.NET et GDScript) · PostgreSQL · WebSocket · Blender
 
 ### Où en est la filiale
-En développement : la première zone se joue de bout en bout, depuis le launcher. L'art des personnages arrive au fil de l'atelier (Gardien, Gardienne et une première habitante faits). Prochaines étapes : les retours sur la zone, l'art des djinn et des habitants, les animations.
+En développement : la première zone se joue de bout en bout, depuis le launcher. L'art des personnages arrive au fil de l'atelier (Gardien, Gardienne, une première habitante et deux djinn faits ; mini-carte et objectifs de quête en jeu). Prochaines étapes : les retours sur la zone, l'art des djinn et des habitants, les animations.
