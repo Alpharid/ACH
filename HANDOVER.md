@@ -254,7 +254,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   **3 filiales Alpharium** avec captures : Maquette Three.js (captures faites sur une copie locale
   du serveur, plaque floutée), Luxurious Lounge (Godot), Kaddour Social Club (ex-`lounge`, alias
   `RENAMED`). 32 filiales. Pieds de README : `Project_ALL` (unstable) et `Alpharium_Godot`
-  (unstable) commités en local, **non poussés** ; `Alpharium_ThreeJS` non touché (règle du dépôt).
+  (unstable) poussés ; `Alpharium_ThreeJS` non touché (règle du dépôt).
 - **2026-10-27 (5)** : fiche Arx Sandbox en 0.6.0-alpha « Hôte meneur » (l'hôte mène l'histoire en coop).
 - **2026-10-27 (4)** : fiche Arx Sandbox à jour (0.5.0-alpha « Coop fidèle » : Arx Fatalis en coop fidèle
   au jeu, carte d'origine, scripts, combat, magie ; tag `sandbox` → `coop`).
