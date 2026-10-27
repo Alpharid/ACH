@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (8)** : fiche Super Toolbox : guides « vieux jeu dans le navigateur » et « jeu LAN par Internet » ajoutés à la liste.
 - **2026-10-27 (7)** : nouvelle filiale **MCM Online** (α Jeux, bêta, dépôt privé `Alpharid/MCM_Online`) :
   Motocross Madness 1 & 2 d'origine, multi à 8 par un relais maison, lanceur Windows + installeur Mac.
 - **2026-10-27 (6)** : Arx : Tenebris Relectis passe en **prod** (campagne prête : installateur,

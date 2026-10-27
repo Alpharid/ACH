@@ -5,7 +5,7 @@ Ce qui la distingue, c'est **Heimdall**, un veilleur technologique : une méthod
 ### Ce qu'on y trouve
 - 28 dépôts open source copiés et synchronisables avec leur source d'origine (Jolt Physics, netfox, LimboAI, rea, GhidraMCP…).
 - Un index par domaine et un catalogue détaillé par dépôt.
-- Des guides par besoin : modder un jeu, physique sous Godot, IA locale, créer des assets, trouver une ressource.
+- Des guides par besoin : modder un jeu, physique sous Godot, IA locale, créer des assets, trouver une ressource, faire tourner un vieux jeu PC dans le navigateur, jouer en réseau par Internet à un vieux jeu « réseau local ».
 - Les digests de veille de Heimdall, et une carte qui dit, pour chaque projet, quels outils s'appliquent et ce qui manque encore.
 - Un script de maintenance pour vérifier la boîte, voir les nouveautés en amont, mettre à jour ou ajouter un outil.
 
