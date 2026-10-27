@@ -13,4 +13,4 @@ Le moteur est OpenMM2, une réimplémentation libre du jeu qui lit ses données 
 C++23 · Emscripten (WebAssembly) · WebGL 2 · SDL3 · IndexedDB · Cloudflare Pages
 
 ### Où en est la filiale
-En bêta : le jeu tourne à pleine vitesse dans Chrome et Edge. Firefox, les manettes et le Crash Course restent à tester. Le multijoueur d'origine reste hors de portée, faute de réseau UDP dans un navigateur. Les données du jeu ne sont pas publiques : la filiale sert un cercle familial.
+En bêta, en ligne depuis le 27 octobre 2026 (lien réservé à la famille) : le jeu tourne à pleine vitesse dans Chrome et Edge, se télécharge une fois puis démarre en une seconde. Firefox, les manettes et le Crash Course restent à tester. Le multijoueur d'origine reste hors de portée, faute de réseau UDP dans un navigateur. Les données du jeu ne sont pas publiques : la filiale sert un cercle familial.

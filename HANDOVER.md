@@ -234,6 +234,10 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (3)** : fiche MM2 Web à jour (jeu en ligne pour la famille). ACH suivi
+  automatiquement : règle « Keep ACH in sync » dans le CLAUDE.md global de l'utilisateur
+  et hook `~/.claude/hooks/ach-sync-reminder.mjs` (rappel après chaque `git push` d'un
+  dépôt `Alpharid/*`, hors ACH) — les sessions des autres projets mettent ACH à jour.
 - **2026-10-27 (2)** : client **v0.2.0** — contenu en direct depuis la vitrine (cache hors
   ligne), mise à jour automatique (electron-updater + `latest.yml` en Release), toast
   `ach:notice`, garde-fou `Alpharid/…` sur les dépôts de builds, jeton embarqué conservé.
