@@ -3,7 +3,8 @@ Guardians of the Seal est un MMORPG en développement. Le Pacte qui séparait le
 L'univers est une contrée imaginaire de déserts, d'oasis, de canyons, de forêts et de montagnes, inspirée de vieux contes et de traditions populaires. Le ton est sombre et adulte, et l'image vise la peinture plutôt que le dessin animé.
 
 ### Ce qu'on y trouve
-- Un client de test jouable en vue isométrique : connexion, création de personnage, zone de départ de l'oasis de Tiziri.
+- Un client de test jouable en vue isométrique, ouvert depuis son propre launcher : connexion, création du Gardien ou de la Gardienne, carte de l'oasis de Tiziri.
+- Une zone des nouveaux arrivants complète : quêtes et dialogues, sac et équipement, récolte, souk, ateliers d'artisanat, et un premier adversaire de taille.
 - Du combat en temps réel contre les djinn, avec leurs techniques et leurs effets, puis le **Scellement** pour les rallier.
 - La **Conjonction** des Sceaux, l'expérience et un Codex, sur un bestiaire de 24 djinn écrit et chiffré.
 - Un serveur autoritaire qui simule le monde (heure, apparitions selon le moment, combat) et enregistre comptes et personnages.
@@ -13,4 +14,4 @@ L'univers est une contrée imaginaire de déserts, d'oasis, de canyons, de forê
 C# .NET · Godot 4.7 (.NET et GDScript) · PostgreSQL · WebSocket · Blender
 
 ### Où en est la filiale
-En développement : règles, serveur et client de test fonctionnent ensemble, mais l'art du jeu est encore provisoire et seul un djinn a ses sprites définitifs. Prochaines étapes : les retours sur le client de test, l'art de la première zone, puis les quêtes du tutoriel.
+En développement : la première zone se joue de bout en bout, depuis le launcher. L'art des personnages arrive au fil de l'atelier (Gardien, Gardienne et une première habitante faits). Prochaines étapes : les retours sur la zone, l'art des djinn et des habitants, les animations.

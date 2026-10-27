@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (10)** : fiche Guardians of the Seal : launcher du jeu (`GuardiansLauncher.exe`, nouvelle cible de lancement local), première zone jouable de bout en bout ; « Où en est la filiale » à jour.
 - **2026-10-27 (6)** : fiche Arx Sandbox en 0.6.1-alpha (quête principale parcourue par un test automatique).
 - **2026-10-27 (9)** : fiche **Kali-Pi** mise à jour : régie sonore de jeu de rôle désormais opérationnelle
   (soundboard tactile sur la dalle, ambiances en boucle + bruitages, lecture déportée sur les enceintes du

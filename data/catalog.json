@@ -67,12 +67,12 @@
       "id": "guardians", "name": "Guardians of the Seal", "division": "jeux", "also": ["services"],
       "status": "wip", "visibility": "private",
       "tagline": "MMORPG : Gardiens et djinn, univers sombre.",
-      "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Serveur et client de test jouables.",
+      "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Première zone jouable de bout en bout, avec son launcher.",
       "source": "Alpharid/Guardians-of-the-Seal",
       "public": null,
       "github": "https://github.com/Alpharid/Guardians-of-the-Seal",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/Guardians_of_the_Seal", "target": "Jouer.bat" },
+      "launch": { "type": "local", "dir": "C:/Guardians_of_the_Seal", "target": "GuardiansLauncher.exe" },
       "tags": ["mmorpg", "djinn", "godot", "csharp"]
     },
     {
