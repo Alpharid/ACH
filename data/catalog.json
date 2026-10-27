@@ -54,14 +54,14 @@
     {
       "id": "arx-sandbox", "name": "Arx Sandbox", "division": "jeux",
       "status": "alpha", "visibility": "private",
-      "tagline": "Suite sandbox multijoueur d'Arx Fatalis.",
-      "description": "Les 8 niveaux d'Arx Fatalis en un seul monde continu et multijoueur, avec console et menu admin. Code seul : chaque joueur fournit sa copie du jeu.",
+      "tagline": "Arx Fatalis en coop, fidèle au jeu d'origine.",
+      "description": "Arx Fatalis jouable à plusieurs : la carte, les scripts, les quêtes, le combat et la magie du jeu d'origine, plus un mode bac à sable avec console et menu admin. Code seul : chaque joueur fournit sa copie du jeu.",
       "source": "Alpharid/arx-sandbox",
       "public": null,
       "github": "https://github.com/Alpharid/arx-sandbox",
       "install": null,
       "launch": null,
-      "tags": ["godot", "sandbox", "multijoueur", "jdr"]
+      "tags": ["godot", "coop", "multijoueur", "jdr"]
     },
     {
       "id": "guardians", "name": "Guardians of the Seal", "division": "jeux",
