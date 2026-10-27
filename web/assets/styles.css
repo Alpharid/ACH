@@ -685,6 +685,8 @@ html:has(.sheet[open]) { overflow: hidden; }
 .foot-name { font-size: 11px; letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--ink-2); }
 .foot-meta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); }
 .foot-meta > span { white-space: nowrap; }
+.foot-client { font-family: var(--f-mono); font-size: 11px; color: var(--ink-2); text-decoration: none; margin-top: 4px; }
+.foot-client:hover { color: var(--gold-hi); }
 /* Signature du fondateur : son blason (le F sous le X du logo), discret, à droite. */
 .foot-sign {
   margin-left: auto;

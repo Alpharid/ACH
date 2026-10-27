@@ -520,6 +520,7 @@ function render(catalog) {
   if (catalog.brand.since) document.getElementById("foot-since").textContent = `depuis ${catalog.brand.since} · `;
   document.getElementById("foot-updated").textContent = `registre au ${catalog.brand.updated}`;
   document.getElementById("foot-count").textContent = `${catalog.projects.length} filiales`;
+  if (IS_ELECTRON) document.getElementById("foot-client").hidden = true;
 
   setupFinder(catalog, cards);
   setupSheet(catalog, codes);
