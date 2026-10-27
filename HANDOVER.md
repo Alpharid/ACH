@@ -37,6 +37,8 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
   **Lancer / Ouvrir** et **Installer / Mettre à jour** selon l'état du PC, progression +
   messages (toast). Testé : install manifest (7D7H), install zip (Medusa), « déjà à jour »,
   lancement depuis la bibliothèque, refus propre d'un dépôt privé sans jeton.
+  Installeur publié : Release **v0.1.0** (https://github.com/Alpharid/ACH/releases/latest),
+  lien « Client Windows » en pied de vitrine (masqué dans le client).
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
 - **Stack client lourd : Electron** (même code que le web, installeur NSIS, déjà maîtrisé).
@@ -59,8 +61,7 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
    droits : Arx Sandbox et les cartes du JDR Arx (données Arx Fatalis = Arkane/Bethesda,
    jamais publiées) → proposer à l'utilisateur une vue greybox/UI sans textures.
 3. ~~Client Electron~~ : v0.1 faite (voir `desktop/README.md`). Restes :
-   - publier `ACH-0.1.0-setup.exe` en **GitHub Release** (build **sans** jeton : ACH est
-     public) ; le jeton des builds privés se dépose à la main dans `%APPDATA%\ACH\token.json`
+   - ~~publier `ACH-0.1.0-setup.exe` en GitHub Release~~ : fait (v0.1.0, sans jeton) ; le jeton des builds privés se dépose à la main dans `%APPDATA%\ACH\token.json`
      sur les PC de la famille ;
    - tester l'install SA_COOP avec un jeton (mode « installeur », assets privés) ;
    - catalogue « vivant » (lire celui de la vitrine plutôt que la copie embarquée) et
@@ -187,6 +188,10 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
   `.bat` de lancement…) ; `catalog:check` refuse un chemin absolu ou avec `..`.
 - Electron ≥ 45 : pas de postinstall, lancer `npx install-electron` après `npm install`.
 - Client : zip extraits avec le `tar.exe` de Windows (bsdtar) — pas de dépendance unzip.
+- Publier une version du client : monter `version` dans `desktop/package.json`,
+  `npm run desktop:dist`, vérifier qu'aucun `token.json` n'est dans
+  `desktop/dist/win-unpacked/resources/`, puis `gh release create vX.Y.Z <exe>`. Le lien du
+  pied de vitrine pointe sur `releases/latest` : rien d'autre à changer.
 - Client : le toast est un `popover="manual"` (top layer) pour passer au-dessus de la fiche
   (`<dialog>` modal) ; ne pas le remplacer par un simple `position: fixed`.
 - Dépôts `*-builds` : README en **anglais** (leur convention), le reste en français.
@@ -203,6 +208,8 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27** : Release GitHub **v0.1.0** du client (`ACH-0.1.0-setup.exe`, reconstruit
+  avec les 30 filiales, vérifié sans jeton) ; lien « Client Windows » en pied de vitrine.
 - **2026-10-26 (9)** : +1 filiale **MM2 Web** (α Jeux, bêta) : Midtown Madness 2 original
   dans le navigateur (OpenMM2 → WebAssembly, dépôt privé `Alpharid/MM2_Web`). Pas de
   capture (art Microsoft) et pas d'URL de jeu dans le catalogue : le lien Cloudflare est

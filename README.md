@@ -20,7 +20,8 @@ Deux faces, un seul catalogue :
 Projet démarré le 2026-10-26. La vitrine est en ligne : identité **Alpharium** (logo,
 charte : [docs/DA/CHARTE.md](docs/DA/CHARTE.md)), une fiche par filiale avec captures et
 présentation, recherche et filtres, téléchargement des builds publics. Le client Electron (v0.1)
-installe et lance les filiales. Voir [HANDOVER.md](HANDOVER.md).
+installe et lance les filiales — installeur Windows dans les
+[Releases](https://github.com/Alpharid/ACH/releases/latest). Voir [HANDOVER.md](HANDOVER.md).
 
 ## Démarrer
 ```bash
