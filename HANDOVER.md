@@ -41,7 +41,9 @@ conglomérat ; chaque projet = une « filiale » d'une **division** (α Jeux / �
   « Client Windows » en pied de vitrine (masqué dans le client).
 - **Client v0.2** : contenu **en direct** (catalogue, fiches, captures lus sur la vitrine,
   cache hors ligne) et **mise à jour automatique** (electron-updater, Releases GitHub).
-  Testé : contenu en direct, repli sur le cache hors ligne, build packagé. La v0.1.0 n'a
+  Testé : contenu en direct, repli sur le cache hors ligne, build packagé, mise à jour
+  (un build 0.1.9 a trouvé, téléchargé et annoncé la 0.2.0 ; l'installation silencieuse à
+  la fermeture n'a pas été déclenchée sur le PC de dev). La v0.1.0 n'a
   pas d'updater : ceux qui l'ont installée doivent installer la 0.2 à la main une fois.
 
 ## 3. Décisions prises (voir docs/DECISIONS.md pour le détail)
