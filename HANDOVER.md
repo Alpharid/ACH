@@ -234,6 +234,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-27 (5)** : fiche Arx Sandbox en 0.6.0-alpha « Hôte meneur » (l'hôte mène l'histoire en coop).
 - **2026-10-27 (4)** : fiche Arx Sandbox à jour (0.5.0-alpha « Coop fidèle » : Arx Fatalis en coop fidèle
   au jeu, carte d'origine, scripts, combat, magie ; tag `sandbox` → `coop`).
 - **2026-10-27 (3)** : fiche MM2 Web à jour (jeu en ligne pour la famille). ACH suivi
