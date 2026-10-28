@@ -10,4 +10,4 @@ L'intérêt du projet est là : commander une escouade par l'intention plutôt q
 Prévu : plugin F4SE (C++ / CommonLibF4) · scripts Papyrus · « cerveau » en Python · IA locale (Ollama) · synthèse vocale
 
 ### Où en est la filiale
-Conception uniquement. Prochaine étape prévue : un prototype sans IA (quête de départ, faction dédiée, le chef et ses vingt-neuf hommes, ordres de base) pour mesurer les performances avec autant de personnages à l'écran avant d'y brancher l'IA et la voix.
+Le mod lui-même est encore en conception, mais les fondations techniques sont posées : le jeu tourne dans sa dernière version avec un premier PNJ qui converse en jeu, piloté par une IA locale et doublé par une voix de synthèse (via le mod Mantella, adapté pour cette version du jeu). Prochaine étape prévue : un prototype sans IA (quête de départ, faction dédiée, le chef et ses vingt-neuf hommes, ordres de base) pour mesurer les performances avec autant de personnages à l'écran avant d'y brancher l'IA et la voix.
