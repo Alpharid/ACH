@@ -4,7 +4,8 @@ L'univers est une contrée imaginaire de déserts, d'oasis, de canyons, de forê
 
 ### Ce qu'on y trouve
 - Un client de test jouable en vue isométrique, ouvert depuis son propre launcher : connexion, création du Gardien ou de la Gardienne, carte de l'oasis de Tiziri.
-- Une zone des nouveaux arrivants complète : quêtes et dialogues, sac et équipement, récolte, souk, ateliers d'artisanat, et un premier adversaire de taille.
+- Une zone des nouveaux arrivants complète : quêtes et dialogues, récolte, souk, ateliers d'artisanat, et un premier adversaire de taille.
+- Une interface pensée pour le confort : fenêtres qu'on déplace et qui restent où on les laisse, un sac où l'on glisse les objets sur la silhouette du personnage (quatorze emplacements, des bagues aux trouvailles rares), une barre de raccourcis, et toutes les touches réglables.
 - Du combat en temps réel contre les djinn, avec leurs techniques et leurs effets, puis le **Scellement** pour les rallier.
 - La **Conjonction** des Sceaux, l'expérience et un Codex, sur un bestiaire de 24 djinn écrit et chiffré.
 - Un serveur autoritaire qui simule le monde (heure, apparitions selon le moment, combat) et enregistre comptes et personnages.
@@ -14,4 +15,4 @@ L'univers est une contrée imaginaire de déserts, d'oasis, de canyons, de forê
 C# .NET · Godot 4.7 (.NET et GDScript) · PostgreSQL · WebSocket · Blender
 
 ### Où en est la filiale
-En développement : la première zone se joue de bout en bout, depuis le launcher. L'art des personnages arrive au fil de l'atelier (Gardien, Gardienne, une première habitante et deux djinn faits ; mini-carte et objectifs de quête en jeu). Prochaines étapes : les retours sur la zone, l'art des djinn et des habitants, les animations. En conception : **les Descellés**, des Gardiens joués par des IA qui vivent vraiment dans le monde (ils farment, échangent, discutent en RP, se lient et se brouillent, sans aucun avantage), et une économie tenue par les joueurs : tapis et étals loués au souk, marchandage, calendrier d'événements et marchands de passage attendus de tous.
+En développement : la première zone se joue de bout en bout, depuis le launcher, et son interface vient d'être refaite. L'art des personnages arrive au fil de l'atelier (Gardien, Gardienne, une première habitante et deux djinn faits) ; les premières icônes d'objets peintes sont à l'essai. **Les Descellés**, des Gardiens joués par des IA, jouent déjà la première zone en entier, sans aucun avantage, et mesurent ce qui coince ; viendront ensuite leur parole en RP et leur vie sociale. Priorité : une première zone sans accroc avant d'élargir le monde. En conception : une économie tenue par les joueurs (étals, marchandage, calendrier d'événements, marchands de passage).
