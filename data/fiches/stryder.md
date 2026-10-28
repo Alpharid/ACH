@@ -6,7 +6,7 @@ Une partie dure le temps d'une marche : elle se termine à la mort du colosse et
 - Construction entièrement physique : pièces, clous, charnières, cordes, treuils, roues, sculpture fine du bois et de la pierre, abattage d'arbres.
 - Une matière simulée : chaleur, feu, courant électrique, eau, vapeur et cuisine.
 - Un colosse vivant : faim, blessures, Parasites accrochés à sa peau, faune qui vit sur son dos ; des vautours et un Essaim qui le poursuivent.
-- Un créateur de Symbiote très complet et un chat vocal spatial.
+- Un créateur de Symbiote très complet, des Chrysalides à trouver ou à obtenir de la Couveuse (un insecte géant qui traverse le ciel) pour débloquer de quoi les habiller, et un chat vocal spatial.
 - Coopération en ligne avec reconnexion en cours de partie et sauvegarde automatique.
 - Un launcher qui installe et met à jour le jeu, avec un canal stable et un canal de test.
 
@@ -14,4 +14,4 @@ Une partie dure le temps d'une marche : elle se termine à la mort du colosse et
 Godot 4.7 · GDScript · Jolt Physics · ENet · modèles Blender faits main · Python pour la publication
 
 ### Où en est la filiale
-Alpha jouable, publiée très régulièrement (0.6.0-alpha.33 le 26 octobre 2026). Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
+Alpha jouable, publiée très régulièrement (0.6.0-alpha.38 le 28 octobre 2026). Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
