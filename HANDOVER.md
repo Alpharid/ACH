@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-28 (2)** : fiche Super Toolbox : guide « joueurs IA dans un jeu en ligne » ajouté à la liste.
 - **2026-10-28** : fiche Guardians of the Seal : en conception, les Descellés (joueurs IA) et l'économie 100 % joueurs.
 - **2026-10-27 (11)** : fiche Guardians of the Seal : deux djinn de plus en jeu, mini-carte et objectifs de quête.
 - **2026-10-27 (10)** : fiche Guardians of the Seal : launcher du jeu (`GuardiansLauncher.exe`, nouvelle cible de lancement local), première zone jouable de bout en bout ; « Où en est la filiale » à jour.
