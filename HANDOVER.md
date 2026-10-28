@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-28 (9)** : fiche Guardians of the Seal : le Gardien court et marche en jeu (robe en tissu simulé).
 - **2026-10-28 (8)** : fiche Guardians of the Seal : les joueurs IA s'appellent les Deux-Souffles.
 - **2026-10-28 (7)** : fiche Guardians of the Seal : icônes peintes, la mascotte fennec en jeu, garde-robe.
 - **2026-10-28 (6)** : fiche Guardians of the Seal : nouvelle interface (sac à silhouette, quatorze emplacements, raccourcis, touches réglables) ; les Descellés jouent la première zone.
