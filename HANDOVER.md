@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-29 (3)** : fiche Guardians of the Seal : habitants vivants qui commercent selon leurs besoins (oukil et registre), bulles et tour du crieur.
 - **2026-10-29 (2)** : fiche Guardians of the Seal : les deux passages bloquants de la première zone sont réglés grâce aux Deux-Souffles.
 - **2026-10-28 (9)** : fiche Guardians of the Seal : le Gardien court et marche en jeu (robe en tissu simulé).
 - **2026-10-28 (8)** : fiche Guardians of the Seal : les joueurs IA s'appellent les Deux-Souffles.
