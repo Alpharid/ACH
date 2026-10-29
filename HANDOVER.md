@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-29 (5)** : fiche Guardians of the Seal : tout le village peint (lot 2 de l'art), canaux de la première zone, bande-son en cours.
 - **2026-10-29 (4)** : fiche Guardians of the Seal : ordres aux djinn, vision d'aigle, djinn tombés à ranimer.
 - **2026-10-29 (3)** : fiche Guardians of the Seal : habitants vivants qui commercent selon leurs besoins (oukil et registre), bulles et tour du crieur.
 - **2026-10-29 (2)** : fiche Guardians of the Seal : les deux passages bloquants de la première zone sont réglés grâce aux Deux-Souffles.
