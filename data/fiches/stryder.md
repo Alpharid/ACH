@@ -14,4 +14,4 @@ Une partie dure le temps d'une marche : elle se termine à la mort du colosse et
 Godot 4.7 · GDScript · Jolt Physics · ENet · modèles Blender faits main · Python pour la publication
 
 ### Où en est la filiale
-Alpha jouable, publiée très régulièrement (0.6.0-alpha.41 le 30 octobre 2026, avec la première vraie silhouette du colosse : dos voûté, plaines d'épaules, épaulettes de glace). Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
+Alpha jouable, publiée très régulièrement (0.6.0-alpha.42 le 30 octobre 2026 : le Promontoire où l'on se réveille remonte en huppe au bout du crâne, et la bouche, les plaies et les croûtes sont désormais de vrais modèles). Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
