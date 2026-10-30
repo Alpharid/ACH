@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-30** : fiche Guardians of the Seal : le jeu s'installe d'un seul fichier qui le tient à jour.
 - **2026-10-29 (7)** : fiche Guardians of the Seal : coffre des dons, chat à onglets, bestiaire.
 - **2026-10-29 (6)** : fiche Guardians of the Seal : jeu en ligne à plusieurs, groupes, mises à jour automatiques.
 - **2026-10-29 (5)** : fiche Guardians of the Seal : tout le village peint (lot 2 de l'art), canaux de la première zone, bande-son en cours.
