@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-10-31** : fiche Guardians of the Seal : le bivouac du choix du personnage, l'oasis repeinte, le chat en couleurs et ses liens.
 - **2026-10-30 (2)** : fiche Guardians of the Seal : page d'accueil et téléchargement, sélection des djinn à la souris, sable vivant.
 - **2026-10-30** : fiche Guardians of the Seal : le jeu s'installe d'un seul fichier qui le tient à jour.
 - **2026-10-29 (7)** : fiche Guardians of the Seal : coffre des dons, chat à onglets, bestiaire.
