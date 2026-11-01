@@ -1,4 +1,4 @@
-# HANDOVER — ACH (Alpharium Conglomerat HUB)
+# HANDOVER — ACH (Alpharium Conglomerate HUB)
 
 > Document maître. À jour à chaque push. But : qu'une autre IA/un autre dev reprenne
 > sans contexte.
@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-01 (2)** : le nom sécrit en anglais : « Alpharium Conglomerate HUB » (demande du propriétaire) ; vitrine, catalogue, README, descriptions des paquets.
 - **2026-11-01** : fiche Guardians of the Seal (démo du 1er novembre) : barre d'action libre, postures des djinn, interface décorée par défaut, carte à l'encre sur vélin, vision d'aigle, monde élargi ; capture 3 (le carnet) remplacée par la carte à l'encre.
 - **2026-10-31 (2)** : captures de Guardians of the Seal (bivouac, village repeint, carnet du journal) ; fiche : carnet et médaillon.
 - **2026-10-31** : fiche Guardians of the Seal : le bivouac du choix du personnage, l'oasis repeinte, le chat en couleurs et ses liens.
@@ -318,5 +319,5 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - **2026-10-26 (2)** : DA = identité Alpharium (logo de la cousine graphiste). Sources
   rangées et renommées, dérivés web, charte, polices auto-hébergées, skin v1 de la page,
   `glyph` α β γ δ par division.
-- **2026-10-26** : création. Choix Electron + DA Conglomérat + web-first. Monorepo,
+- **2026-10-26** : création. Choix Electron + DA Conglomerate + web-first. Monorepo,
   catalogue (~24 projets), squelette web wireframe, docs, repo privé `Alpharid/ACH`.

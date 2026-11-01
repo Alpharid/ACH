@@ -3,7 +3,7 @@
   "productName": "ACH",
   "version": "0.2.0",
   "private": true,
-  "description": "Alpharium Conglomerat HUB — client lourd (installer et lancer les filiales)",
+  "description": "Alpharium Conglomerate HUB — client lourd (installer et lancer les filiales)",
   "author": "Alpharid",
   "license": "UNLICENSED",
   "main": "main.js",

@@ -3,7 +3,7 @@
 Lis d'abord **@HANDOVER.md** (état, archi, backlog, pièges). Il fait foi.
 
 ## Essentiel
-- **ACH = Alpharium Conglomerat HUB** : launcher des projets Alpharium. Deux faces, un
+- **ACH = Alpharium Conglomerate HUB** : launcher des projets Alpharium. Deux faces, un
   catalogue unique `data/catalog.json` : page web partageable + client lourd Electron.
 - Stack décidée : **Electron** (web d'abord, puis wrap). DA : **identité Alpharium**,
   déclinée du logo de la graphiste → **`docs/DA/CHARTE.md` fait foi**. Marine + argent,

@@ -1,4 +1,4 @@
-# ACH — Alpharium Conglomerat HUB
+# ACH — Alpharium Conglomerate HUB
 
 Un HUB / launcher pour **tous les projets Alpharium**, façon Steam / GOG / Epic,
 mais pour mes propres jeux, apps, outils et services.

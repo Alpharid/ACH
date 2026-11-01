@@ -1,7 +1,7 @@
 {
   "$schema": "./catalog.schema.md",
   "brand": {
-    "name": "Alpharium Conglomerat HUB",
+    "name": "Alpharium Conglomerate HUB",
     "short": "ACH",
     "owner": "Alpharid",
     "since": 1996,

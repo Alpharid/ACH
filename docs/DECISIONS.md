@@ -6,7 +6,7 @@
   simple (electron-builder), et stack déjà maîtrisée (Sanctuary, Medusa, Omnicommande
   desktop). Alternatives écartées : Tauri (exe léger mais build Rust hors zone de
   confort), Godot (obligerait à maintenir la page web en double).
-- **Direction artistique : « Conglomérat / portail corpo diégétique ».** ACH est présenté
+- **Direction artistique : « Conglomerate / portail corpo diégétique ».** ACH est présenté
   comme un holding fictif, chaque projet est une « division/filiale ». Ambiance FUI
   megacorp sombre (références : Weyland-Yutani, Abstergo, Hyperion, FUI de films/jeux).
   **Méthode imposée** : moodboard de vraies références humaines d'abord, 3 pistes +
