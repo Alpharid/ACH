@@ -67,7 +67,7 @@
       "id": "guardians", "name": "Guardians of the Seal", "division": "jeux", "also": ["services"],
       "status": "wip", "visibility": "private",
       "tagline": "MMORPG : Gardiens et djinn, univers sombre.",
-      "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Première zone jouable de bout en bout, avec son launcher.",
+      "description": "MMORPG en développement : un Gardien s'allie à trois djinn, les scelle et fusionne leurs Sceaux. Première zone jouable en ligne de bout en bout, avec son launcher ; une démo jouable depuis novembre 2026.",
       "source": "Alpharid/Guardians-of-the-Seal",
       "public": null,
       "github": "https://github.com/Alpharid/Guardians-of-the-Seal",

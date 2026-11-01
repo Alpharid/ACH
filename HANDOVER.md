@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-01** : fiche Guardians of the Seal (démo du 1er novembre) : barre d'action libre, postures des djinn, interface décorée par défaut, carte à l'encre sur vélin, vision d'aigle, monde élargi ; capture 3 (le carnet) remplacée par la carte à l'encre.
 - **2026-10-31 (2)** : captures de Guardians of the Seal (bivouac, village repeint, carnet du journal) ; fiche : carnet et médaillon.
 - **2026-10-31** : fiche Guardians of the Seal : le bivouac du choix du personnage, l'oasis repeinte, le chat en couleurs et ses liens.
 - **2026-10-30 (2)** : fiche Guardians of the Seal : page d'accueil et téléchargement, sélection des djinn à la souris, sable vivant.
