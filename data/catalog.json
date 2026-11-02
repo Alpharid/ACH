@@ -175,13 +175,13 @@
       "id": "super-toolbox", "name": "Super Toolbox", "division": "outils",
       "status": "prod", "visibility": "public",
       "tagline": "Boîte à outils open-source auto-entretenue.",
-      "description": "Boîte à outils open-source (modding/RE, IA/agents, réseau, Godot, dev) avec Heimdall, un veilleur techno qui la tient à jour. Dépôt public.",
+      "description": "Boîte à outils open-source (modding/RE, IA/agents, réseau, Godot, dev) avec Heimdall, un veilleur techno qui la tient à jour, et Hyperbole, une salle du temps où des joueurs simulés testent les jeux sans tricher. Dépôt public.",
       "source": "Alpharid/Super_Toolbox",
       "public": "Alpharid/Super_Toolbox",
       "github": "https://github.com/Alpharid/Super_Toolbox",
       "install": null,
       "launch": null,
-      "tags": ["open-source", "veille", "dev", "godot", "modding", "ia"]
+      "tags": ["open-source", "veille", "dev", "godot", "modding", "ia", "playtest"]
     },
     {
       "id": "wifisentinel", "name": "WifiSentinel", "division": "outils",
