@@ -14,4 +14,4 @@ Une partie dure le temps d'une marche : elle se termine à la mort du colosse et
 Godot 4.7 · GDScript · Jolt Physics · ENet · modèles Blender faits main · Python pour la publication
 
 ### Où en est la filiale
-Alpha jouable, publiée très régulièrement (0.6.0-alpha.42 le 30 octobre 2026 : le Promontoire où l'on se réveille remonte en huppe au bout du crâne, et la bouche, les plaies et les croûtes sont désormais de vrais modèles). Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
+Alpha jouable, publiée très régulièrement (0.6.0-alpha.43 le 2 novembre 2026 : le géant a une voix de gorge caverneuse qui se casse quand il s'épuise, ses narines aspirent et étouffent, les bruits derrière un mur sont étouffés, et les aliments, les chutes d'objets et la nuit des bêtes ont chacun leur effet). Depuis, en cours : une armurerie de 100 objets en 8 paliers, des arcs qui tirent, l'usure et la réparation, la parade au bouclier. Les modèles faits main remplacent peu à peu les formes provisoires ; la prochaine étape prévue est une session de test entre amis sur une build figée.
