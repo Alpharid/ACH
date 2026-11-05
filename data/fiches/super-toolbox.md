@@ -16,4 +16,4 @@ Depuis novembre 2026, elle a un deuxième cœur : **Hyperbole**, la « salle du 
 git subtree · PowerShell · Python · Markdown et JSON
 
 ### Où en est la filiale
-En service : le [dépôt est public](https://github.com/Alpharid/Super_Toolbox) et un digest de veille paraît chaque semaine. Hyperbole est en place depuis le 2 novembre 2026 ; Stryder Symbiosis sera le premier jeu branché, puis Guardians of the Seal. La boîte s'enrichit au fil des besoins des autres projets.
+En service : le [dépôt est public](https://github.com/Alpharid/Super_Toolbox) et un digest de veille paraît chaque semaine. Hyperbole est en place depuis le 2 novembre 2026 ; Stryder Symbiosis est le premier jeu branché (5 novembre), Guardians of the Seal suivra. La boîte s'enrichit au fil des besoins des autres projets.
