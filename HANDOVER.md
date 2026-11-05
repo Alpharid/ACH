@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-05** : fiche de Guardians of the Seal : la mise à jour du 5 novembre (amis, menu d'un Gardien, le vieux ksar).
 - **2026-11-02 (3)** : Super Toolbox : Hyperbole (salle du temps, joueurs simulés qui testent les jeux) dans la description, la fiche et les tags ; 29 dépôts.
 - **2026-11-02 (2)** : Guardians of the Seal : capture 1 et vignette remplacées par le tableau principal du jeu (validé par le propriétaire) ; anciennes rangées dans le projet (`art/rendus/ach_archives/`).
 - **2026-11-02** : fiche Guardians of the Seal (mise à jour du 2 novembre) : ceinture des Sceaux, sacoche et miroir, carnet, boussole, premier secret de Tiziri.
