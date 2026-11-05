@@ -259,7 +259,7 @@
       "id": "freelance-hq", "name": "Freelance HQ", "division": "outils",
       "status": "beta", "visibility": "private",
       "tagline": "Pilotage de l'activité freelance Alpharium.",
-      "description": "Poste de pilotage freelance : profils plateformes, radar à projets, générateur de propositions, kit de livraison.",
+      "description": "Poste de pilotage freelance : profils plateformes, radar à projets, générateur de propositions, kit de livraison, CV et facturation.",
       "source": "Alpharid/Freelance_HQ",
       "public": null,
       "github": "https://github.com/Alpharid/Freelance_HQ",
