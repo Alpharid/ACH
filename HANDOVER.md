@@ -242,6 +242,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-06** : fiche de Guardians of the Seal : la mise à jour de la nuit du 5 au 6 (onglets du chat déchirés, boussole au cadran solaire, peau de bête, pierre de la Conjonction, icônes des Dons, l'abri du portier).
 - **2026-11-05 (3)** : fiche de Freelance HQ : outil de facture et CV en deux variantes ; travail « à distance » sans le « 100 % ».
 - **2026-11-05 (2)** : fiche de Guardians of the Seal : le miroir de l'inventaire (fronton ajouré, jeton harnois / apparat) et la lanière du carnet.
 - **2026-11-05 (2)** : Super Toolbox : Stryder Symbiosis est le premier jeu branché sur Hyperbole.
