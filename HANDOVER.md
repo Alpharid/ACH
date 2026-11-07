@@ -133,6 +133,7 @@ web/assets/filiales/        captures 1600×900 + vignettes -card (générées)
 scripts/build-filiales.py   vignettes + media.json
 .github/workflows/pages.yml déploiement GitHub Pages
 web/index.html              page
+web/methode/index.html      la méthode Alpharium (copie de Super_Toolbox guides/vitrine/notre-methode.html)
 web/assets/app.js           rendu du catalogue
 web/assets/styles.css       skin Alpharium v1 (tokens en tête de fichier)
 web/assets/fonts.css        @font-face auto-hébergées (Jost, Noto Serif Display, Plex Mono)
@@ -186,6 +187,9 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Fiche : la fermeture ne touche l'historique que si le hash désigne encore la fiche
   ouverte (sinon un hash inconnu ferait rouvrir l'ancienne fiche via `history.back()`).
 - Ne jamais afficher `launch.dir` sur le web (chemins locaux du client lourd).
+- `web/methode/index.html` est une **copie** de `D:\Super_Toolbox\guidesitrine
+otre-methode.html` (liens absolus) : on la
+  modifie dans la boîte, puis on la recopie ici telle quelle et on pousse les deux.
 - **Dépôt public** : fiches et captures sont publiques. Fiche = texte écrit pour la vitrine
   (jamais de README privé recopié, ni code, IP, chemin, nom réel). Captures : jamais de
   fichiers/art propriétaires de tiers (GTA, Arx Fatalis, MixMaster…), ni de capture qui
@@ -242,6 +246,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-07 (2)** : Super Toolbox : la méthode Alpharium (paragraphe de la fiche, description, tag) ; sa vitrine servie en `web/methode/` (https://alpharid.github.io/ACH/methode/).
 - **2026-11-07** : fiche de Guardians of the Seal : la mise à jour du 7 novembre (dés et jeu de rôle dans le chat, plaque de la boussole selon le lieu, voix de la Conjonction, cinq morceaux).
 - **2026-11-06** : fiche de Guardians of the Seal : la mise à jour de la nuit du 5 au 6 (onglets du chat déchirés, boussole au cadran solaire, peau de bête, pierre de la Conjonction, icônes des Dons, l'abri du portier).
 - **2026-11-05 (3)** : fiche de Freelance HQ : outil de facture et CV en deux variantes ; travail « à distance » sans le « 100 % ».
