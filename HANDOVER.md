@@ -245,6 +245,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-07 (3)** : vitrine de la méthode recopiée (la traduction du wiki et du site, seul ce qui change est retraduit).
 - **2026-11-07 (2)** : Super Toolbox : la méthode Alpharium (paragraphe de la fiche, description, tag) ; sa vitrine servie en `web/methode/` (https://alpharid.github.io/ACH/methode/).
 - **2026-11-07** : fiche de Guardians of the Seal : la mise à jour du 7 novembre (dés et jeu de rôle dans le chat, plaque de la boussole selon le lieu, voix de la Conjonction, cinq morceaux).
 - **2026-11-06** : fiche de Guardians of the Seal : la mise à jour de la nuit du 5 au 6 (onglets du chat déchirés, boussole au cadran solaire, peau de bête, pierre de la Conjonction, icônes des Dons, l'abri du portier).
