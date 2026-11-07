@@ -187,8 +187,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Fiche : la fermeture ne touche l'historique que si le hash désigne encore la fiche
   ouverte (sinon un hash inconnu ferait rouvrir l'ancienne fiche via `history.back()`).
 - Ne jamais afficher `launch.dir` sur le web (chemins locaux du client lourd).
-- `web/methode/index.html` est une **copie** de `D:\Super_Toolbox\guidesitrine
-otre-methode.html` (liens absolus) : on la
+- `web/methode/index.html` est une **copie** de `D:\Super_Toolbox\guides\vitrine\notre-methode.html` (liens absolus) : on la
   modifie dans la boîte, puis on la recopie ici telle quelle et on pousse les deux.
 - **Dépôt public** : fiches et captures sont publiques. Fiche = texte écrit pour la vitrine
   (jamais de README privé recopié, ni code, IP, chemin, nom réel). Captures : jamais de
