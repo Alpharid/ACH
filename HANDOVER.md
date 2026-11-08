@@ -245,6 +245,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-08 (3)** : fiche d'Alphred : agent allégé et à accès complet, réglage du modèle corrigé, comparaison avec un modèle du cloud sur de vraies tâches (corvées vérifiables à l'essai).
 - **2026-11-08 (2)** : Super Toolbox : fiche à jour (outils maison pour tout projet : client de l'API avec la liste des projets autorisés, regard, recompte des chiffres ; Hyperbole lu par les joueurs IA de Guardians) ; vitrine de la méthode recopiée (chiffres recomptés par `scripts/recompter_vitrine.py`, améliorations faites).
 - **2026-11-08** : fiche de Guardians of the Seal : la mise à jour du 8 novembre (ceinture à bourses, expérience en noyaux d'olive, sacoche roulée, rappel des Gardiens menés par une IA, site et wiki en anglais).
 - **2026-11-07 (3)** : vitrine de la méthode recopiée (la traduction du wiki et du site, seul ce qui change est retraduit).
