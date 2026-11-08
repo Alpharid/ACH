@@ -19,7 +19,7 @@ const STATUS_LABEL = {
 
 const SHEET_HASH = "#filiale/";
 // Renamed filiales: old shared links (#filiale/<old>) still open the right sheet.
-const RENAMED = { lounge: "kaddour-social-club" };
+const RENAMED = { lounge: "luxurious-lounge" };
 
 // Folder holding catalog.json, media.json and fiches/ (differs between the repo
 // preview and the deployed site, where data/ sits next to the page).

@@ -316,22 +316,22 @@
       "tags": ["mta-sa", "dayz", "serveur", "traduction"]
     },
     {
-      "id": "kaddour-social-club", "name": "Alpharium — Kaddour Social Club", "division": "jeux", "also": ["services"],
+      "id": "luxurious-lounge", "name": "Alpharium — Luxurious Lounge", "division": "jeux", "also": ["services"],
       "status": "beta", "visibility": "private",
       "tagline": "Le salon privé de la famille, façon Habbo.",
-      "description": "Club social en ligne en pixel art isométrique, pensé pour le téléphone : on s'y retrouve le soir pour discuter, aménager son coin et jouer (cartes, Loup-Garou, échecs, casino en jetons), avec Alphred le majordome. Troisième version de l'Alpharium, celle qui tourne au quotidien.",
+      "description": "Club social en ligne en pixel art isométrique, pensé pour le téléphone : on s'y retrouve le soir pour discuter, aménager son coin et jouer (cartes, Loup-Garou, échecs, casino en jetons), avec Alphred le majordome. Troisième version de l'Alpharium, celle qui tourne au quotidien, à égalité avec le Kaddour Social Club en 3D.",
       "source": "Alpharid/Project_ALL",
       "public": null,
       "github": "https://github.com/Alpharid/Project_ALL",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/Project_ALL", "target": "LANCER.bat" },
+      "launch": { "type": "local", "dir": "C:/Alpharium_KSC/Project_ALL", "target": "LANCER.bat" },
       "tags": ["social", "pixel-art", "iso", "node", "typescript", "serveur"]
     },
     {
-      "id": "luxurious-lounge", "name": "Alpharium — Luxurious Lounge", "division": "jeux", "also": ["services"],
+      "id": "kaddour-social-club", "name": "Alpharium — Kaddour Social Club", "division": "jeux", "also": ["services"],
       "status": "wip", "visibility": "private",
       "tagline": "Le gratte-ciel de luxe de l'Alpharium, en 3D sous Godot.",
-      "description": "Club social familial en 3D (Godot 4.7, jouable dans le navigateur) : façade de nuit et portier, lobby de marbre, ascenseur de verre, lounge du penthouse, casino caché et rooftop, sur un serveur autoritaire. Deuxième essai de l'Alpharium, relancé pour lui donner l'âme de la maquette Three.js.",
+      "description": "Club social familial en 3D (Godot 4.7, jouable dans le navigateur) : façade de nuit et portier, lobby de marbre, ascenseur de verre, lounge du penthouse, casino caché et rooftop, sur un serveur autoritaire. Deuxième essai de l'Alpharium, devenu en novembre 2026 la version principale : il réunit le meilleur de la maquette Three.js, de la version 2D et de lui-même.",
       "source": "Alpharid/Alpharium_Godot",
       "public": null,
       "github": "https://github.com/Alpharid/Alpharium_Godot",
@@ -348,7 +348,7 @@
       "public": null,
       "github": "https://github.com/Alpharid/Alpharium_ThreeJS",
       "install": null,
-      "launch": { "type": "local", "dir": "C:/KaddourLounge", "target": "LANCER-LE-LOUNGE.bat" },
+      "launch": { "type": "local", "dir": "C:/Alpharium_KSC/Maquette", "target": "LANCER-LE-LOUNGE.bat" },
       "tags": ["threejs", "3d", "node", "social", "maquette"]
     },
     {

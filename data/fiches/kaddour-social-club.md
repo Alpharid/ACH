@@ -1,17 +1,17 @@
-Le Kaddour Social Club est un salon en ligne réservé à la famille, dans l'esprit de Habbo : pixel art isométrique en 2D, pensé d'abord pour le téléphone. C'est la troisième version de l'Alpharium, après la maquette Three.js et le Luxurious Lounge en 3D sous Godot, et c'est elle qui tourne au quotidien. On s'y retrouve le soir pour discuter, aménager son coin de salon et jouer, sous l'œil d'Alphred, le majordome. L'ambiance tient en trois mots : familial, calme, un peu luxueux, sur un fond or et bleu marine.
+Le Kaddour Social Club est l'Alpharium rêvé en grand : un gratte-ciel de luxe en 3D où la famille se retrouve le soir, jouable directement dans le navigateur, sur PC comme sur téléphone. On arrive de nuit devant la façade, le portier accueille, puis le lobby de marbre mène au grand ascenseur de verre, au lounge du penthouse, au casino caché et au rooftop. Ambiance : marine, or et velours, 100 % chill.
 
-Le lieu est entièrement construit par ses membres : chaque meuble, chaque pièce se pose sur une grille isométrique. Meubles, animaux et avatars sont dessinés en pixel art et peuvent être retouchés dans un Studio intégré, ouvert aux membres promus artistes.
+C'est le deuxième essai de l'Alpharium. La maquette Three.js avait l'âme, mais ramait sur les petits appareils ; cette version reprend tout sous Godot, plus robuste, avec un serveur qui décide de tout.
 
 ### Ce qu'on y trouve
-- Un tchat écrit et vocal, des avatars personnalisables (le Vestiaire) et des émotes.
-- La construction libre du salon à plusieurs : sols, murs, meubles, zones, modèles.
-- Des jeux de salon : cartes maison (Famille TCG), Loup-Garou, échecs et jeux de plateau, Skyjo, So Clover!, chaises musicales.
-- Un casino en jetons (machines, roue, roulette, blackjack, poker, jeux d'adresse), sans argent réel.
-- Alphred le majordome : accueil, boutique, et un mode conversationnel optionnel branché sur une IA.
-- Un espace de mini-jeux HTML internes, servis dans un bac à sable.
+- Une carte construite entièrement par le code : façade, lobby, ascenseur, penthouse, casino, rooftop.
+- Un avatar 3D personnalisable, vue à la troisième ou à la première personne, joystick et gestes sur téléphone.
+- Des PNJ : le majordome, le portier, les croupiers.
+- Des jeux de table : morpion, puissance 4, dés menteurs, Flip Seven, Wavelength, quiz de la famille, Loup-Garou, et un jeu de cartes maison de 57 cartes.
+- Des activités : casino en jetons, bar à mocktails, cinéma et karaoké avec vidéo partagée, arcade, bowling, karting, ruches, et une soirée Zombies.
+- Une vie sociale : inventaire, échanges, amis, livre d'or, quêtes du jour, succès, appartements, et un réseau social interne.
 
 ### Sous le capot
-Node 24 · TypeScript exécuté sans transpilation · Canvas 2D isométrique sans framework · serveur autoritaire · base SQLite intégrée (node:sqlite) · WebSocket · avatars et meubles rendus en PNG côté serveur.
+Godot 4.7 (GDScript, rendu Compatibility pour le web) · un même projet sert de client dans le navigateur et de serveur autoritaire sans fenêtre · petit serveur Node qui sert le jeu et relaie le WebSocket · décors et matières 100 % procéduraux (marbre, bois, velours, ciel étoilé) · contenu en JSON.
 
 ### Où en est la filiale
-En bêta et jouable : un membre de la famille l'héberge et le salon tourne au quotidien, sur invitation. La suite : essais à plusieurs sur téléphone des derniers ajouts, puis stabilisation.
+Mis en pause pour les performances sur téléphone, relancé en octobre 2026, il devient en novembre la version principale de l'Alpharium. Une feuille de route réunit tout ce qu'avaient la maquette Three.js et le Luxurious Lounge en 2D (jeu de cartes maison, échecs et jeux de plateau, arbre de la famille, piscine sur le toit…), avec l'ambiance en mieux : lumière, matières, son, thèmes, et jamais moins de 30 images par seconde sur téléphone. En attendant, le salon du quotidien reste le Luxurious Lounge.

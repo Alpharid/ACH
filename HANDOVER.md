@@ -206,11 +206,12 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Dépôts à cheval sur deux divisions : champ `also` (voir §4). δ Services = tout ce qui fait
   tourner un serveur ou une infra pour la famille (jeux multi avec serveur, IA locale).
 - **Alpharium = 3 filiales**, une par essai : `alpharium-threejs` (1er, maquette Three.js, dépôt
-  `Alpharium_ThreeJS`, installée dans `C:\KaddourLounge` — malgré le nom du dossier), `luxurious-lounge`
-  (2e, Godot, dépôt `Alpharium_Godot`, dossier `C:\Alpharium_KSC`), `kaddour-social-club` (3e, 2D
-  isométrique en service, dépôt `Project_ALL`). Ne pas les refusionner.
+  `Alpharium_ThreeJS`, rangée dans `C:\Alpharium_KSC\Maquette`), `kaddour-social-club`
+  (2e, Godot, dépôt `Alpharium_Godot`, dossier `C:\Alpharium_KSC`, la version principale depuis le 08/11/2026),
+  `luxurious-lounge` (3e, 2D isométrique en service, dépôt `Project_ALL`, dossier `C:\Alpharium_KSC\Project_ALL`).
+  Ne pas les refusionner. Les deux ids ont été permutés le 08/11/2026 (le nom suit la version : KSC = Godot).
 - Renommer une filiale casse les liens partagés : ajouter l'ancien id dans `RENAMED` (`web/assets/app.js`),
-  qui redirige `#filiale/<ancien>` (ex. `lounge` → `kaddour-social-club`).
+  qui redirige `#filiale/<ancien>` (ex. `lounge` → `luxurious-lounge`).
 - Captures : flouter tout texte en jeu qui pourrait porter un vrai nom (plaques, pseudos).
 - `launch.target` (relatif à `launch.dir`) quand la devinette se tromperait (plusieurs exe,
   `.bat` de lancement…) ; `catalog:check` refuse un chemin absolu ou avec `..`.
@@ -245,6 +246,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-08 (5)** : Alpharium : ids `kaddour-social-club` et `luxurious-lounge` permutés (le Kaddour Social Club est la version Godot, devenue principale ; le Luxurious Lounge est la 2D), fiches et captures suivent ; dossiers locaux réunis sous `C:\Alpharium_KSC` (chemins `launch` mis à jour).
 - **2026-11-08 (4)** : fiche de GHŪL (ex-Ghul) : coop 1 à 8, caméra de casque, Algérie de nos jours, mission de l'hôpital abandonné, sortes de ghuls, son spatial.
 - **2026-11-08 (3)** : nouvelle filiale **Ghul** (division α Jeux, concept) : FPS d'horreur sans interface vu par une caméra-piéton, contre les ghuls du folklore arabe ; dépôt privé `Alpharid/Ghul`.
 - **2026-11-08 (3)** : fiche d'Alphred : agent allégé et à accès complet, réglage du modèle corrigé, comparaison avec un modèle du cloud sur de vraies tâches (corvées vérifiables à l'essai).
