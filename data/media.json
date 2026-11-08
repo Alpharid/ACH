@@ -130,5 +130,9 @@
   "mcm-online": {
     "fiche": true,
     "captures": 0
+  },
+  "ghul": {
+    "fiche": true,
+    "captures": 0
   }
 }

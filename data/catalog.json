@@ -410,6 +410,18 @@
       "install": null,
       "launch": null,
       "tags": ["motocross-madness", "multijoueur", "ipx", "directplay", "relais", "wine"]
+    },
+    {
+      "id": "ghul", "name": "Ghul", "division": "jeux",
+      "status": "concept", "visibility": "private",
+      "tagline": "FPS d'horreur sans interface, filmé par une caméra-piéton.",
+      "description": "FPS d'horreur vu par la caméra-piéton du joueur, sans aucune interface, au rendu ultra réaliste, contre les ghuls du folklore arabe : un seul coup les tue, un second les ramène. Concept, Unreal Engine 5.8 prévu.",
+      "source": "Alpharid/Ghul",
+      "public": null,
+      "github": "https://github.com/Alpharid/Ghul",
+      "install": null,
+      "launch": { "type": "local", "dir": "C:/Ghul" },
+      "tags": ["fps", "horreur", "bodycam", "unreal", "folklore"]
     }
   ]
 }
