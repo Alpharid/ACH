@@ -422,6 +422,18 @@
       "install": null,
       "launch": { "type": "local", "dir": "C:/Ghul" },
       "tags": ["fps", "horreur", "coop", "bodycam", "unreal", "folklore", "algerie"]
+    },
+    {
+      "id": "valisa", "name": "Valisa", "division": "outils",
+      "status": "concept", "visibility": "private",
+      "tagline": "La valise de diagnostic auto maison : on branche, elle lit tout, elle explique.",
+      "description": "Une valise de diagnostic et de codage automobile qui grandit une voiture à la fois : elle lit tous les calculateurs, sort un rapport clair et sait activer les options montées après coup. Un seul .exe sur une clé USB pour Windows, ou un Raspberry Pi à écran tactile. Première voiture : une Opel Corsa D.",
+      "source": "Alpharid/Valisa",
+      "public": null,
+      "github": "https://github.com/Alpharid/Valisa",
+      "install": null,
+      "launch": { "type": "local", "dir": "C:/Valisa" },
+      "tags": ["diagnostic", "obd2", "can", "automobile", "codage", "raspberry-pi", "portable"]
     }
   ]
 }

@@ -134,5 +134,9 @@
   "ghul": {
     "fiche": true,
     "captures": 0
+  },
+  "valisa": {
+    "fiche": true,
+    "captures": 0
   }
 }
