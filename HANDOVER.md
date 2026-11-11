@@ -246,6 +246,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-11** (soir) : fiche Guardians : l'écran de création en 3D et les Gardiens en 3D dans le monde (mise à jour du 11).
 - **2026-11-10** : nouvelle filiale **Valisa** (division γ Outils, concept) : valise de diagnostic et de codage auto, une voiture à la fois (.exe portable + Raspberry Pi), première voiture une Opel Corsa D ; dépôt privé `Alpharid/Valisa`. Fiche Super Toolbox : le diagnostic automobile rejoint ses domaines.
 - **2026-11-09** (nuit) : fiche Guardians : la mise à jour du 9 novembre (jeu en groupe et butin partagé, la fiche du Gardien en grand bassin, l'anglais en jeu).
 - **2026-11-09** : vitrine de la méthode recopiée (la musique : un rendu au timbre synthétique rejoué note à note par de vrais instruments).
