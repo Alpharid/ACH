@@ -437,7 +437,7 @@
     },
     {
       "id": "24-7", "name": "24/7", "division": "jeux",
-      "status": "concept", "visibility": "private",
+      "status": "wip", "visibility": "private",
       "tagline": "Friendslop d'horreur en coop : tenir une supérette trop belle au milieu d'un désert vide.",
       "description": "Jeu d'horreur coopératif (1 à 4 joueurs) en die and retry : on accepte une paie indécente pour tenir un 24/7 au milieu d'un wasteland désertique. Les clients sont étranges : il faut les servir sans jamais se tromper ni les froisser, tout en repérant grâce à l'observation et aux caméras CCTV ceux qui viennent pour vous tuer.",
       "source": "Alpharid/24_7",
