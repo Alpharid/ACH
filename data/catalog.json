@@ -441,10 +441,10 @@
       "tagline": "Friendslop d'horreur en coop : tenir une supérette trop belle au milieu d'un désert vide.",
       "description": "Jeu d'horreur coopératif (1 à 4 joueurs) en die and retry : on accepte une paie indécente pour tenir un 24/7 au milieu d'un wasteland désertique. Les clients sont étranges : il faut les servir sans jamais se tromper ni les froisser, tout en repérant grâce à l'observation et aux caméras CCTV ceux qui viennent pour vous tuer.",
       "source": "Alpharid/24_7",
-      "public": null,
-      "github": "https://github.com/Alpharid/24_7",
-      "install": null,
-      "launch": { "type": "local", "dir": "C:/24_7" },
+      "public": "Alpharid/24-7-builds",
+      "github": "https://github.com/Alpharid/24-7-builds",
+      "install": { "type": "github-release", "repo": "Alpharid/24-7-builds" },
+      "launch": { "type": "local", "dir": "C:/24_7", "target": "24-7-Launcher.exe" },
       "tags": ["friendslop", "horreur", "coop", "die-and-retry", "cctv", "godot"]
     },
     {
