@@ -246,6 +246,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-22** : deux nouvelles filiales en division α Jeux (concept, Godot 4.7) : **24/7** (`Alpharid/24_7`, friendslop horreur coop 1–4 en die-and-retry dans une supérette de désert avec clients étranges et caméras CCTV) et **Trust Me Bro** (`Alpharid/Trust_Me_Bro`, friendslop coop 3 joueurs aveugle / sourd / muet en anthologie de crises).
 - **2026-11-12** : fiche Guardians : les origines au bivouac et les tenues de départ en 3D.
 - **2026-11-11** (soir) : fiche Guardians : l'écran de création en 3D et les Gardiens en 3D dans le monde (mise à jour du 11).
 - **2026-11-10** : nouvelle filiale **Valisa** (division γ Outils, concept) : valise de diagnostic et de codage auto, une voiture à la fois (.exe portable + Raspberry Pi), première voiture une Opel Corsa D ; dépôt privé `Alpharid/Valisa`. Fiche Super Toolbox : le diagnostic automobile rejoint ses domaines.

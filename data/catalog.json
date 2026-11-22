@@ -6,7 +6,7 @@
     "owner": "Alpharid",
     "since": 1996,
     "tagline": "Le conglomérat qui réunit toutes mes divisions.",
-    "updated": "2026-10-27"
+    "updated": "2026-11-22"
   },
   "divisions": [
     { "id": "jeux",     "glyph": "α", "name": "Jeux",     "label": "Division Jeux",     "blurb": "Les jeux du conglomérat — Godot, Electron, VR, mods." },
@@ -434,6 +434,30 @@
       "install": null,
       "launch": { "type": "local", "dir": "C:/Valisa" },
       "tags": ["diagnostic", "obd2", "can", "automobile", "codage", "raspberry-pi", "portable"]
+    },
+    {
+      "id": "24-7", "name": "24/7", "division": "jeux",
+      "status": "concept", "visibility": "private",
+      "tagline": "Friendslop d'horreur en coop : tenir une supérette trop belle au milieu d'un désert vide.",
+      "description": "Jeu d'horreur coopératif (1 à 4 joueurs) en die and retry : on accepte une paie indécente pour tenir un 24/7 au milieu d'un wasteland désertique. Les clients sont étranges : il faut les servir sans jamais se tromper ni les froisser, tout en repérant grâce à l'observation et aux caméras CCTV ceux qui viennent pour vous tuer.",
+      "source": "Alpharid/24_7",
+      "public": null,
+      "github": "https://github.com/Alpharid/24_7",
+      "install": null,
+      "launch": { "type": "local", "dir": "C:/24_7" },
+      "tags": ["friendslop", "horreur", "coop", "die-and-retry", "cctv", "godot"]
+    },
+    {
+      "id": "trust-me-bro", "name": "Trust Me Bro", "division": "jeux",
+      "status": "concept", "visibility": "private",
+      "tagline": "Friendslop coop à 3 : un aveugle, un sourd, un muet, une seule chance de s'en sortir.",
+      "description": "Jeu coopératif 3D en vue subjective pour 3 joueurs aux handicaps complémentaires : un aveugle, un sourd et un muet détiennent chacun des informations que les deux autres n'ont pas. Une anthologie de situations d'urgence (désamorçage, évasion, fuite, braquage) à résoudre ensemble en temps réel.",
+      "source": "Alpharid/Trust_Me_Bro",
+      "public": null,
+      "github": "https://github.com/Alpharid/Trust_Me_Bro",
+      "install": null,
+      "launch": { "type": "local", "dir": "C:/Trust_Me_Bro" },
+      "tags": ["friendslop", "coop", "3-joueurs", "asymetrique", "fps", "godot"]
     }
   ]
 }
