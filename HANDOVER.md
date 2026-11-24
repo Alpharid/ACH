@@ -246,6 +246,7 @@ docs/DA/logo/svg/           vectoriels refaits (générés, ne pas éditer à la
 - Réflexe Super_Toolbox : consulter `D:\Super_Toolbox\INDEX.md` au démarrage d'une session.
 
 ## 10. Historique
+- **2026-11-24 (soir)** : fiche **24/7** mise à jour pour **`v0.3.1`** (Feeling FPS Sprint/Stamina/Accroupi/Saut, Extérieur désert mappé + grande baie vitrée Est, Stalker IA cinématique FOV/Furtivité/Nuit 1→13+, chambre Hyperbole 4 personas).
 - **2026-11-24** : fiche **24/7** mise à jour pour la release **`v0.3.0`** (Menu Principal 3D animé nocturne, Vestiaire 24/7 custom 3D, Boutique Outils inter-shifts, Clients Habitués par visites, 10 meubles/machines 3D PSX v2, 11 items physiques Jolt, Grow Box KerKush Botanics, 40 OGG CC0, coop en ligne Noray).
 - **2026-11-22 (nuit/après-midi)** : **24/7** branché sur son dépôt public de builds `Alpharid/24-7-builds` (launcher portable `24-7-Launcher.exe` + première release `v0.1.0`).
 - **2026-11-22 (suite)** : **24/7** passe en `wip` (prototype P1 jouable `0.1.0-p1` sous Godot 4.7 : rendu VHS/PSX, solo/coop ENet, vocal de proximité intégré, 3 caméras CCTV temps réel, opérateur CCTV fantôme, 2 archétypes complets) ; fiche **Trust Me Bro** actualisée (mode Micro-sens par défaut + option Pur/Hardcore).
